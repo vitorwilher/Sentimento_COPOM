@@ -1,0 +1,17 @@
+# --- Núcleo da API (MVP de leitura — sobe sem chaves de LLM) ---
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+numpy>=1.26
+pandas>=2.2
+
+# --- Coleta (POST /atualizar) ---
+requests>=2.31
+beautifulsoup4>=4.12
+python-dotenv>=1.0
+
+# --- Escoragem LLM (POST /atualizar) — pesadas, só necessárias p/ reescorar ---
+langchain-core>=0.3
+langchain-google-genai>=2.0
+langchain-anthropic>=0.3
+langchain-openai>=0.2

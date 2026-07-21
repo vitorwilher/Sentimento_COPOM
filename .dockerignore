@@ -1,0 +1,23 @@
+# Contexto de build enxuto — só o necessário p/ a imagem da API.
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+src/tests/
+src/.venv/
+src/.env
+
+# Artefatos do paper que não entram na imagem.
+*.qmd
+*.pdf
+*.png
+*.bib
+*.quarto_ipynb*
+.quarto/
+_freeze/
+versions/
+_rollback/
+archive/
+divulgacao/
+portfolio/
+.git/
+.DS_Store
