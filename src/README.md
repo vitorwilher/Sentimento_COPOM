@@ -59,8 +59,30 @@ Só para `POST /atualizar`: `cp .env.example .env` e preencha as chaves.
 ## Testes
 
 ```bash
-cd src && pytest -q     # 13 testes, todos offline (sem chave, sem rede)
+cd src && pytest -q     # 20 testes, todos offline (sem chave, sem rede)
 ```
+
+## Eval — gate de qualidade do scoring
+
+A qualidade do scoring de tom é tratada como **contrato verificável em CI**. A
+"verdade" é a **Selic realizada**: o eval mede se o Índice de Tom prevê a variação
+da Selic que de fato ocorreu, e **falha (exit 1)** se a qualidade do ensemble
+regride abaixo dos thresholds — bloqueando um merge que degrade o scoring (troca
+de modelo, mudança de prompt).
+
+```bash
+cd src && python -m eval.run_eval          # thresholds padrão (R²≥0.40, Spearman≥0.55)
+```
+
+Métricas (por modelo + ensemble), todas offline:
+
+| Métrica | O que mede |
+|---|---|
+| **R²** | Variância da ΔSelic explicada pelo score (ajuste OLS) |
+| **RMSE** | Erro da ΔSelic prevista pela reta calibrada (p.p.) |
+| **Spearman** | Correlação de posto score × ΔSelic — atas mais *hawkish* antecedem mais aperto? |
+
+O gate roda automaticamente no CI (`.github/workflows/eval.yml`) a cada push/PR.
 
 ## Rodar com Docker
 
