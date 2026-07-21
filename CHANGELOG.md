@@ -4,6 +4,20 @@ Histórico de versões do paper *Mesmo Sinal, Calibrações Diferentes: Um Índi
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
+## [Unreleased]
+
+### Added
+- `atualizar_indice.py`: escoragem incremental sem re-render do paper — replica o
+  pipeline do qmd (mesmo prompt, mesmos modelos, temperature=0, saída Pydantic)
+  para atas publicadas após a release. Executado em 2026-07-05 para as atas
+  **278** (29/04/2026) e **279** (17/06/2026): Gemini +1,5/+1,5, Claude +1,5/+1,5,
+  OpenAI +2,0/+2,0. Caches de atas, Selic e scores atualizados (48 reuniões).
+  Motivação: extensão da amostra para o projeto Taylor_Sentimento.
+
+### Fixed
+- Download da Selic (SGS 432) em duas janelas — a API passou a limitar consultas
+  JSON a 10 anos.
+
 ## [v1.0] — 2026-04-26
 
 Primeira versão completa do paper, com tese empiricamente sustentada em três camadas de validação.
