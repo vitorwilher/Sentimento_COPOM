@@ -254,12 +254,14 @@ O container foi validado de ponta a ponta: `docker compose up --build`, healthch
 `healthy`, e `curl` nos endpoints a partir do *host* devolvendo o JSON esperado.
 
 ::: {.callout-note}
-## O que ainda não foi provado ao vivo
+## Escoragem ao vivo — validada por teste de fumaça
 
-O `POST /atualizar` está implementado e passa na checagem de importação, mas o
-caminho de **escoragem ao vivo** (que consome os três LLMs) não foi exercitado de
-ponta a ponta — exige as chaves e gasta API. É o único trecho não validado em
-execução real.
+O caminho de escoragem do `POST /atualizar` foi exercitado ao vivo num teste de
+fumaça isolado: o *scorer* real escorou a ata 279 nos três provedores e reproduziu
+**exatamente** os scores em cache (Gemini +1,5, Claude +1,5, OpenAI +2,0),
+confirmando também o determinismo (`temperature=0`). O endpoint completo em
+produção contínua — coleta de ata nova → escoragem → *append* no cache — só
+dispara quando o BCB publica uma ata inédita; até lá, é idempotente.
 :::
 
 ---
