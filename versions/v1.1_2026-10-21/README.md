@@ -9,7 +9,7 @@
 
 Trabalho apresentado ao curso de Pós-Graduação em Inteligência Artificial e LLMs da PUC-Rio como pré-requisito para conclusão de curso.
 
-- [Link para o código](https://github.com/vitorwilher/Sentimento_COPOM).
+- [Link para o código](sentimento_copom_IA_base.qmd).
 
 - [Link para a monografia](sentimento_copom_IA_publico.pdf).
 
