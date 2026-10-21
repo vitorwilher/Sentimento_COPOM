@@ -154,10 +154,9 @@ Veja o [CHANGELOG.md](CHANGELOG.md) para o histórico completo.
 
 ---
 
-## Autores
+## Autor
 
-- **Vitor Wilher** — Bacharel e Mestre em Economia (UFF), candidato ao PhD em Economia (EPGE/FGV), especialista em Ciências de Dados e IA Generativa (PUC-Rio). Data Tech Lead na [Análise Macro](https://analisemacro.com.br). [GitHub](https://github.com/vitorwilher)
-- **Luiz Henrique Barbosa Filho** — Bacharel em Ciência e Economia e em Ciências Contábeis (UNIFAL). Cientista de Dados e tutor na [Análise Macro](https://analisemacro.com.br). [LinkedIn](https://www.linkedin.com/in/luiz-henrique-barbosa-filho/)
+- **Vítor Wilher Rodrigues de Lima** — Bacharel e Mestre em Economia (UFF), candidato ao PhD em Economia (EPGE/FGV), especialista em Ciências de Dados e IA Generativa (PUC-Rio). Data Tech Lead na [Análise Macro](https://analisemacro.com.br). [GitHub](https://github.com/vitorwilher)
 
 ---
 

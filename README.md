@@ -1,170 +1,68 @@
-# Sentimento COPOM — Índice de Tom das Atas do Copom com Múltiplos LLMs
+# Mesmo Sinal, Calibrações Diferentes: Um Índice de Tom das Atas do Copom com Múltiplos LLMs
 
-[![Versão](https://img.shields.io/badge/versão-1.0-blue)](CHANGELOG.md)
-[![Python](https://img.shields.io/badge/Python-3.11+-blue)](https://www.python.org/)
-[![Quarto](https://img.shields.io/badge/Quarto-1.4+-orange)](https://quarto.org/)
+### Comparação entre Gemini Flash Lite, Claude Haiku 4.5 e GPT-4.1-mini
 
-Pipeline reprodutível em Python que constrói um **Índice de Tom *hawkish-dovish*** das atas do Comitê de Política Monetária (Copom) do Banco Central do Brasil utilizando **três LLMs em paralelo** — Gemini Flash Lite (Google), Claude Haiku 4.5 (Anthropic) e GPT-4.1-mini (OpenAI) — calibrado em pontos percentuais da Selic e validado em três camadas (in-sample, holdout, walk-forward).
-
-O artefato final é um *paper* técnico em Quarto + LaTeX versionado formalmente, com duas edições paralelas: **base auditável** (chunks visíveis) e **edição do leitor** (chunks ocultos).
-
-![Índice de Tom calibrado](sentimento_copom_indice.png)
+#### Aluno: [Vítor Wilher Rodrigues de Lima](https://github.com/vitorwilher)
+#### Orientadora: Evelyn Conceição Santos Batista.
 
 ---
 
-## Tese central
+Trabalho apresentado ao curso de Pós-Graduação em Inteligência Artificial e LLMs da PUC-Rio como pré-requisito para conclusão de curso.
 
-Os três modelos **concordam sobre a direção do tom** — qual ata é mais *hawkish* ou *dovish* — mas **divergem sobre a intensidade** com que essa direção se traduz em variação da Selic. A sensibilidade $\hat{\beta}$ varia de $+0{,}36$ a $+0{,}62$ p.p. por unidade de *score*, uma diferença de mais de 70%.
+- [Link para o código](https://github.com/vitorwilher/Sentimento_COPOM).
 
-| Modelo | $R^2$ in-sample | $\hat{\beta}$ | RMSE walk-forward |
-|---|---:|---:|---:|
-| **GPT-4.1-mini** | **0,66** | $+0{,}50$ | **0,357** (líder) |
-| **Claude Haiku 4.5** | 0,43 | $+0{,}62$ | ~0,67 |
-| **Gemini Flash Lite** | 0,35 | $+0{,}36$ | ~0,67 |
-| Baseline léxico | (ref.) | — | ~0,52 |
+- [Link para a monografia](sentimento_copom_IA_publico.pdf).
 
----
-
-## Metodologia — CRISP-DM
-
-| Fase | Aplicação |
-|---|---|
-| **Entendimento do Negócio** | Mensurar o tom das atas do Copom em escala interpretável e calibrá-lo na variação efetiva da Selic |
-| **Entendimento dos Dados** | Atas do Copom (API BCB, a partir da reunião 232) + meta Selic (SGS 432); seções A (diagnóstico) e B (riscos) |
-| **Preparação dos Dados** | Limpeza HTML, extração de seções, alinhamento ata × decisão Selic, cache local incremental em três níveis |
-| **Modelagem** | Prompt unificado, saída Pydantic, três LLMs paralelos via LangChain, calibração OLS por modelo |
-| **Avaliação** | Inferência *in-sample* (β̂, IC 95%), *holdout* das últimas 6 atas, *walk-forward* com janela expansiva (n=26) |
-| **Implantação** | Pipeline Quarto reprodutível; cache CSV por provedor; sistema formal de releases |
+- Trabalhos relacionados:
+    - [Can ChatGPT Decipher Fedspeak? (Hansen e Kazinnik, 2023)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4399406).
+    - [Transparency and Deliberation Within the FOMC: A Computational Linguistics Approach (Hansen, McMahon e Prat, 2018)](https://doi.org/10.1093/qje/qjx045).
 
 ---
 
-## Estrutura do Projeto
+### Resumo
 
-```
-Sentimento_COPOM/
-├── sentimento_copom_IA_base.qmd       # paper técnico (echo: true)
-├── sentimento_copom_IA_publico.qmd    # edição do leitor (echo: false)
-├── referencias.bib                    # bibliografia compartilhada
-├── atas_cache.json                    # cache de atas
-├── selic_cache.json                   # cache da Selic
-├── scores_{gemini,claude,openai}_cache.csv
-├── CHANGELOG.md                       # histórico de releases
-├── versions/v1.0_2026-04-26/          # snapshot da release
-├── _rollback/                         # checkpoints ad-hoc
-└── portfolio/                         # divulgação CRISP-DM
-```
+A comunicação dos bancos centrais é, em si, um instrumento de política monetária, e as atas do Comitê de Política Monetária (Copom) do Banco Central do Brasil concentram, em escolhas sutis de linguagem, informação relevante sobre a direção futura da Selic. Este trabalho constrói um Índice de Tom *hawkish-dovish* das atas do Copom utilizando três modelos de linguagem de grande porte (LLMs) — Gemini Flash Lite (Google), Claude Haiku 4.5 (Anthropic) e GPT-4.1-mini (OpenAI) — em um *pipeline* reprodutível em Python, com saída estruturada via Pydantic e cache local incremental que torna a atualização contínua do índice viável a custo marginal próximo de zero.
 
----
+O mesmo *prompt* é aplicado aos mesmos textos pelos três provedores, e os *scores* brutos são calibrados em pontos percentuais equivalentes da Selic via regressão linear. A robustez é testada em três camadas de validação: inferência *in-sample* (erros-padrão, *p*-valores e intervalos de confiança), *holdout* das últimas seis reuniões e validação cruzada *walk-forward* sobre toda a amostra. Para as 50 reuniões entre a 232 (agosto de 2020) e a 281 (setembro de 2026), o GPT-4.1-mini lidera tanto *in-sample* (R² ≈ 0,51) quanto na *walk-forward* (RMSE 0,451, cerca de 9% melhor que um baseline léxico), seguido do Claude Haiku 4.5 (R² ≈ 0,37) e do Gemini Flash Lite (R² ≈ 0,30).
 
-## Como rodar
+Os três modelos concordam sobre a direção do tom (correlações de 0,67 a 0,77 entre os *scores*), mas divergem sobre a intensidade com que essa direção se traduz em variação da Selic: a sensibilidade β̂ varia de +0,34 a +0,59 p.p. por unidade de *score*. O *holdout* revela ainda um ponto cego comum aos três LLMs: no início do ciclo de cortes de 2026, a partir de uma Selic de 15%, a linguagem das atas segue restritiva e os modelos leem o nível de aperto monetário, não a direção da próxima decisão.
 
-### Pré-requisitos
+### Abstract
 
-- Python 3.11+
-- Quarto ≥ 1.4
-- TeX Live (para PDF)
-- Chaves: Google AI Studio, Anthropic, OpenAI
+Central bank communication is, in itself, a monetary policy instrument, and the minutes of Brazil's Monetary Policy Committee (Copom) concentrate, in subtle language choices, meaningful information about the future path of the Selic rate. This work builds a hawkish-dovish Tone Index of Copom minutes using three large language models (LLMs) — Gemini Flash Lite (Google), Claude Haiku 4.5 (Anthropic), and GPT-4.1-mini (OpenAI) — within a reproducible Python pipeline featuring Pydantic-based structured output and incremental local caching, which makes continuous updating of the index viable at near-zero marginal cost.
 
-### Instalação
+The same prompt is applied to the same texts by all three providers, and the raw scores are calibrated in percentage-point equivalents of the Selic rate via linear regression. Robustness is tested through three validation layers: in-sample inference (standard errors, p-values, and confidence intervals), a holdout of the last six meetings, and walk-forward cross-validation over the full sample. Over the 50 meetings from 232 (August 2020) to 281 (September 2026), GPT-4.1-mini leads both in-sample (R² ≈ 0.51) and in walk-forward (RMSE 0.451, around 9% better than a lexicon baseline), followed by Claude Haiku 4.5 (R² ≈ 0.37) and Gemini Flash Lite (R² ≈ 0.30).
 
-```bash
-git clone https://github.com/vitorwilher/Sentimento_COPOM.git
-cd Sentimento_COPOM
+The three models agree on the direction of the tone (correlations of 0.67 to 0.77 among scores) but diverge on the intensity with which it translates into Selic-rate changes: the sensitivity β̂ ranges from +0.34 to +0.59 percentage points per unit of score. The holdout also reveals a blind spot shared by all three LLMs: at the start of the 2026 easing cycle, from a 15% Selic rate, the minutes' language remains restrictive and the models read the level of monetary tightening, not the direction of the next decision.
 
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+### 1. Introdução
 
-cp .env.example .env  # edite com suas chaves
-```
+Desde a virada da transparência nos bancos centrais, a comunicação passou a ser tratada como instrumento de política monetária em si: o que o comitê diz sobre inflação, expectativas e balanço de riscos move preços de ativos e expectativas antes mesmo da próxima decisão de juros. No Brasil, as atas do Copom são o principal veículo dessa comunicação. A literatura de análise de texto aplicada a bancos centrais evoluiu de dicionários de palavras (no espírito de Loughran e McDonald) para modelos de tópicos e, mais recentemente, para LLMs capazes de ler o tom em contexto — mas a evidência para o português e para o Copom ainda é escassa.
 
-### Variáveis de ambiente
+Este trabalho busca mensurar o tom das atas do Copom em uma escala interpretável, calibrada em pontos percentuais da Selic, e responder a uma pergunta prática para quem pretende usar esse tipo de índice em produção: a escolha do provedor de LLM importa? Para isso, três LLMs comerciais de baixo custo leem os mesmos textos com o mesmo *prompt*, e suas leituras são comparadas entre si e contra um baseline léxico.
 
-```bash
-GOOGLE_API_KEY=...
-ANTHROPIC_API_KEY=...
-OPENAI_API_KEY=...
-```
+### 2. Modelagem
 
-### Renderização
+O projeto segue o fluxo CRISP-DM. Os dados são coletados automaticamente das APIs públicas do Banco Central: as atas do Copom a partir da reunião 232 (agosto de 2020) e a meta Selic (série SGS 432). Cada ata passa por limpeza de HTML e extração das seções A (atualização da conjuntura) e B (cenários e balanço de riscos), que concentram o diagnóstico do comitê sem a decisão de juros já anunciada. A variável-alvo é a variação da Selic decidida na reunião correspondente.
 
-```bash
-# Edição auditável (com chunks)
-quarto render sentimento_copom_IA_base.qmd
+Na etapa de modelagem, um *prompt* único pede a cada LLM um *score* de −3 (fortemente *dovish*) a +3 (fortemente *hawkish*), com âncoras descritivas para cada nível. A saída é estruturada via Pydantic e orquestrada com LangChain, com `temperature = 0` e cache incremental por provedor — só as atas novas são escoradas a cada atualização. Os *scores* de cada modelo são então calibrados por regressão OLS contra a variação da Selic, o que transforma o tom em pontos percentuais equivalentes e permite comparar sensibilidade (β̂) e ajuste (R²) entre os modelos. Um baseline léxico de termos *hawkish* e *dovish* em português serve de piso de comparação.
 
-# Edição do leitor (sem chunks)
-quarto render sentimento_copom_IA_publico.qmd
-```
+### 3. Resultados
 
-### Reprocessamento total
+Os três LLMs entregam coeficientes positivos e estatisticamente significativos (*p* < 0,01, *t* entre 4,6 e 7,1, *n* = 50), todos acima do baseline léxico em R² e sensibilidade. O GPT-4.1-mini tem o melhor ajuste (R² ≈ 0,51, β̂ ≈ +0,43), o Claude Haiku 4.5 a maior sensibilidade (β̂ ≈ +0,59, R² ≈ 0,37) e o Gemini Flash Lite a leitura mais conservadora (β̂ ≈ +0,34, R² ≈ 0,30). Na validação *walk-forward* (30 predições fora da amostra), o GPT-4.1-mini é o único LLM que supera o baseline léxico (RMSE 0,451 contra 0,496); Claude e Gemini empatam entre si (≈ 0,51), apesar de sensibilidades muito diferentes, o que mostra que maior β̂ *in-sample* não se converte em poder preditivo.
 
-```bash
-rm scores_*_cache.csv
-quarto render sentimento_copom_IA_base.qmd
-```
+O *holdout* das últimas seis atas coincide com a virada para o ciclo de cortes de 2026 — uma manutenção em 15% seguida de cinco cortes de 0,25 p.p. Nessa janela, os três LLMs continuam atribuindo *scores* *hawkish* enquanto o Copom corta juros, porque as atas seguem descrevendo a política monetária como "restritiva por período prolongado"; o ranking se inverte e o baseline léxico, com predições achatadas, vence. Já a medida de surpresa de comunicação (*z-score*) mostra duas reuniões em que os três modelos convergem para uma leitura mais *dovish* do que o habitual — dezembro de 2025, que antecedeu em três meses o primeiro corte, e setembro de 2026.
 
-Custo estimado para reprocessar a amostra completa: **< US\$ 1**.
+### 4. Conclusões
+
+Os LLMs transformam textos complexos e subjetivos em um indicador quantitativo, tempestivo e economicamente interpretável, a custo marginal próximo de zero. A escolha do provedor, porém, não é neutra: os modelos concordam sobre a direção do tom, mas divergem sobre sua intensidade, e só o GPT-4.1-mini mantém vantagem sobre o baseline léxico ao longo do ciclo completo. Para monitorar a direção relativa do tom, qualquer um dos três serve; para usar o índice como variável quantitativa em um modelo macroeconômico, como uma regra de Taylor, a escolha do modelo altera o resultado de forma material.
+
+O principal achado da versão 1.1 é uma limitação: o índice mede o nível de aperto comunicado, não a direção da próxima decisão, e por isso atrasa a leitura de afrouxamentos graduais a partir de juros altos. Os próximos passos incluem separar postura e direção no *prompt*, reespecificar a regressão de forma preditiva (ata em *t* contra a Selic em *t*+1), testar a robustez a variações de *prompt* e construir um índice *ensemble* dos três provedores.
 
 ---
 
-## Sistema de Versões
+Matrícula: 251.100866
 
-### Edições paralelas
+Pontifícia Universidade Católica do Rio de Janeiro
 
-- `sentimento_copom_IA_base.qmd` — `echo: true`, mostra todos os chunks (auditável).
-- `sentimento_copom_IA_publico.qmd` — `echo: false`, esconde chunks (leitor).
-
-Diferem em **duas linhas**: `echo` no YAML e o sufixo "Edição do leitor" na *titlepage*. Mudanças de prosa atualizam **ambos**; mudanças de código vão só no `base.qmd`.
-
-### CHANGELOG e snapshots
-
-- **`CHANGELOG.md`** segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
-- **`versions/vX.Y_YYYY-MM-DD/`** — snapshot completo a cada release.
-- **`_rollback/`** — checkpoints ad-hoc dentro de uma sessão de trabalho.
-
-### Convenção de bumps
-
-| Tipo | Critério |
-|---|---|
-| **Major (vX.0)** | Nova rodada metodológica (ensemble, modelos maiores, nova validação) |
-| **Minor (v1.X)** | Próximos passos atacados, novos achados, expansão de literatura |
-| **Patch (v1.0.X)** | Correções de prosa, ajustes editoriais |
-
-Veja o [CHANGELOG.md](CHANGELOG.md) para o histórico completo.
-
----
-
-## Próximos Passos (v2.0)
-
-1. Capacidade antecedente $t \to t+1$ (regressão preditiva)
-2. Robustez a perturbações de *prompt* + variância entre execuções
-3. Índice *ensemble* (média simples ou ponderada por $R^2$)
-4. Inspeção qualitativa de divergências entre modelos
-5. Modelos maiores (`gpt-4.1`, `claude-sonnet-4-5`, `gemini-2.5-pro`)
-6. Probit ordenado para classificação de viés
-7. Estender o pipeline aos comunicados oficiais
-8. Surpresa de comunicação ortogonalizada (resíduo controlando expectativas Focus)
-
----
-
-## Tecnologias
-
-`Python` · `Quarto` · `LaTeX` · `LangChain` · `Pydantic` · `statsmodels` · `plotnine` · `google-genai` · `anthropic` · `openai`
-
----
-
-## Autores
-
-- **Vitor Wilher** — Bacharel e Mestre em Economia (UFF), candidato ao PhD em Economia (EPGE/FGV), especialista em Ciências de Dados e IA Generativa (PUC-Rio). Data Tech Lead na [Análise Macro](https://analisemacro.com.br). [GitHub](https://github.com/vitorwilher)
-- **Luiz Henrique Barbosa Filho** — Bacharel em Ciência e Economia e em Ciências Contábeis (UNIFAL). Cientista de Dados e tutor na [Análise Macro](https://analisemacro.com.br). [LinkedIn](https://www.linkedin.com/in/luiz-henrique-barbosa-filho/)
-
----
-
-## Referências principais
-
-- Loughran, T.; McDonald, B. (2011). *When Is a Liability Not a Liability?*. *Journal of Finance*, 66(1), 35–65.
-- Hansen, S.; Kazinnik, S. (2023). *Can ChatGPT Decipher Fedspeak?*.
-- Apel, M.; Grimaldi, M. (2012). *The Information Content of Central Bank Minutes*. Riksbank.
-- Blinder, A. S. et al. (2008). *Central Bank Communication and Monetary Policy*. *JEL*, 46(4).
-
-Lista completa em [`referencias.bib`](referencias.bib).
+Curso de Pós-Graduação em *Inteligência Artificial e LLMs*

@@ -256,28 +256,28 @@ Treino nas primeiras $n - 6$ reuniões, teste nas **últimas 6**. Reporta RMSE e
 
 ### 5.3 Camada 3 — Walk-forward expanding window
 
-Janela de treino mínima de **20 atas**, predição da próxima, expansão da janela em uma observação, repete até esgotar a amostra. Resulta em $n_{\text{pred}} = 26$ predições genuinamente *out-of-sample*. RMSE e MAE da walk-forward são as métricas mais conservadoras e respeitam a ordem temporal — nenhum dado futuro contamina o treino.
+Janela de treino mínima de **20 atas**, predição da próxima, expansão da janela em uma observação, repete até esgotar a amostra. Resulta em $n_{\text{pred}} = 30$ predições genuinamente *out-of-sample*. RMSE e MAE da walk-forward são as métricas mais conservadoras e respeitam a ordem temporal — nenhum dado futuro contamina o treino.
 
-### 5.4 Achados centrais (estado em abr/2026)
+### 5.4 Achados centrais (v1.1, out/2026 — 50 atas, reuniões 232–281)
 
 | Modelo | $R^2$ in-sample | $\hat{\beta}$ | RMSE walk-forward |
 |---|---:|---:|---:|
-| **OpenAI GPT-4.1-mini** | **0,66** | $+0{,}50$ | **0,357** (líder) |
-| **Claude Haiku 4.5** | 0,43 | $+0{,}62$ | ~0,67 |
-| **Gemini Flash Lite** | 0,35 | $+0{,}36$ | ~0,67 |
-| **Baseline léxico** | (referência) | — | ~0,52 |
+| **OpenAI GPT-4.1-mini** | **0,51** | $+0{,}43$ | **0,451** (líder) |
+| **Claude Haiku 4.5** | 0,37 | $+0{,}59$ | 0,510 |
+| **Gemini Flash Lite** | 0,30 | $+0{,}34$ | 0,511 |
+| **Baseline léxico** | 0,26 | $+0{,}15$ | 0,496 |
 
 **Interpretação:**
 
-- **GPT-4.1-mini lidera** in-sample e out-of-sample (RMSE walk-forward ~32% melhor que o baseline léxico).
-- **Claude tem maior sensibilidade** in-sample mas *overfit* claro — RMSE quase dobra fora da amostra.
-- **Gemini é o mais conservador**, comprime amplitude do *score*; empata com Claude na walk-forward.
-- **Baseline léxico** vence o holdout (artefato de janela calma) mas volta ao último na walk-forward, confirmando que a vantagem das LLMs é **genuína sobre o ciclo completo**, não um artefato.
+- **GPT-4.1-mini lidera** in-sample e out-of-sample, e é o único LLM que supera o baseline léxico na walk-forward (RMSE ~9% menor).
+- **Claude tem maior sensibilidade** in-sample, mas isso não compra poder preditivo: empata com o Gemini na walk-forward, ambos ligeiramente atrás do baseline.
+- **Gemini é o mais conservador**, comprime a amplitude do *score*.
+- **Ponto cego na virada de ciclo:** o holdout (atas 276–281) cobre o início dos cortes de 2026, a partir de uma Selic de 15%. As atas seguem descrevendo a política como "restritiva por período prolongado" e os três LLMs as leem como *hawkish* — medem o **nível** de aperto, não a **direção** da próxima decisão. O baseline léxico, com predições achatadas, vence essa janela com folga.
 
 ::: {.callout-note}
 ## Histórico relevante
 
-A troca **`gpt-4o-mini` → `gpt-4.1-mini`** elevou $R^2$ de ~0,11 para ~0,66 — geração de modelo importa de forma material para esta tarefa.
+A troca **`gpt-4o-mini` → `gpt-4.1-mini`** elevou $R^2$ de ~0,11 para ~0,66 (amostra da v1.0) — geração de modelo importa de forma material para esta tarefa.
 :::
 
 ---
