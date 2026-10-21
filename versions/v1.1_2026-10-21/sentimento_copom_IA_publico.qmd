@@ -48,8 +48,8 @@ execute:
 \thispagestyle{empty}
 \centering
 
-% Logo Análise Macro
-\includegraphics[width=4cm]{AM.png}
+% Escudo PUC-Rio
+\includegraphics[height=3.5cm]{puc-rio.jpg}
 
 \vspace{0.8cm}
 

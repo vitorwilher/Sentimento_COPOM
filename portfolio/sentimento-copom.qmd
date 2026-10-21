@@ -372,7 +372,7 @@ Sentimento_COPOM/
 │
 ├── sentimento_copom_indice.png        # gráfico do índice calibrado
 ├── sentimento_copom_zscore.png        # gráfico do z-score
-├── AM.png                             # logotipo na titlepage
+├── puc-rio.jpg                        # escudo PUC-Rio na titlepage
 │
 ├── CHANGELOG.md                       # histórico de releases
 ├── versions/                          # snapshots por release

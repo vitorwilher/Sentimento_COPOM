@@ -34,7 +34,8 @@ achado novo e a vantagem dos LLMs sobre o baseline fica mais estreita.
     Gemini 0,511. Só o GPT supera o baseline (~9%, antes ~32%).
   - Z-score: duas reuniões de concordância *dovish* entre os três modelos
     (dez/2025, que antecedeu o primeiro corte, e set/2026).
-- Titlepage: versão 1.1, data 21 de outubro de 2026.
+- Titlepage: versão 1.1, data 21 de outubro de 2026; escudo da PUC-Rio no lugar
+  do logo da Análise Macro.
 - Autoria: o paper passa a ser de autoria individual de Vítor Wilher Rodrigues de Lima
   (trabalho final da Pós-Graduação em Inteligência Artificial e LLMs da PUC-Rio).
 - `README.md` substituído pelo README do trabalho final (modelo PUC-Rio); o guia
