@@ -3,11 +3,9 @@ title: "Mesmo Sinal, Calibrações Diferentes: Um Índice de Tom das Atas do Cop
 subtitle: "Comparação entre Gemini Flash Lite, Claude Haiku 4.5 e GPT-4.1-mini"
 date: "2026-04-26"
 author:
-  - name: Vitor Wilher
+  - name: Vítor Wilher Rodrigues de Lima
     affiliation: Análise Macro
     email: vitorwilher@analisemacro.com.br
-  - name: Luiz Henrique Barbosa Filho
-    affiliation: Análise Macro
 categories: [Política Monetária, Banco Central, LLMs, NLP, Análise de Texto, Macroeconomia, Working Paper]
 description: "Working paper sobre Índice de Tom hawkish-dovish das atas do Copom utilizando três LLMs em paralelo, calibrado em pontos percentuais da Selic e validado em três camadas (in-sample, holdout, walk-forward)."
 image: "sentimento_copom_indice.png"
@@ -88,8 +86,8 @@ A v2.0 está em planejamento e atacará prioritariamente: capacidade antecedente
 ## Como citar
 
 ```bibtex
-@unpublished{wilher_barbosa_2026_sentimento_copom,
-  author    = {Wilher, Vitor and Barbosa Filho, Luiz Henrique},
+@unpublished{wilher_2026_sentimento_copom,
+  author    = {Wilher, V\'{\i}tor},
   title     = {Mesmo Sinal, Calibra\c{c}\~oes Diferentes:
                Um \'Indice de Tom das Atas do Copom com M\'ultiplos LLMs},
   note      = {Working paper, vers\~ao 1.0},

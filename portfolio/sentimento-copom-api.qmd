@@ -42,7 +42,7 @@ modelo. O índice deixa de ser um documento e vira uma **fonte de dados viva**.
 
 A API é desenhada em torno de uma separação deliberada: **leitura offline e
 barata** vs. **escrita cara e sob demanda**. Os quatro endpoints de consulta
-servem os *scores já escorados* (48 reuniões em cache) — sobem funcionais no
+servem os *scores já escorados* (50 reuniões em cache) — sobem funcionais no
 primeiro `docker compose up`, **sem chave de API e sem chamar LLM**. Só o
 `POST /atualizar` toca rede e modelos, e apenas para atas ainda não escoradas.
 Essa fronteira é o que faz o MVP estar de pé a custo marginal zero: o gasto de LLM
@@ -185,11 +185,11 @@ do paper**:
 
 | Artefato | Conteúdo | Papel na API |
 |---|---|---|
-| `atas_cache.json` | 48 atas (reuniões 232–279), seções A+B limpas | Datas das reuniões; texto para reescoragem |
+| `atas_cache.json` | 50 atas (reuniões 232–281), seções A+B limpas | Datas das reuniões; texto para reescoragem |
 | `scores_{gemini,claude,openai}_cache.csv` | Score de tom [-3, +3] por reunião, por modelo | **Fonte de verdade** do índice servido |
 | `selic_cache.json` | Meta Selic diária (SGS 432) | Variável dependente da calibração OLS |
 
-A cobertura atual é de **48 reuniões escoradas nos três provedores** — o índice sobe
+A cobertura atual é de **50 reuniões escoradas nos três provedores** — o índice sobe
 completo no primeiro *boot*.
 
 ---
