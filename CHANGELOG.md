@@ -6,6 +6,14 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+- README: diagrama Mermaid do fluxo do *pipeline* com a explicação de cada etapa,
+  tabela de modelos e versões (com ressalva sobre o *alias* do Gemini), estimativa
+  de custo a partir da contagem real de *tokens*, guia de leitura das métricas,
+  tabela completa de resultados e passo a passo de como rodar o código.
+- `sentimento_copom_resultados.png`: figura com β̂ (IC 95%), R² e RMSE *walk-forward*.
+- `requirements.txt` e `.env.example` na raiz (já citados no REPRODUCAO.md).
+
 ## [v1.1] — 2026-10-21
 
 Extensão da amostra para 50 atas (reuniões 232–281, ago/2020–set/2026) e reescrita
