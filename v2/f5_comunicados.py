@@ -88,17 +88,20 @@ def textos(nros: list[int]) -> dict[str, str]:
     return memo
 
 
-def _cadeia(provedor: str):
+def _cadeia_base(provedor: str, max_tokens: int = 600):
+    """O LLM do provedor, com versão fixa e temperature 0 (sem schema)."""
     if provedor == "claude":
         from langchain_anthropic import ChatAnthropic
-        llm = ChatAnthropic(model=MODELOS["claude"], temperature=0, max_tokens=600, max_retries=3)
-    elif provedor == "openai":
+        return ChatAnthropic(model=MODELOS["claude"], temperature=0, max_tokens=max_tokens, max_retries=3)
+    if provedor == "openai":
         from langchain_openai import ChatOpenAI
-        llm = ChatOpenAI(model=MODELOS["openai"], temperature=0, timeout=60, max_retries=3)
-    else:
-        from langchain_google_genai import ChatGoogleGenerativeAI
-        llm = ChatGoogleGenerativeAI(model=MODELOS["gemini"], temperature=0, max_retries=3)
-    return llm.with_structured_output(LeituraComunicado)
+        return ChatOpenAI(model=MODELOS["openai"], temperature=0, timeout=240, max_retries=3, max_tokens=max_tokens)
+    from langchain_google_genai import ChatGoogleGenerativeAI
+    return ChatGoogleGenerativeAI(model=MODELOS["gemini"], temperature=0, max_retries=3)
+
+
+def _cadeia(provedor: str):
+    return _cadeia_base(provedor).with_structured_output(LeituraComunicado)
 
 
 def ler(provedor: str, nros: list[int]) -> pd.DataFrame:

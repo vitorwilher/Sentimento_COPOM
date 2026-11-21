@@ -285,6 +285,31 @@ Export do MPP com `selic_alvo_dsge` = neutro filtrado do DSGE + âncora + θ3·(
 
 Leitura para a 283ª: alvo com neutro do DSGE 11,53% (gap −222 pb), contra 16,34% com neutro HP.
 
+### 8.7 Resultado da F7 (21/11/2026): Índice de Condicionalidade
+
+**Ideia (do Vitor).** A ata descreve uma função de reação ("em ambiente de expectativas desancoradas, exige-se uma restrição monetária maior"). Extrair as condições de cada ata e medir como as variáveis citadas evoluem até a reunião seguinte.
+
+**Construção.** 179 atas completas (as 32 de 2016–2020 só em PDF, via `pdftotext`). Condições extraídas por GPT-4.1-mini (174 atas) e Claude Haiku 4.5 (97 atas, antes de acabar o crédito da API da Anthropic), numa lista fixa de 11 variáveis, com ênfase de 1 a 3. O sinal é teórico e fixo, porque o Haiku inverteu o de atividade nos testes. Variação de cada variável entre a ata e a véspera, ponto-no-tempo, padronizada pelo desvio das janelas anteriores. Índice da ata = média ponderada pela ênfase; controle = índice genérico, com as mesmas variáveis e peso igual.
+
+| Teste (164 reuniões-alvo) | Índice da ata | Índice genérico |
+|---|---:|---:|
+| Corr. com a ΔSelic seguinte | +0,46 | +0,46 |
+| **Deriva do DI ata → véspera** (coef., p) | **5,2 (p = 0,002)**, R² 4,5% | **8,7 (p < 0,001)**, R² 7,3% |
+| Os dois juntos | −1,1 (p = 0,70) | 10,0 (p = 0,02) |
+| Corr. com o erro do DI da véspera | −0,03 | −0,03 |
+| Walk-forward na véspera (DI 92,7%) | 92,7% | 92,7% |
+
+Leitura:
+
+1. **Primeiro sinal significativo da v2.0.** Os dados que o BC diz monitorar explicam parte do caminho do DI entre a ata e a véspera.
+2. **A ênfase do BC não acrescenta a pesos iguais.** Com os dois índices juntos, só o genérico fica.
+3. **Não é previsão além do mercado.** O índice usa dados que chegam durante a janela; na véspera, o DI já incorporou tudo.
+4. **Caso 282 (nov/2026).** Índice da ata +0,95 (percentil 90), puxado pelas expectativas longas (+0,33 p.p. no Focus 2028–2030; contribuição de 0,55), serviços e câmbio. O DI foi de −19 pb (ata) para −7 pb (véspera); o Focus ficou em −25 pb; o Copom manteve. O índice aponta na direção do mercado, e não na do Focus, e diz por quê.
+
+Leitura ao vivo para a 283ª (10/11 a 19/11): índice +0,08, neutro. Câmbio +5,3% (contribuição +0,13), serviços −0,32 p.p. (−0,09), expectativas longas estáveis.
+
+**Uso proposto:** indicador diário e interpretável da notícia entre reuniões ("o BC disse que reagiria a X; X mudou tanto"), ao lado do DI. Não como previsor que bate o mercado.
+
 ## 9. Decisões para o Vitor
 
 1. **Versão.** ✅ Decidido em 21/11/2026: v2.0 **neste repositório**, com a v1.1 congelada numa tag.
