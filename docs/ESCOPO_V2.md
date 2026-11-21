@@ -310,6 +310,31 @@ Leitura ao vivo para a 283ª (10/11 a 19/11): índice +0,08, neutro. Câmbio +5,
 
 **Uso proposto:** indicador diário e interpretável da notícia entre reuniões ("o BC disse que reagiria a X; X mudou tanto"), ao lado do DI. Não como previsor que bate o mercado.
 
+### 8.8 Resultado da F8 (21/11/2026): horizontes longos, em diálogo com Caruso (Santander, 25/02/2026)
+
+Caruso usa um índice de tom por LLM (comunicados e atas, 2016–2026, 77 reuniões, em pontos de Selic), define a surpresa de tom como o resíduo sobre fundamentos e acha, num VAR em amostra, que o comunicado antecipa o momento (pico em 2 reuniões) e a ata a profundidade do ciclo (a partir da 5ª). O VAR não controla pelo preço de mercado.
+
+Aqui: tom das 179 atas lido por Claude e GPT (`v2/f8_atas_tom.py`); Selic precificada para depois de *t+h* pela taxa a termo de 21 dias úteis na curva zero do dia da ata (DI1 da B3; swaps do SGS antes de out/2019); *h* = 1, 2, 4, 6, 8 (`v2/f8_horizonte.py`).
+
+1. **Sem controles, o tom bruto prevê o erro do mercado** de 1 a 6 reuniões (ex.: postura da ata, 22 pb por ponto em *h* = 4, p = 0,015).
+2. **Com a previsão do mercado e a última decisão como controles, o tom some** (p ≥ 0,14 em todos os horizontes). Quem prevê o erro é a inércia (p < 0,01 em *h* = 1, 2, 4): **o mercado subestima a persistência dos ciclos**.
+3. Fora da amostra, a inércia reduz o RMSE em *h* = 1 (18,9 → 16,4 pb) e *h* = 2 (40,1 → 37,8 pb); o tom piora em todos os horizontes.
+4. A surpresa à la Caruso (resíduo do tom sobre fundamentos) não prevê nem a Selic nem o erro do mercado, em nenhum horizonte.
+
+Fonte: `v2/resultados/f8_horizonte.csv`, `f8_robustez.csv`.
+
+### 8.9 Resultado da F9 (21/11/2026): clareza e coordenação, em diálogo com Lima (2015)
+
+A dissertação (UFF, 2015) aplicou Flesch às atas e achou que mais clareza reduz a dispersão e ancora as expectativas, e que o BC escreve com mais clareza quando as expectativas aceleram. Aqui, com controles de presidência (`v2/f9_clareza.py`):
+
+- **Nível da dispersão do Focus depois da comunicação:** ata com guidance explícito, −9,5 pb (p = 0,007); comunicado mais condicional, +2,6 pb por ponto (p = 0,02).
+- **Mudança da dispersão em torno da comunicação** (desenho contra a causalidade reversa): nenhum efeito (p de 0,15 a 0,43).
+- **Flesch:** sem efeito na dispersão; associação estatística, mas economicamente nula, com a desancoragem.
+
+Leitura: o BC escreve guidance claro quando o mercado já está coordenado, mas não se mede que o texto coordene depois de publicado. Compatível com a dissertação no nível e com o seu achado de causalidade reversa.
+
+Gráficos de todas as fases: `v2/figuras.py` → `v2/figuras/*.png`.
+
 ## 9. Decisões para o Vitor
 
 1. **Versão.** ✅ Decidido em 21/11/2026: v2.0 **neste repositório**, com a v1.1 congelada numa tag.

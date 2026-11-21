@@ -187,6 +187,24 @@ from v2.f7_condicoes import SINAL as SINAL_F7
 n_var = len(SINAL_F7)
 emenda = pd.read_csv(D / "di_validacao_emenda.csv")
 emenda_dif = (emenda["b3_pb"] - emenda["sgs_pb"]).abs().max()
+
+# F8 — horizontes longos (diálogo com Caruso, 2026)
+f8 = pd.read_csv(R / "f8_horizonte.csv")
+rb = pd.read_csv(R / "f8_robustez.csv")
+def s8(h, tom, alvo, col):
+    return f8.loc[(f8["h"] == h) & (f8["tom"] == tom) & (f8["alvo"] == alvo), col].iloc[0]
+def r8(h, tom, col):
+    return rb.loc[(rb["h"] == h) & (rb["tom"] == tom), col].iloc[0]
+p_tom_min = rb["p_tom"].min()
+p_surp_min = f8.loc[f8["tom"].str.startswith("surpresa"), "p"].min()
+# F9 — clareza (diálogo com Lima, 2015)
+f9 = pd.read_csv(R / "f9_clareza.csv")
+def r9(alvo, var, col, espec="com presidência"):
+    return f9.loc[(f9["alvo"] == alvo) & (f9["variavel"] == var) & (f9["espec"] == espec), col].iloc[0]
+p_ddisp = f9.loc[(f9["alvo"] == "d_disp") & (f9["espec"] == "com presidência")
+                 & f9["variavel"].isin(["com_guidance", "com_cond", "ata_guidance", "ata_cond"]), "p"]
+
+from v2 import figuras as FIG  # mesmas funções que geram v2/figuras/*.png
 ```
 
 ```{python}
@@ -204,6 +222,9 @@ resumo = (
     f"que cruza a função de reação escrita em cada ata com os dados que chegam até a reunião seguinte, "
     f"explica parte do caminho do DI entre as reuniões (p {pv(d7('índice da ata', 'indice_ata', 'p'))}), "
     f"mas a ênfase do Banco Central não supera pesos iguais e, na véspera, o mercado já incorporou tudo. "
+    f"Em horizontes de até oito reuniões, o tom parece antecipar o erro do mercado, mas o efeito desaparece "
+    f"com a última decisão como controle: a curva subestima a persistência dos ciclos, e o tom só marcava o ciclo. "
+    f"O guidance explícito vem com expectativas menos dispersas, mas não as coordena depois de publicado. "
     f"A comunicação escrita do Copom tem valor para interpretar o mercado, não para antecipá-lo."
 )
 print(r"""
@@ -250,7 +271,9 @@ O trabalho tem quatro contribuições:
 
 # Revisão da literatura
 
-A comunicação como instrumento de política monetária é tema consolidado [@blinder2008; @woodford2003]. A medição de tom evoluiu de dicionários [@loughran_mcdonald2011; @apel_grimaldi2012; @picault_renault2017] para modelos de tópicos [@hansen_mcmahon_prat2018] e, mais recentemente, para LLMs [@hansen_kazinnik2023]. Para o Brasil, há evidência de que o tom do Copom antecipa a Selic [@caruso2026]. A literatura de efeitos de sinalização [@hubert_labondance2021] mostra que o tom move expectativas.
+A comunicação como instrumento de política monetária é tema consolidado [@blinder2008; @woodford2003]. A medição de tom evoluiu de dicionários [@loughran_mcdonald2011; @apel_grimaldi2012; @picault_renault2017] para modelos de tópicos [@hansen_mcmahon_prat2018] e, mais recentemente, para LLMs [@hansen_kazinnik2023]. A literatura de efeitos de sinalização [@hubert_labondance2021] mostra que o tom move expectativas.
+
+Para o Brasil, @caruso2026 constrói um índice de tom com LLM sobre comunicados e atas desde 2016, calibrado em pontos de Selic, define a surpresa de comunicação como o tom que os fundamentos não explicam e, num VAR estimado em amostra, encontra que o comunicado antecipa o momento do ajuste (pico do efeito duas reuniões depois) e a ata, a sua profundidade (a partir da quinta reunião). O VAR controla pelos fundamentos, mas não pelo preço de mercado. Este trabalho testa a mesma pergunta contra a curva de juros e fora da amostra. Antes disso, @lima2015 aplicou índices de legibilidade às atas e encontrou que mais clareza vem associada a menor dispersão e a melhor ancoragem das expectativas, e que o Banco Central escreve com mais clareza quando as expectativas aceleram. A seção de resultados retoma as duas perguntas.
 
 O ponto deste trabalho vem de outra tradição: a de surpresas monetárias medidas no mercado. @kuttner2001 separa a parte esperada e a inesperada de uma decisão pelos contratos futuros de juros. @gss2005 mostram que os comunicados movem a curva por um fator de "caminho", distinto da decisão do dia. Se o mercado precifica a comunicação, a pergunta relevante para um índice de texto não é se ele se correlaciona com a Selic, mas se ele acrescenta algo ao preço.
 
@@ -328,24 +351,14 @@ O DI erra `{python} erros_b3` das `{python} n_b3` reuniões desde 2019. Nas vira
 ```{python}
 #| label: fig-horizonte
 #| fig-cap: "Acerto do passo exato no dia da ata anterior e na véspera da reunião, 2019–2026."
-nomes = ["Repetir a última\ndecisão", "Focus", "DI"]
-h = hor["b3"]
-ata = [h[3], h[2], h[0]]
-ves = [f2v(REC_B3, "inércia"), f2v(REC_B3, "Focus (mediana)"), h[1]]
-y = np.arange(len(nomes))
-fig, ax = plt.subplots(figsize=(7.5, 2.8))
-ax.barh(y + 0.2, ata, 0.36, color=LARANJA, label="Dia da ata anterior")
-ax.barh(y - 0.2, ves, 0.36, color=AZUL, label="Véspera da reunião")
-for yy, v in zip(y + 0.2, ata):
-    ax.text(v + 1, yy, pct(v), va="center", fontsize=8, color=TINTA)
-for yy, v in zip(y - 0.2, ves):
-    ax.text(v + 1, yy, pct(v), va="center", fontsize=8, color=TINTA)
-ax.set_yticks(y, nomes)
-ax.set_xlim(0, 110)
-ax.set_xlabel("acerto do passo exato (%)")
-ax.grid(axis="y", visible=False)
-ax.legend(loc="lower right", frameon=False)
-plt.tight_layout()
+FIG.fig_horizonte()
+plt.show()
+```
+
+```{python}
+#| label: fig-linha
+#| fig-cap: "Decisões do Copom (barras) e a ΔSelic precificada pelo DI no dia da ata anterior e na véspera, 2019–2026."
+FIG.fig_linha_tempo()
 plt.show()
 ```
 
@@ -356,23 +369,7 @@ Se o DI melhora de `{python} pct(di_a_b3)` para `{python} pct(di_v_b3)` entre a 
 ```{python}
 #| label: fig-evento
 #| fig-cap: "Movimento da taxa da próxima reunião em dias de evento, relativo a dias sem evento (1 = igual). Barras escuras: p < 0,05 (permutação)."
-linhas = [("Comunicado (2006–2019)", f3s.loc["comunicado"]),
-          ("Ata (2006–2019)", f3s.loc["ata"]), ("Ata (2019–2026)", f3b.loc["ata"]),
-          ("Discurso da diretoria (2006–2019)", f3s.loc["relevante"]),
-          ("Discurso da diretoria (2019–2026)", f3b.loc["relevante"])]
-linhas += [(f"{g} (2017–2026)", f4.loc[g]) for g in ["IPCA", "IPCA-15", "PIM", "PMS", "PIB", "PNAD", "PMC"]]
-fig, ax = plt.subplots(figsize=(7.5, 4))
-yy = np.arange(len(linhas))[::-1]
-for y_, (nome, r) in zip(yy, linhas):
-    sig = r["p_valor_perm"] < 0.05
-    ax.barh(y_, r["razao_vs_sem_evento"], 0.6, color=AZUL if sig else "#9ec5f4")
-    ax.text(r["razao_vs_sem_evento"] + 0.03, y_, br(r["razao_vs_sem_evento"], 2) + "×", va="center",
-            fontsize=8, color=TINTA)
-ax.axvline(1, color=TINTA, lw=1)
-ax.set_yticks(yy, [n for n, _ in linhas])
-ax.set_xlabel("movimento médio relativo a um dia sem evento")
-ax.grid(axis="y", visible=False)
-plt.tight_layout()
+FIG.fig_evento()
 plt.show()
 ```
 
@@ -393,23 +390,25 @@ tabela(t, "Acerto do passo exato na reunião seguinte, com a informação do dia
        f"{len(com)} reuniões-alvo. Sinal do comunicado: direção sinalizada × magnitude (25 pb se omitida).")
 ```
 
+```{python}
+#| label: fig-comunicado
+#| fig-cap: "Acerto do passo exato na reunião seguinte, com a informação do dia da ata: mercado e comunicado lido por LLMs."
+FIG.fig_comunicado()
+plt.show()
+```
+
 O comunicado lido isoladamente acerta menos que o mercado e menos que repetir a última decisão. Somado ao DI numa previsão *walk-forward*, piora o acerto: `{python} pct(wf5.loc['M1 DI + comunicado','acerto_exato_%'],1)` contra `{python} pct(wf5.loc['B0 DI no dia da ata','acerto_exato_%'],1)` do DI sozinho. A distância entre o que o comunicado sinaliza e o que o DI precifica também não antecipa o ajuste do mercado até a véspera (p `{python} pv(dr5['p'].iloc[0])`). O ganho qualitativo da separação entre postura e direção aparece no caso que motivou o trabalho: no comunicado de janeiro de 2026, os três modelos leram política restritiva e corte na reunião seguinte, que veio.
 
 ## Os fundamentos: MPP e DSGE
 
 ```{python}
-#| output: asis
-lin = []
-for nome, col in [("Regra de Taylor suavizada (MPP)", "gap_taylor_pb"), ("Alvo da regra, neutro HP (MPP)", "gap_alvo_pb"),
-                  ("Alvo da regra, neutro DSGE (MPP+DSGE)", "gap_alvo_dsge_pb"), ("Aperto vs neutro (DSGE)", "aperto_pp"),
-                  ("DI no dia da ata", "di_ata")]:
-    lin.append({"Medida": nome, "Corr. ΔSelic seguinte": br(fa[col].corr(fa["delta_t1"]), 2),
-                "Corr. ΔSelic corrente": br(fa[col].corr(fa["inercia"]), 2)})
-tabela(pd.DataFrame(lin), "Fundamentos dos modelos estruturais e a decisão do Copom", "tab:fundamentos",
-       f"{len(fa)} reuniões-alvo. Gaps em pontos-base (alvo da regra − Selic vigente); aperto em p.p. (juro real ex-ante − neutro).")
+#| label: fig-fundamentos
+#| fig-cap: "Correlação dos fundamentos dos modelos estruturais com a decisão seguinte e com a decisão corrente."
+FIG.fig_fundamentos()
+plt.show()
 ```
 
-A regra suavizada anda atrás da Selic e mede inércia. O alvo da regra com o neutro por filtro HP herda o mesmo atraso. Com o neutro filtrado do DSGE, o gap passa a apontar a direção certa e deixa de acompanhar o ciclo corrente. Nenhuma das versões acrescenta acerto ao DI no *walk-forward*: o melhor modelo com fundamentos acerta `{python} pct(wf6.drop(index=['B0 DI no dia da ata','B1 OLS(DI)'])['acerto_exato_%'].max(),1)`, contra `{python} pct(wf6.loc['B0 DI no dia da ata','acerto_exato_%'],1)` do DI. Nenhuma antecipa o caminho do DI até a véspera (menor p entre as especificações: `{python} br(dr6['p'].min(),2)`).
+A @fig-fundamentos resume o diagnóstico. A regra suavizada anda atrás da Selic e mede inércia. O alvo da regra com o neutro por filtro HP herda o mesmo atraso. Com o neutro filtrado do DSGE, o gap passa a apontar a direção certa e deixa de acompanhar o ciclo corrente. Nenhuma das versões acrescenta acerto ao DI no *walk-forward*: o melhor modelo com fundamentos acerta `{python} pct(wf6.drop(index=['B0 DI no dia da ata','B1 OLS(DI)'])['acerto_exato_%'].max(),1)`, contra `{python} pct(wf6.loc['B0 DI no dia da ata','acerto_exato_%'],1)` do DI. Nenhuma antecipa o caminho do DI até a véspera (menor p entre as especificações: `{python} br(dr6['p'].min(),2)`).
 
 ## O Índice de Condicionalidade
 
@@ -438,42 +437,62 @@ O índice tem o primeiro sinal significativo da versão 2.0: os dados que o Banc
 ```{python}
 #| label: fig-indice
 #| fig-cap: "Índice de Condicionalidade da ata e caminho do DI entre a ata e a véspera. Destaque: reunião 282 (nov/2026)."
-fig, ax = plt.subplots(figsize=(7.5, 3.6))
-ax.scatter(ok7["indice_ata"], ok7["deriva"], s=18, color=AZUL, alpha=0.6, edgecolor="white", linewidth=0.5)
-m = sm.OLS(ok7["deriva"], sm.add_constant(ok7["indice_ata"])).fit()
-xs = np.linspace(ok7["indice_ata"].min(), ok7["indice_ata"].max(), 50)
-ax.plot(xs, m.params.iloc[0] + m.params.iloc[1] * xs, color=TINTA, lw=1.2)
-ax.scatter([c282["indice_ata"]], [c282["deriva"]], s=60, color=LARANJA, edgecolor="white", linewidth=1.5, zorder=3)
-ax.annotate("282ª (nov/2026)", (c282["indice_ata"], c282["deriva"]), xytext=(8, 8), textcoords="offset points",
-            fontsize=8, color=TINTA)
-ax.axhline(0, color=CINZA, lw=0.8)
-ax.axvline(0, color=CINZA, lw=0.8)
-ax.set_xlabel("Índice de Condicionalidade da ata (desvios-padrão)")
-ax.set_ylabel("deriva do DI até a véspera (pb)")
-plt.tight_layout()
+FIG.fig_indice_dispersao()
+plt.show()
+```
+
+```{python}
+#| label: fig-indice-serie
+#| fig-cap: "Índice de Condicionalidade e deriva do DI entre a ata e a véspera, 2016–2026."
+FIG.fig_indice_serie()
 plt.show()
 ```
 
 **O caso da 282ª reunião.** Entre a ata de setembro e a véspera de novembro de 2026, o índice ficou em `{python} br(c282['indice_ata'],2)`, no percentil `{python} br(pct282,0)` da história. A maior contribuição veio das expectativas de longo prazo: o Focus para os anos de `{python} c282['data_ata'].year+2` a `{python} c282['data_ata'].year+4` subiu `{python} br(c282['d_expectativas_longo'],2)` p.p. O DI saiu de `{python} br(c282['di_ata'],0)` pb para `{python} br(c282['di_vespera'],0)` pb, o Focus ficou em `{python} br(c282['focus_ata'],0)` pb e o Copom manteve a Selic. O índice apontou na direção do mercado, e não na do Focus, e mostrou por quê.
 
 ```{python}
-#| output: asis
-cs = c282.filter(like="contrib_").astype(float).sort_values(ascending=False)
-cs = cs[cs.abs() >= 0.005]
-NOMES = {"expectativas_curto": "Expectativas (ano corrente e seguinte)", "expectativas_longo": "Expectativas (2 a 4 anos)",
-         "inflacao_corrente": "IPCA 12 meses", "inflacao_servicos": "Inflação de serviços", "nucleos": "Núcleos",
-         "atividade": "Atividade (IBC-Br)", "mercado_trabalho": "Desemprego", "cambio": "Câmbio",
-         "petroleo": "Petróleo", "fiscal": "Resultado primário esperado", "juros_externos": "Juros dos EUA"}
-t = pd.DataFrame({"Variável": [NOMES[c.replace("contrib_", "")] for c in cs.index],
-                  "Variação na janela": [br(c282["d_" + c.replace("contrib_", "")], 2) for c in cs.index],
-                  "Contribuição": [br(v, 2) for v in cs.values]})
-tabela(t, "Reunião 282: contribuições ao Índice de Condicionalidade", "tab:282",
-       "Variações entre a ata de setembro e a véspera de novembro de 2026: expectativas e inflação em p.p.; câmbio e petróleo em log × 100.")
+#| label: fig-282
+#| fig-cap: "Reunião 282: contribuição de cada variável ao Índice de Condicionalidade, entre a ata de setembro e a véspera de novembro de 2026."
+FIG.fig_contribuicoes(282)
+plt.show()
+```
+
+## Horizontes longos: o tom antecipa o ciclo?
+
+O argumento de @caruso2026 é que a ata responde pela profundidade do ciclo, com efeito a partir da quinta reunião, e não pela próxima decisão. Para testá-lo contra o mercado, o tom das `{python} len(base)` atas foi lido por Claude e GPT, e a Selic precificada para depois de cada reunião *t+h* foi extraída da curva de juros no dia da ata, pela taxa a termo de um mês a partir da vigência.
+
+Sem controles, o tom prevê o erro do mercado: a postura da ata desloca `{python} br(s8(4, 'ata_postura', 'erro', 'coef_pb_por_unidade'), 1)` pb do erro em quatro reuniões por ponto de postura (p `{python} pv(s8(4, 'ata_postura', 'erro', 'p'))`). O efeito desaparece quando a previsão do próprio mercado e a última decisão entram como controles: nenhum coeficiente do tom é significativo, em nenhum horizonte (menor p: `{python} br(p_tom_min, 2)`; @fig-horizonte-tom). O tom marcava o ciclo. Quem prevê o erro do mercado é a inércia (p `{python} pv(r8(1, 'ata_postura', 'p_inercia'))` em uma reunião e `{python} pv(r8(4, 'ata_postura', 'p_inercia'))` em quatro): **a curva subestima a persistência dos ciclos**. A surpresa de tom à la Caruso, o resíduo sobre os fundamentos, não prevê nem a Selic nem o erro do mercado (menor p: `{python} br(p_surp_min, 2)`).
+
+```{python}
+#| label: fig-horizonte-tom
+#| fig-cap: "Coeficiente do tom sobre o erro de previsão do mercado, por horizonte, sem e com controles (previsão do mercado e última decisão)."
+FIG.fig_horizonte_tom()
+plt.show()
+```
+
+Fora da amostra, a inércia reduz o erro do mercado nos horizontes curtos, de `{python} br(r8(1, 'ata_postura', 'rmse_mercado'), 1)` para `{python} br(r8(1, 'ata_postura', 'rmse_mais_inercia'), 1)` pb em uma reunião e de `{python} br(r8(2, 'ata_postura', 'rmse_mercado'), 1)` para `{python} br(r8(2, 'ata_postura', 'rmse_mais_inercia'), 1)` pb em duas. Acrescentar o tom piora a previsão em todos os horizontes (@fig-horizonte-rmse).
+
+```{python}
+#| label: fig-horizonte-rmse
+#| fig-cap: "Erro de previsão fora da amostra (RMSE) por horizonte: DI, DI com a última decisão e DI com a última decisão e o tom da ata."
+FIG.fig_horizonte_rmse()
+plt.show()
+```
+
+## Clareza e coordenação
+
+A pergunta de @lima2015 não é para onde a Selic vai, mas se a comunicação coordena as expectativas. A dispersão do Focus para a Selic da reunião seguinte é medida antes do comunicado (na data de corte) e depois da ata. Com controles para o tamanho da decisão, a surpresa no DI e a presidência do Banco Central, a ata com guidance explícito vem com dispersão `{python} br(abs(r9('disp_depois', 'ata_guidance', 'coef')), 1)` pb menor (p `{python} pv(r9('disp_depois', 'ata_guidance', 'p'))`), e cada ponto de condicionalidade do comunicado, com `{python} br(r9('disp_depois', 'com_cond', 'coef'), 1)` pb maior (p `{python} pv(r9('disp_depois', 'com_cond', 'p'))`). Mas a **variação** da dispersão em torno da comunicação, o desenho que separa o efeito do texto da escolha do momento de escrevê-lo, não responde (p entre `{python} br(p_ddisp.min(), 2)` e `{python} br(p_ddisp.max(), 2)`; @fig-clareza). O Banco Central escreve guidance claro quando o mercado já está coordenado, o que é compatível com o achado de causalidade reversa da dissertação, mas não se mede que o texto coordene o mercado depois de publicado. O índice de Flesch não tem relação com a dispersão.
+
+```{python}
+#| label: fig-clareza
+#| fig-cap: "Clareza da comunicação e dispersão do Focus para a Selic da reunião seguinte: nível depois da comunicação e mudança em torno dela (controles: tamanho da decisão, surpresa no DI e presidência)."
+FIG.fig_clareza()
+plt.show()
 ```
 
 # Discussão e limitações
 
-O resultado central é negativo e robusto a cinco famílias de testes: o texto do Copom, lido por LLMs, não prevê a próxima decisão além do que a curva de juros já precifica. Isso não diminui o valor da comunicação. Mostra que ela funciona: o mercado a incorpora tão rápido que não sobra informação para um leitor externo explorar.
+O resultado central é negativo e robusto a sete famílias de testes: o texto do Copom, lido por LLMs, não prevê a próxima decisão além do que a curva de juros já precifica. Isso não diminui o valor da comunicação. Mostra que ela funciona: o mercado a incorpora tão rápido que não sobra informação para um leitor externo explorar.
 
 Limitações:
 
