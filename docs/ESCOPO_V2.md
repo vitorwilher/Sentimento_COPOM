@@ -196,6 +196,24 @@ Fonte: `v2/resultados/f3_evento.csv` e `f3_evento_b3.csv`.
 
 Ressalvas: a data do catálogo é a de publicação no site; o tema vem de regra de título; o horário do evento é desconhecido (por isso a janela de 2 dias).
 
+### 8.2 Resultado da F4 (21/11/2026): os dados do IBGE também explicam pouco
+
+Calendário oficial do IBGE (`servicodados v3/calendario`, cobre 2017 em diante): 756 divulgações de IPCA, IPCA-15, PIB, PMC, PMS, PIM e PNAD. Medida: variação em 1 dia da Δ Selic implícita para a próxima reunião (sem o efeito mecânico do tempo no contrato). O IBGE divulga às 9h, antes do pregão.
+
+| Divulgação | Dias | Movimento vs dia comum | p-valor |
+|---|---:|---:|---:|
+| **IPCA** | 108 | **1,30×** | **0,03** |
+| IPCA-15 | 108 | 0,97× | 0,55 |
+| PIM | 109 | 1,05× | 0,36 |
+| PMS, PIB, PNAD, PMC | 38–108 | 0,89–0,98× | ≥ 0,52 |
+
+- **Surpresa do IPCA** (divulgado − mediana do Focus na véspera, n = 108): +12,4 pb de Δ Selic precificada por 1 p.p. de surpresa (ep 5,1; p = 0,015; R² = 0,08). Uma surpresa típica de 0,1 p.p. move ~1 pb.
+- **Deriva entre a ata e a véspera** (2019+, n = 55): a soma dos dias de divulgação não explica a deriva total (R² = 0,02). A medida diária é ruidosa no início da janela, porque a Δ implícita amplia o ruído da taxa quando faltam muitos dias para a reunião.
+
+Fonte: `v2/resultados/f4_*.csv`.
+
+**Leitura conjunta da F2–F4.** Entre a ata e a véspera, o mercado vai de 72% para 97% de acerto, mas essa informação **não está concentrada** em nenhum dos eventos datados que dá para medir: nem nos textos publicados pelo BCB, nem na ata, nem nas divulgações do IBGE (só o IPCA tem efeito, pequeno). Ela chega espalhada pelos dias comuns. Candidatos não medidos: falas da diretoria fora do site (entrevistas, eventos, *off*), cenário externo (juros dos EUA, câmbio), notícias fiscais.
+
 ## 9. Decisões para o Vitor
 
 1. **Versão.** ✅ Decidido em 21/11/2026: v2.0 **neste repositório**, com a v1.1 congelada numa tag.
