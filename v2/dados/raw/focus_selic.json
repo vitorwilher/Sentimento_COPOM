@@ -2290,5 +2290,1076 @@
 "Minimo": 13.5,
 "Maximo": 14.25,
 "numeroRespondentes": 148
+},
+"R2/2005|2005-01-27": null,
+"R3/2005|2005-02-24": null,
+"R4/2005|2005-03-24": null,
+"R5/2005|2005-04-28": null,
+"R6/2005|2005-05-27": null,
+"R7/2005|2005-06-23": null,
+"R8/2005|2005-07-28": null,
+"R9/2005|2005-08-25": null,
+"R10/2005|2005-09-22": null,
+"R11/2005|2005-10-27": null,
+"R12/2005|2005-12-01": null,
+"R1/2006|2005-12-22": {
+"Data": "2005-12-22",
+"Reuniao": "R1/2006",
+"Media": 17.35,
+"Mediana": 17.38,
+"DesvioPadrao": 0.2,
+"Minimo": 16.75,
+"Maximo": 18.0,
+"numeroRespondentes": null
+},
+"R2/2006|2006-01-26": {
+"Data": "2006-01-26",
+"Reuniao": "R2/2006",
+"Media": 16.67,
+"Mediana": 16.5,
+"DesvioPadrao": 0.25,
+"Minimo": 16.5,
+"Maximo": 17.5,
+"numeroRespondentes": null
+},
+"R3/2006|2006-03-16": {
+"Data": "2006-03-16",
+"Reuniao": "R3/2006",
+"Media": 15.79,
+"Mediana": 15.75,
+"DesvioPadrao": 0.17,
+"Minimo": 15.5,
+"Maximo": 16.5,
+"numeroRespondentes": null
+},
+"R4/2006|2006-04-27": {
+"Data": "2006-04-27",
+"Reuniao": "R4/2006",
+"Media": 15.08,
+"Mediana": 15.0,
+"DesvioPadrao": 0.14,
+"Minimo": 14.5,
+"Maximo": 15.5,
+"numeroRespondentes": null
+},
+"R5/2006|2006-06-08": {
+"Data": "2006-06-08",
+"Reuniao": "R5/2006",
+"Media": 14.85,
+"Mediana": 14.75,
+"DesvioPadrao": 0.18,
+"Minimo": 14.5,
+"Maximo": 15.5,
+"numeroRespondentes": null
+},
+"R6/2006|2006-07-27": {
+"Data": "2006-07-27",
+"Reuniao": "R6/2006",
+"Media": 14.47,
+"Mediana": 14.5,
+"DesvioPadrao": 0.13,
+"Minimo": 14.25,
+"Maximo": 14.75,
+"numeroRespondentes": null
+},
+"R7/2006|2006-09-08": {
+"Data": "2006-09-08",
+"Reuniao": "R7/2006",
+"Media": 14.02,
+"Mediana": 14.0,
+"DesvioPadrao": 0.21,
+"Minimo": 13.5,
+"Maximo": 14.5,
+"numeroRespondentes": null
+},
+"R8/2006|2006-10-26": {
+"Data": "2006-10-26",
+"Reuniao": "R8/2006",
+"Media": 13.42,
+"Mediana": 13.5,
+"DesvioPadrao": 0.16,
+"Minimo": 13.25,
+"Maximo": 13.86,
+"numeroRespondentes": null
+},
+"R1/2007|2006-12-07": {
+"Data": "2006-12-07",
+"Reuniao": "R1/2007",
+"Media": 13.05,
+"Mediana": 13.0,
+"DesvioPadrao": 0.22,
+"Minimo": 12.75,
+"Maximo": 14.0,
+"numeroRespondentes": null
+},
+"R2/2007|2007-02-01": {
+"Data": "2007-02-01",
+"Reuniao": "R2/2007",
+"Media": 12.73,
+"Mediana": 12.75,
+"DesvioPadrao": 0.14,
+"Minimo": 12.25,
+"Maximo": 13.0,
+"numeroRespondentes": null
+},
+"R3/2007|2007-03-15": {
+"Data": "2007-03-15",
+"Reuniao": "R3/2007",
+"Media": 12.5,
+"Mediana": 12.5,
+"DesvioPadrao": 0.09,
+"Minimo": 12.25,
+"Maximo": 12.75,
+"numeroRespondentes": null
+},
+"R4/2007|2007-04-26": {
+"Data": "2007-04-26",
+"Reuniao": "R4/2007",
+"Media": 12.19,
+"Mediana": 12.25,
+"DesvioPadrao": 0.16,
+"Minimo": 11.75,
+"Maximo": 12.75,
+"numeroRespondentes": null
+},
+"R5/2007|2007-06-14": {
+"Data": "2007-06-14",
+"Reuniao": "R5/2007",
+"Media": 11.57,
+"Mediana": 11.5,
+"DesvioPadrao": 0.18,
+"Minimo": 11.25,
+"Maximo": 12.25,
+"numeroRespondentes": null
+},
+"R6/2007|2007-07-26": {
+"Data": "2007-07-26",
+"Reuniao": "R6/2007",
+"Media": 11.17,
+"Mediana": 11.25,
+"DesvioPadrao": 0.16,
+"Minimo": 11.0,
+"Maximo": 12.0,
+"numeroRespondentes": null
+},
+"R7/2007|2007-09-13": {
+"Data": "2007-09-13",
+"Reuniao": "R7/2007",
+"Media": 11.08,
+"Mediana": 11.0,
+"DesvioPadrao": 0.14,
+"Minimo": 10.75,
+"Maximo": 11.5,
+"numeroRespondentes": null
+},
+"R8/2007|2007-10-25": {
+"Data": "2007-10-25",
+"Reuniao": "R8/2007",
+"Media": 11.14,
+"Mediana": 11.25,
+"DesvioPadrao": 0.18,
+"Minimo": 10.75,
+"Maximo": 11.25,
+"numeroRespondentes": null
+},
+"R1/2008|2007-12-13": {
+"Data": "2007-12-13",
+"Reuniao": "R1/2008",
+"Media": 11.24,
+"Mediana": 11.25,
+"DesvioPadrao": 0.07,
+"Minimo": 10.75,
+"Maximo": 11.25,
+"numeroRespondentes": null
+},
+"R2/2008|2008-01-31": {
+"Data": "2008-01-31",
+"Reuniao": "R2/2008",
+"Media": 11.27,
+"Mediana": 11.25,
+"DesvioPadrao": 0.09,
+"Minimo": 11.0,
+"Maximo": 11.75,
+"numeroRespondentes": null
+},
+"R3/2008|2008-03-13": {
+"Data": "2008-03-13",
+"Reuniao": "R3/2008",
+"Media": 11.29,
+"Mediana": 11.25,
+"DesvioPadrao": 0.12,
+"Minimo": 11.0,
+"Maximo": 11.75,
+"numeroRespondentes": null
+},
+"R4/2008|2008-04-24": {
+"Data": "2008-04-24",
+"Reuniao": "R4/2008",
+"Media": 12.04,
+"Mediana": 12.25,
+"DesvioPadrao": 0.29,
+"Minimo": 11.25,
+"Maximo": 12.25,
+"numeroRespondentes": null
+},
+"R5/2008|2008-06-12": {
+"Data": "2008-06-12",
+"Reuniao": "R5/2008",
+"Media": 12.81,
+"Mediana": 12.75,
+"DesvioPadrao": 0.2,
+"Minimo": 12.25,
+"Maximo": 13.25,
+"numeroRespondentes": null
+},
+"R6/2008|2008-07-31": {
+"Data": "2008-07-31",
+"Reuniao": "R6/2008",
+"Media": 13.51,
+"Mediana": 13.6,
+"DesvioPadrao": 0.26,
+"Minimo": 12.75,
+"Maximo": 13.75,
+"numeroRespondentes": null
+},
+"R7/2008|2008-09-18": {
+"Data": "2008-09-18",
+"Reuniao": "R7/2008",
+"Media": 14.27,
+"Mediana": 14.25,
+"DesvioPadrao": 0.15,
+"Minimo": 13.75,
+"Maximo": 14.5,
+"numeroRespondentes": null
+},
+"R8/2008|2008-11-06": {
+"Data": "2008-11-06",
+"Reuniao": "R8/2008",
+"Media": 14.02,
+"Mediana": 13.75,
+"DesvioPadrao": 0.39,
+"Minimo": 13.25,
+"Maximo": 15.0,
+"numeroRespondentes": null
+},
+"R1/2009|2008-12-18": {
+"Data": "2008-12-18",
+"Reuniao": "R1/2009",
+"Media": 13.62,
+"Mediana": 13.75,
+"DesvioPadrao": 0.33,
+"Minimo": 13.0,
+"Maximo": 14.75,
+"numeroRespondentes": null
+},
+"R2/2009|2009-01-29": {
+"Data": "2009-01-29",
+"Reuniao": "R2/2009",
+"Media": 12.27,
+"Mediana": 12.25,
+"DesvioPadrao": 0.48,
+"Minimo": 11.75,
+"Maximo": 13.75,
+"numeroRespondentes": null
+},
+"R3/2009|2009-03-19": {
+"Data": "2009-03-19",
+"Reuniao": "R3/2009",
+"Media": 10.36,
+"Mediana": 10.25,
+"DesvioPadrao": 0.51,
+"Minimo": 9.75,
+"Maximo": 11.5,
+"numeroRespondentes": null
+},
+"R4/2009|2009-05-07": {
+"Data": "2009-05-07",
+"Reuniao": "R4/2009",
+"Media": 9.51,
+"Mediana": 9.5,
+"DesvioPadrao": 0.38,
+"Minimo": 8.25,
+"Maximo": 11.0,
+"numeroRespondentes": null
+},
+"R5/2009|2009-06-18": {
+"Data": "2009-06-18",
+"Reuniao": "R5/2009",
+"Media": 8.99,
+"Mediana": 9.0,
+"DesvioPadrao": 0.39,
+"Minimo": 8.25,
+"Maximo": 11.25,
+"numeroRespondentes": null
+},
+"R6/2009|2009-07-30": {
+"Data": "2009-07-30",
+"Reuniao": "R6/2009",
+"Media": 8.74,
+"Mediana": 8.75,
+"DesvioPadrao": 0.34,
+"Minimo": 7.5,
+"Maximo": 11.0,
+"numeroRespondentes": null
+},
+"R7/2009|2009-09-10": {
+"Data": "2009-09-10",
+"Reuniao": "R7/2009",
+"Media": 8.77,
+"Mediana": 8.75,
+"DesvioPadrao": 0.25,
+"Minimo": 8.25,
+"Maximo": 10.75,
+"numeroRespondentes": null
+},
+"R8/2009|2009-10-29": {
+"Data": "2009-10-29",
+"Reuniao": "R8/2009",
+"Media": 8.77,
+"Mediana": 8.75,
+"DesvioPadrao": 0.2,
+"Minimo": 8.75,
+"Maximo": 10.5,
+"numeroRespondentes": null
+},
+"R1/2010|2009-12-17": {
+"Data": "2009-12-17",
+"Reuniao": "R1/2010",
+"Media": 8.78,
+"Mediana": 8.75,
+"DesvioPadrao": 0.22,
+"Minimo": 8.75,
+"Maximo": 10.5,
+"numeroRespondentes": null
+},
+"R2/2010|2010-02-04": {
+"Data": "2010-02-04",
+"Reuniao": "R2/2010",
+"Media": 8.89,
+"Mediana": 8.75,
+"DesvioPadrao": 0.3,
+"Minimo": 8.75,
+"Maximo": 10.5,
+"numeroRespondentes": null
+},
+"R3/2010|2010-03-25": {
+"Data": "2010-03-25",
+"Reuniao": "R3/2010",
+"Media": 9.37,
+"Mediana": 9.25,
+"DesvioPadrao": 0.32,
+"Minimo": 8.75,
+"Maximo": 10.0,
+"numeroRespondentes": null
+},
+"R4/2010|2010-05-06": {
+"Data": "2010-05-06",
+"Reuniao": "R4/2010",
+"Media": 10.14,
+"Mediana": 10.25,
+"DesvioPadrao": 0.21,
+"Minimo": 9.75,
+"Maximo": 10.5,
+"numeroRespondentes": null
+},
+"R5/2010|2010-06-17": {
+"Data": "2010-06-17",
+"Reuniao": "R5/2010",
+"Media": 10.98,
+"Mediana": 11.0,
+"DesvioPadrao": 0.11,
+"Minimo": 10.5,
+"Maximo": 11.5,
+"numeroRespondentes": null
+},
+"R6/2010|2010-07-29": {
+"Data": "2010-07-29",
+"Reuniao": "R6/2010",
+"Media": 11.36,
+"Mediana": 11.25,
+"DesvioPadrao": 0.28,
+"Minimo": 10.75,
+"Maximo": 11.75,
+"numeroRespondentes": null
+},
+"R7/2010|2010-09-09": {
+"Data": "2010-09-09",
+"Reuniao": "R7/2010",
+"Media": 10.81,
+"Mediana": 10.75,
+"DesvioPadrao": 0.19,
+"Minimo": 10.75,
+"Maximo": 11.75,
+"numeroRespondentes": null
+},
+"R8/2010|2010-10-28": {
+"Data": "2010-10-28",
+"Reuniao": "R8/2010",
+"Media": 10.75,
+"Mediana": 10.75,
+"DesvioPadrao": 0.0,
+"Minimo": 10.75,
+"Maximo": 10.75,
+"numeroRespondentes": null
+},
+"R1/2011|2010-12-16": {
+"Data": "2010-12-16",
+"Reuniao": "R1/2011",
+"Media": 11.16,
+"Mediana": 11.25,
+"DesvioPadrao": 0.26,
+"Minimo": 10.75,
+"Maximo": 12.0,
+"numeroRespondentes": null
+},
+"R2/2011|2011-01-27": {
+"Data": "2011-01-27",
+"Reuniao": "R2/2011",
+"Media": 11.76,
+"Mediana": 11.75,
+"DesvioPadrao": 0.09,
+"Minimo": 11.25,
+"Maximo": 12.0,
+"numeroRespondentes": null
+},
+"R3/2011|2011-03-10": {
+"Data": "2011-03-10",
+"Reuniao": "R3/2011",
+"Media": 12.23,
+"Mediana": 12.25,
+"DesvioPadrao": 0.09,
+"Minimo": 11.75,
+"Maximo": 12.5,
+"numeroRespondentes": null
+},
+"R4/2011|2011-04-28": {
+"Data": "2011-04-28",
+"Reuniao": "R4/2011",
+"Media": 12.26,
+"Mediana": 12.25,
+"DesvioPadrao": 0.13,
+"Minimo": 11.75,
+"Maximo": 12.75,
+"numeroRespondentes": null
+},
+"R5/2011|2011-06-16": {
+"Data": "2011-06-16",
+"Reuniao": "R5/2011",
+"Media": 12.47,
+"Mediana": 12.5,
+"DesvioPadrao": 0.08,
+"Minimo": 12.25,
+"Maximo": 12.5,
+"numeroRespondentes": null
+},
+"R6/2011|2011-07-28": {
+"Data": "2011-07-28",
+"Reuniao": "R6/2011",
+"Media": 12.68,
+"Mediana": 12.75,
+"DesvioPadrao": 0.11,
+"Minimo": 12.5,
+"Maximo": 12.75,
+"numeroRespondentes": null
+},
+"R7/2011|2011-09-08": {
+"Data": "2011-09-08",
+"Reuniao": "R7/2011",
+"Media": 11.86,
+"Mediana": 11.5,
+"DesvioPadrao": 0.45,
+"Minimo": 11.25,
+"Maximo": 12.5,
+"numeroRespondentes": null
+},
+"R8/2011|2011-10-27": {
+"Data": "2011-10-27",
+"Reuniao": "R8/2011",
+"Media": 10.94,
+"Mediana": 11.0,
+"DesvioPadrao": 0.19,
+"Minimo": 10.0,
+"Maximo": 11.5,
+"numeroRespondentes": null
+},
+"R1/2012|2011-12-08": {
+"Data": "2011-12-08",
+"Reuniao": "R1/2012",
+"Media": 10.48,
+"Mediana": 10.5,
+"DesvioPadrao": 0.16,
+"Minimo": 10.0,
+"Maximo": 11.25,
+"numeroRespondentes": null
+},
+"R2/2012|2012-01-26": {
+"Data": "2012-01-26",
+"Reuniao": "R2/2012",
+"Media": 10.03,
+"Mediana": 10.0,
+"DesvioPadrao": 0.08,
+"Minimo": 10.0,
+"Maximo": 10.25,
+"numeroRespondentes": null
+},
+"R3/2012|2012-03-15": {
+"Data": "2012-03-15",
+"Reuniao": "R3/2012",
+"Media": 9.19,
+"Mediana": 9.0,
+"DesvioPadrao": 0.26,
+"Minimo": 9.0,
+"Maximo": 9.8,
+"numeroRespondentes": null
+},
+"R4/2012|2012-04-26": {
+"Data": "2012-04-26",
+"Reuniao": "R4/2012",
+"Media": 8.87,
+"Mediana": 9.0,
+"DesvioPadrao": 0.21,
+"Minimo": 8.25,
+"Maximo": 9.25,
+"numeroRespondentes": null
+},
+"R5/2012|2012-06-08": {
+"Data": "2012-06-08",
+"Reuniao": "R5/2012",
+"Media": 8.03,
+"Mediana": 8.0,
+"DesvioPadrao": 0.2,
+"Minimo": 7.5,
+"Maximo": 9.0,
+"numeroRespondentes": null
+},
+"R6/2012|2012-07-19": {
+"Data": "2012-07-19",
+"Reuniao": "R6/2012",
+"Media": 7.54,
+"Mediana": 7.5,
+"DesvioPadrao": 0.14,
+"Minimo": 7.0,
+"Maximo": 8.0,
+"numeroRespondentes": null
+},
+"R7/2012|2012-09-06": {
+"Data": "2012-09-06",
+"Reuniao": "R7/2012",
+"Media": 7.32,
+"Mediana": 7.25,
+"DesvioPadrao": 0.18,
+"Minimo": 7.0,
+"Maximo": 7.5,
+"numeroRespondentes": null
+},
+"R8/2012|2012-10-18": {
+"Data": "2012-10-18",
+"Reuniao": "R8/2012",
+"Media": 7.29,
+"Mediana": 7.25,
+"DesvioPadrao": 0.12,
+"Minimo": 7.0,
+"Maximo": 7.5,
+"numeroRespondentes": null
+},
+"R1/2013|2012-12-06": {
+"Data": "2012-12-06",
+"Reuniao": "R1/2013",
+"Media": 7.24,
+"Mediana": 7.25,
+"DesvioPadrao": 0.05,
+"Minimo": 6.75,
+"Maximo": 7.25,
+"numeroRespondentes": null
+},
+"R2/2013|2013-01-24": {
+"Data": "2013-01-24",
+"Reuniao": "R2/2013",
+"Media": 7.23,
+"Mediana": 7.25,
+"DesvioPadrao": 0.08,
+"Minimo": 6.75,
+"Maximo": 7.25,
+"numeroRespondentes": null
+},
+"R3/2013|2013-03-14": {
+"Data": "2013-03-14",
+"Reuniao": "R3/2013",
+"Media": 7.36,
+"Mediana": 7.25,
+"DesvioPadrao": 0.19,
+"Minimo": 7.25,
+"Maximo": 7.75,
+"numeroRespondentes": null
+},
+"R4/2013|2013-04-25": {
+"Data": "2013-04-25",
+"Reuniao": "R4/2013",
+"Media": 7.72,
+"Mediana": 7.75,
+"DesvioPadrao": 0.25,
+"Minimo": 7.25,
+"Maximo": 8.25,
+"numeroRespondentes": null
+},
+"R5/2013|2013-06-06": {
+"Data": "2013-06-06",
+"Reuniao": "R5/2013",
+"Media": 8.27,
+"Mediana": 8.5,
+"DesvioPadrao": 0.26,
+"Minimo": 7.75,
+"Maximo": 8.5,
+"numeroRespondentes": null
+},
+"R6/2013|2013-07-18": {
+"Data": "2013-07-18",
+"Reuniao": "R6/2013",
+"Media": 8.97,
+"Mediana": 9.0,
+"DesvioPadrao": 0.13,
+"Minimo": 8.5,
+"Maximo": 9.5,
+"numeroRespondentes": null
+},
+"R7/2013|2013-09-05": {
+"Data": "2013-09-05",
+"Reuniao": "R7/2013",
+"Media": 9.42,
+"Mediana": 9.5,
+"DesvioPadrao": 0.15,
+"Minimo": 9.0,
+"Maximo": 9.5,
+"numeroRespondentes": null
+},
+"R8/2013|2013-10-17": {
+"Data": "2013-10-17",
+"Reuniao": "R8/2013",
+"Media": 9.88,
+"Mediana": 10.0,
+"DesvioPadrao": 0.15,
+"Minimo": 9.5,
+"Maximo": 10.0,
+"numeroRespondentes": null
+},
+"R1/2014|2013-12-05": {
+"Data": "2013-12-05",
+"Reuniao": "R1/2014",
+"Media": 10.27,
+"Mediana": 10.25,
+"DesvioPadrao": 0.18,
+"Minimo": 9.75,
+"Maximo": 10.5,
+"numeroRespondentes": null
+},
+"R2/2014|2014-01-23": {
+"Data": "2014-01-23",
+"Reuniao": "R2/2014",
+"Media": 10.66,
+"Mediana": 10.75,
+"DesvioPadrao": 0.23,
+"Minimo": 9.75,
+"Maximo": 11.0,
+"numeroRespondentes": 103
+},
+"R3/2014|2014-03-06": {
+"Data": "2014-03-06",
+"Reuniao": "R3/2014",
+"Media": 10.94,
+"Mediana": 11.0,
+"DesvioPadrao": 0.17,
+"Minimo": 10.25,
+"Maximo": 11.25,
+"numeroRespondentes": 94
+},
+"R4/2014|2014-04-10": {
+"Data": "2014-04-10",
+"Reuniao": "R4/2014",
+"Media": 11.14,
+"Mediana": 11.25,
+"DesvioPadrao": 0.14,
+"Minimo": 10.75,
+"Maximo": 11.5,
+"numeroRespondentes": 91
+},
+"R5/2014|2014-06-05": {
+"Data": "2014-06-05",
+"Reuniao": "R5/2014",
+"Media": 11.03,
+"Mediana": 11.0,
+"DesvioPadrao": 0.08,
+"Minimo": 11.0,
+"Maximo": 11.5,
+"numeroRespondentes": 94
+},
+"R6/2014|2014-07-24": {
+"Data": "2014-07-24",
+"Reuniao": "R6/2014",
+"Media": 11.0,
+"Mediana": 11.0,
+"DesvioPadrao": 0.03,
+"Minimo": 10.75,
+"Maximo": 11.0,
+"numeroRespondentes": 92
+},
+"R7/2014|2014-09-11": {
+"Data": "2014-09-11",
+"Reuniao": "R7/2014",
+"Media": 11.0,
+"Mediana": 11.0,
+"DesvioPadrao": 0.03,
+"Minimo": 11.0,
+"Maximo": 11.28,
+"numeroRespondentes": 89
+},
+"R8/2014|2014-11-06": {
+"Data": "2014-11-06",
+"Reuniao": "R8/2014",
+"Media": 11.41,
+"Mediana": 11.5,
+"DesvioPadrao": 0.28,
+"Minimo": 10.0,
+"Maximo": 11.75,
+"numeroRespondentes": 100
+},
+"R1/2015|2014-12-11": {
+"Data": "2014-12-11",
+"Reuniao": "R1/2015",
+"Media": 12.11,
+"Mediana": 12.25,
+"DesvioPadrao": 0.2,
+"Minimo": 11.75,
+"Maximo": 12.5,
+"numeroRespondentes": 90
+},
+"R2/2015|2015-01-29": {
+"Data": "2015-01-29",
+"Reuniao": "R2/2015",
+"Media": 12.57,
+"Mediana": 12.5,
+"DesvioPadrao": 0.17,
+"Minimo": 12.0,
+"Maximo": 12.75,
+"numeroRespondentes": 91
+},
+"R3/2015|2015-03-12": {
+"Data": "2015-03-12",
+"Reuniao": "R3/2015",
+"Media": 13.04,
+"Mediana": 13.0,
+"DesvioPadrao": 0.17,
+"Minimo": 12.5,
+"Maximo": 13.5,
+"numeroRespondentes": 98
+},
+"R4/2015|2015-05-07": {
+"Data": "2015-05-07",
+"Reuniao": "R4/2015",
+"Media": 13.47,
+"Mediana": 13.5,
+"DesvioPadrao": 0.21,
+"Minimo": 12.75,
+"Maximo": 13.75,
+"numeroRespondentes": 99
+},
+"R5/2015|2015-06-11": {
+"Data": "2015-06-11",
+"Reuniao": "R5/2015",
+"Media": 14.02,
+"Mediana": 14.0,
+"DesvioPadrao": 0.2,
+"Minimo": 13.5,
+"Maximo": 14.25,
+"numeroRespondentes": 94
+},
+"R6/2015|2015-08-06": {
+"Data": "2015-08-06",
+"Reuniao": "R6/2015",
+"Media": 14.28,
+"Mediana": 14.25,
+"DesvioPadrao": 0.12,
+"Minimo": 14.0,
+"Maximo": 14.75,
+"numeroRespondentes": 106
+},
+"R7/2015|2015-09-10": {
+"Data": "2015-09-10",
+"Reuniao": "R7/2015",
+"Media": 14.27,
+"Mediana": 14.25,
+"DesvioPadrao": 0.07,
+"Minimo": 14.25,
+"Maximo": 14.75,
+"numeroRespondentes": 93
+},
+"R8/2015|2015-10-29": {
+"Data": "2015-10-29",
+"Reuniao": "R8/2015",
+"Media": 14.26,
+"Mediana": 14.25,
+"DesvioPadrao": 0.08,
+"Minimo": 14.25,
+"Maximo": 15.0,
+"numeroRespondentes": 100
+},
+"R1/2016|2015-12-03": {
+"Data": "2015-12-03",
+"Reuniao": "R1/2016",
+"Media": 14.34,
+"Mediana": 14.25,
+"DesvioPadrao": 0.23,
+"Minimo": 13.75,
+"Maximo": 15.75,
+"numeroRespondentes": 99
+},
+"R2/2016|2016-01-28": {
+"Data": "2016-01-28",
+"Reuniao": "R2/2016",
+"Media": 14.67,
+"Mediana": 14.25,
+"DesvioPadrao": 0.52,
+"Minimo": 14.25,
+"Maximo": 16.5,
+"numeroRespondentes": 98
+},
+"R3/2016|2016-03-10": {
+"Data": "2016-03-10",
+"Reuniao": "R3/2016",
+"Media": 14.25,
+"Mediana": 14.25,
+"DesvioPadrao": 0.0,
+"Minimo": 14.25,
+"Maximo": 14.25,
+"numeroRespondentes": 94
+},
+"R4/2016|2016-05-05": {
+"Data": "2016-05-05",
+"Reuniao": "R4/2016",
+"Media": 14.23,
+"Mediana": 14.25,
+"DesvioPadrao": 0.1,
+"Minimo": 13.75,
+"Maximo": 14.25,
+"numeroRespondentes": 93
+},
+"R5/2016|2016-06-16": {
+"Data": "2016-06-16",
+"Reuniao": "R5/2016",
+"Media": 14.18,
+"Mediana": 14.25,
+"DesvioPadrao": 0.16,
+"Minimo": 13.75,
+"Maximo": 14.34,
+"numeroRespondentes": 96
+},
+"R6/2016|2016-07-26": {
+"Data": "2016-07-26",
+"Reuniao": "R6/2016",
+"Media": 14.2,
+"Mediana": 14.25,
+"DesvioPadrao": 0.16,
+"Minimo": 13.75,
+"Maximo": 14.75,
+"numeroRespondentes": 103
+},
+"R7/2016|2016-09-06": {
+"Data": "2016-09-06",
+"Reuniao": "R7/2016",
+"Media": 14.1,
+"Mediana": 14.25,
+"DesvioPadrao": 0.22,
+"Minimo": 13.25,
+"Maximo": 14.25,
+"numeroRespondentes": 102
+},
+"R8/2016|2016-10-25": {
+"Data": "2016-10-25",
+"Reuniao": "R8/2016",
+"Media": 13.57,
+"Mediana": 13.5,
+"DesvioPadrao": 0.18,
+"Minimo": 13.25,
+"Maximo": 14.25,
+"numeroRespondentes": 108
+},
+"R1/2017|2016-12-06": {
+"Data": "2016-12-06",
+"Reuniao": "R1/2017",
+"Media": 13.29,
+"Mediana": 13.25,
+"DesvioPadrao": 0.15,
+"Minimo": 13.0,
+"Maximo": 13.51,
+"numeroRespondentes": 103
+},
+"R2/2017|2017-01-17": {
+"Data": "2017-01-17",
+"Reuniao": "R2/2017",
+"Media": 12.41,
+"Mediana": 12.25,
+"DesvioPadrao": 0.22,
+"Minimo": 12.0,
+"Maximo": 12.93,
+"numeroRespondentes": 102
+},
+"R3/2017|2017-03-02": {
+"Data": "2017-03-02",
+"Reuniao": "R3/2017",
+"Media": 11.44,
+"Mediana": 11.5,
+"DesvioPadrao": 0.15,
+"Minimo": 11.0,
+"Maximo": 12.0,
+"numeroRespondentes": 108
+},
+"R4/2017|2017-04-18": {
+"Data": "2017-04-18",
+"Reuniao": "R4/2017",
+"Media": 10.26,
+"Mediana": 10.25,
+"DesvioPadrao": 0.17,
+"Minimo": 9.25,
+"Maximo": 11.0,
+"numeroRespondentes": 108
+},
+"R5/2017|2017-06-06": {
+"Data": "2017-06-06",
+"Reuniao": "R5/2017",
+"Media": 9.47,
+"Mediana": 9.5,
+"DesvioPadrao": 0.25,
+"Minimo": 8.75,
+"Maximo": 10.25,
+"numeroRespondentes": 110
+},
+"R6/2017|2017-08-01": {
+"Data": "2017-08-01",
+"Reuniao": "R6/2017",
+"Media": 8.46,
+"Mediana": 8.5,
+"DesvioPadrao": 0.24,
+"Minimo": 8.25,
+"Maximo": 9.25,
+"numeroRespondentes": 108
+},
+"R7/2017|2017-09-12": {
+"Data": "2017-09-12",
+"Reuniao": "R7/2017",
+"Media": 7.56,
+"Mediana": 7.5,
+"DesvioPadrao": 0.2,
+"Minimo": 7.25,
+"Maximo": 8.75,
+"numeroRespondentes": 110
+},
+"R8/2017|2017-10-31": {
+"Data": "2017-10-31",
+"Reuniao": "R8/2017",
+"Media": 7.03,
+"Mediana": 7.0,
+"DesvioPadrao": 0.17,
+"Minimo": 6.75,
+"Maximo": 8.5,
+"numeroRespondentes": 108
+},
+"R1/2018|2017-12-12": {
+"Data": "2017-12-12",
+"Reuniao": "R1/2018",
+"Media": 6.81,
+"Mediana": 6.75,
+"DesvioPadrao": 0.15,
+"Minimo": 6.5,
+"Maximo": 7.0,
+"numeroRespondentes": 100
+},
+"R2/2018|2018-02-15": {
+"Data": "2018-02-15",
+"Reuniao": "R2/2018",
+"Media": 6.69,
+"Mediana": 6.75,
+"DesvioPadrao": 0.12,
+"Minimo": 6.5,
+"Maximo": 7.0,
+"numeroRespondentes": 103
+},
+"R3/2018|2018-03-27": {
+"Data": "2018-03-27",
+"Reuniao": "R3/2018",
+"Media": 6.38,
+"Mediana": 6.25,
+"DesvioPadrao": 0.14,
+"Minimo": 6.25,
+"Maximo": 6.75,
+"numeroRespondentes": 100
+},
+"R4/2018|2018-05-22": {
+"Data": "2018-05-22",
+"Reuniao": "R4/2018",
+"Media": 6.41,
+"Mediana": 6.5,
+"DesvioPadrao": 0.14,
+"Minimo": 6.0,
+"Maximo": 6.5,
+"numeroRespondentes": 103
+},
+"R5/2018|2018-06-26": {
+"Data": "2018-06-26",
+"Reuniao": "R5/2018",
+"Media": 6.5,
+"Mediana": 6.5,
+"DesvioPadrao": 0.04,
+"Minimo": 6.25,
+"Maximo": 6.75,
+"numeroRespondentes": 96
+},
+"R6/2018|2018-08-07": {
+"Data": "2018-08-07",
+"Reuniao": "R6/2018",
+"Media": 6.5,
+"Mediana": 6.5,
+"DesvioPadrao": 0.07,
+"Minimo": 6.25,
+"Maximo": 7.0,
+"numeroRespondentes": 99
+},
+"R7/2018|2018-09-25": {
+"Data": "2018-09-25",
+"Reuniao": "R7/2018",
+"Media": 6.53,
+"Mediana": 6.5,
+"DesvioPadrao": 0.12,
+"Minimo": 6.25,
+"Maximo": 7.0,
+"numeroRespondentes": 94
+},
+"R8/2018|2018-11-06": {
+"Data": "2018-11-06",
+"Reuniao": "R8/2018",
+"Media": 6.5,
+"Mediana": 6.5,
+"DesvioPadrao": 0.03,
+"Minimo": 6.5,
+"Maximo": 6.75,
+"numeroRespondentes": 107
+},
+"R1/2019|2018-12-18": {
+"Data": "2018-12-18",
+"Reuniao": "R1/2019",
+"Media": 6.5,
+"Mediana": 6.5,
+"DesvioPadrao": 0.03,
+"Minimo": 6.25,
+"Maximo": 6.75,
+"numeroRespondentes": 104
+},
+"R7/2026|2026-09-22": {
+"Data": "2026-09-22",
+"Reuniao": "R7/2026",
+"Media": 13.6277,
+"Mediana": 13.5,
+"DesvioPadrao": 0.148,
+"Minimo": 13.25,
+"Maximo": 14.0,
+"numeroRespondentes": 139
 }
 }

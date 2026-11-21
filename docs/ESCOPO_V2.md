@@ -214,6 +214,27 @@ Fonte: `v2/resultados/f4_*.csv`.
 
 **Leitura conjunta da F2–F4.** Entre a ata e a véspera, o mercado vai de 72% para 97% de acerto, mas essa informação **não está concentrada** em nenhum dos eventos datados que dá para medir: nem nos textos publicados pelo BCB, nem na ata, nem nas divulgações do IBGE (só o IPCA tem efeito, pequeno). Ela chega espalhada pelos dias comuns. Candidatos não medidos: falas da diretoria fora do site (entrevistas, eventos, *off*), cenário externo (juros dos EUA, câmbio), notícias fiscais.
 
+### 8.3 Resultado da F5 (21/11/2026): o comunicado não acrescenta nada ao DI
+
+Leitura dos 179 comunicados (2005–2026) por Claude Haiku 4.5 (`claude-haiku-4-5-20251001`), GPT-4.1-mini (`gpt-4.1-mini-2025-04-14`) e Gemini (`gemini-3.5-flash-lite`, versão fixa), separando **postura** (nível do aperto) de **direção sinalizada** para a próxima reunião. Previsão feita no dia da ata de *t* para a reunião *t+1* (178 reuniões-alvo).
+
+| Previsor (acerto do passo exato) | 2005–2026 | Com guidance explícito | Sem guidance | 2019–2026 |
+|---|---:|---:|---:|---:|
+| DI no dia da ata | 61% | 63% | 60% | 70% |
+| Focus no dia da ata | 61% | 68% | 55% | 70% |
+| Repetir a última decisão | 63% | 57% | 69% | 61% |
+| Comunicado (Claude / GPT / Gemini) | 50% / 46% / 47% | 62% / 57% / — | 39% / 36% / — | 66% / 62% / — |
+
+- **Walk-forward** (138 previsões, treino mínimo de 40): DI sozinho 65,9%; DI + comunicado 55,1%; com postura e inércia, 55,1%.
+- **Deriva do DI até a véspera** ~ (comunicado − DI): coeficiente 0,03 (p = 0,39), R² = 0,005. O comunicado não antecipa a correção do mercado.
+- **Viradas de ciclo** (28): os LLMs leem "manutenção" na maioria; o Copom raramente antecipa a virada no comunicado anterior. Exceção: mar/2026 (277), ponto cego da v1.1, lido como corte de 25 pb por todos.
+
+Fonte: `v2/resultados/f5_*.csv`, `v2/dados/base_dia_ata.csv`.
+
+**Conclusão da F2–F5.** A comunicação escrita do BCB (comunicado, ata, discursos) e os dados do IBGE já estão no preço. Nada do que foi medido acrescenta informação à curva de juros, nem na véspera nem seis semanas antes. Hipótese ainda em aberto: os fundamentos traduzidos pelos modelos (hiato de Taylor do MPP, aperto vs neutro do DSGE).
+
+**Caminhos (a decidir):** (1) paper com resultado negativo documentado; (2) testar MPP e DSGE antes de fechar, o que exige os exports por reunião nos projetos vizinhos; (3) produto: distribuição de probabilidade da próxima decisão extraída do DI, diária, com LLM explicando o que mudou.
+
 ## 9. Decisões para o Vitor
 
 1. **Versão.** ✅ Decidido em 21/11/2026: v2.0 **neste repositório**, com a v1.1 congelada numa tag.
