@@ -56,6 +56,9 @@ Decisão já tomada (ESCOPO_V2, seção 9, item 3): **reestimar por safra**. Par
 | `selic_taylor` | Selic que a regra de Taylor estimada indica para o trimestre corrente/seguinte, com as defasagens observadas e a expectativa Focus em `data_info` (% a.a.) |
 | `gap_taylor_pb` | (`selic_taylor` − `selic_depois`) × 100 |
 | `theta3` | coeficiente de reação ao desvio das expectativas na safra (para ver a estabilidade) |
+| `selic_alvo` | **(adendo de 21/11)** a Selic-alvo da regra, sem suavização: `jr2hp + âncora + θ3·(eipca12 − âncora)`, com os valores da safra em `data_info` (% a.a.) |
+| `gap_alvo_pb` | **(adendo)** (`selic_alvo` − `selic_depois`) × 100 |
+| `jr2hp`, `ancora`, `eipca12` | **(adendo)** os três insumos do alvo na safra, para auditoria |
 | `ipca_proj_4t_desvio` | projeção do IPCA 4 trimestres à frente menos a meta, no cenário com Selic endógena (p.p.) |
 
 Pontos de atenção do próprio projeto:
@@ -65,6 +68,10 @@ Pontos de atenção do próprio projeto:
 - Amostra mínima: se a safra tiver poucos trimestres para estimar, deixar vazio e registrar em `metodo`. Não fixar parâmetros para preencher.
 
 Validação: na última safra, `theta3` e `selic_taylor` têm de bater com a estimação de amostra inteira já publicada no projeto.
+
+### Adendo de 21/11/2026: por que a `selic_alvo`
+
+A `selic_taylor` pedida acima inclui a suavização (`c1·selic(−1) + c2·selic(−2)`, com c1 + c2 ≈ 0,94). Por isso ela fica sempre atrás da Selic: num ciclo de altas, sai abaixo da Selic e o `gap_taylor_pb` fica negativo. Na F6 do Sentimento_COPOM, a correlação do `gap_taylor_pb` com a ΔSelic seguinte foi −0,62, e com a ΔSelic corrente −0,78. Esse gap mede inércia, não fundamento. O erro foi da especificação deste contrato, não da implementação do MPP. A variável que interessa é o alvo da regra, o termo entre colchetes multiplicado por (1 − c1 − c2).
 
 ## DSGE_Brasil (variante `tendencia_focus`, `src/copom.py`)
 

@@ -235,6 +235,21 @@ Fonte: `v2/resultados/f5_*.csv`, `v2/dados/base_dia_ata.csv`.
 
 **Caminhos (a decidir):** (1) paper com resultado negativo documentado; (2) testar MPP e DSGE antes de fechar, o que exige os exports por reunião nos projetos vizinhos; (3) produto: distribuição de probabilidade da próxima decisão extraída do DI, diária, com LLM explicando o que mudou.
 
+### 8.4 Resultado da F6, primeira rodada (21/11/2026): fundamentos do MPP e do DSGE
+
+Exports por reunião dos dois projetos (contrato em `docs/CONTRATO_EXPORTS.md`), conferidos: nenhum dado posterior à data da ata, datas iguais às do calendário, última safra validada contra a amostra inteira. Amostra comum: 146 reuniões-alvo (atas de jul/2008 em diante).
+
+| Walk-forward (106 previsões) | Acerto exato | RMSE |
+|---|---:|---:|
+| DI no dia da ata | **66,0%** | 17,4 pb |
+| DI + gap de Taylor (MPP) | 51,9% | 17,8 pb |
+| DI + aperto (DSGE) | 50,9% | 18,8 pb |
+| DI + MPP + DSGE | 52,8% | 18,9 pb |
+
+Deriva do DI até a véspera ~ fundamentos: nenhum coeficiente significativo (p ≥ 0,34; R² ≤ 0,01).
+
+**Diagnóstico.** O `gap_taylor_pb` tem correlação −0,62 com a ΔSelic seguinte e −0,78 com a corrente: com suavização de 0,94, a Selic da regra fica sempre atrás da Selic e mede inércia. Erro da especificação do contrato. Adendo pedindo a `selic_alvo` (a regra sem suavização). O aperto do DSGE tem correlação +0,24 com a ΔSelic seguinte: o nível do aperto acompanha o ciclo com atraso, o mesmo ponto cego da v1.1. **Rodada a repetir com a `selic_alvo`.**
+
 ## 9. Decisões para o Vitor
 
 1. **Versão.** ✅ Decidido em 21/11/2026: v2.0 **neste repositório**, com a v1.1 congelada numa tag.
