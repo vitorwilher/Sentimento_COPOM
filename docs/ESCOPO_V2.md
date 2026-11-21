@@ -268,6 +268,23 @@ Export do MPP atualizado (vintage `7fc5b95`) com `selic_alvo` = `jr2hp + âncora
 
 Leitura ao vivo para a 283ª (dez/2026), no dia da ata da 282ª: regra do MPP sem suavização 16,34% (gap +259 pb), com suavização 14,35%; DSGE: juro real 2,0 p.p. acima do neutro de 5,79%.
 
+### 8.6 Resultado da F6, terceira rodada (21/11/2026): alvo da regra com o neutro filtrado do DSGE
+
+Export do MPP com `selic_alvo_dsge` = neutro filtrado do DSGE + âncora + θ3·(eipca12 − âncora) (vintage `e54c5b9`; recalculado aqui, erro 1e-6). θ3 segue estimado com o neutro por HP.
+
+| Gap | Sinal certo nas reuniões com mudança | Corr. ΔSelic seguinte | Corr. ΔSelic corrente |
+|---|---:|---:|---:|
+| Regra suavizada | 17% | −0,62 | −0,78 |
+| Alvo, neutro HP | 38% | −0,25 | −0,42 |
+| **Alvo, neutro do DSGE** | **54%** | **+0,18** | **+0,03** |
+| DI no dia da ata (referência) | 99% | +0,93 | +0,92 |
+
+- **Diagnóstico:** com o neutro do DSGE, o gap deixa de andar com o ciclo passado; a inércia vinha do neutro por HP.
+- **Previsão:** DI + gap do alvo (neutro DSGE) acerta 50,9% contra 66,0% do DI (walk-forward, 106); não antecipa a deriva do DI (coef. −0,002, p = 0,79).
+- **Decisão proposta:** não reestimar θ3 por safra com o neutro do DSGE para este teste; o ganho esperado não alcança o DI. Fica como peça normativa do MPP ("onde a Selic deveria estar") e como pergunta futura em horizontes de 3–4 reuniões.
+
+Leitura para a 283ª: alvo com neutro do DSGE 11,53% (gap −222 pb), contra 16,34% com neutro HP.
+
 ## 9. Decisões para o Vitor
 
 1. **Versão.** ✅ Decidido em 21/11/2026: v2.0 **neste repositório**, com a v1.1 congelada numa tag.

@@ -53,7 +53,7 @@ if __name__ == "__main__":
     # 0. Sozinhos: a direção do fundamento acerta a direção da decisão?
     print("\n0. Acerto da DIREÇÃO da decisão em t+1 (sinal), amostra comum:")
     y = np.sign(amostra["delta_t1"])
-    for c, s in [("di_ata", 1), ("gap_taylor_pb", 1), ("gap_alvo_pb", 1), ("aperto_pp", -1)]:
+    for c, s in [("di_ata", 1), ("gap_taylor_pb", 1), ("gap_alvo_pb", 1), ("gap_alvo_dsge_pb", 1), ("aperto_pp", -1)]:
         x = s * amostra[c]
         prev = np.sign(passo(x)) if c == "di_ata" else np.sign(x)
         print(f"   {c:14s} {100 * (prev == y).mean():.0f}%")
@@ -61,6 +61,7 @@ if __name__ == "__main__":
     specs = {"B0 DI no dia da ata": None, "B1 OLS(DI)": ["di_ata"],
              "F1 DI + gap Taylor (MPP)": ["di_ata", "gap_taylor_pb"],
              "F1b DI + gap do alvo (MPP)": ["di_ata", "gap_alvo_pb"],
+             "F1c DI + gap do alvo c/ neutro DSGE": ["di_ata", "gap_alvo_dsge_pb"],
              "F2 DI + aperto (DSGE)": ["di_ata", "aperto_pp"],
              "F3b DI + alvo MPP + DSGE": ["di_ata", "gap_alvo_pb", "aperto_pp"],
              "F3 DI + MPP + DSGE": ["di_ata", "gap_taylor_pb", "aperto_pp"],
@@ -72,7 +73,9 @@ if __name__ == "__main__":
     d = amostra.dropna(subset=["deriva"])
     linhas = []
     for nome, cols in {"MPP": ["gap_taylor_pb"], "MPP alvo": ["gap_alvo_pb"],
-                       "MPP alvo + DI": ["gap_alvo_pb", "di_ata"], "DSGE": ["aperto_pp"],
+                       "MPP alvo + DI": ["gap_alvo_pb", "di_ata"],
+                       "MPP alvo neutro DSGE": ["gap_alvo_dsge_pb"],
+                       "MPP alvo neutro DSGE + DI": ["gap_alvo_dsge_pb", "di_ata"], "DSGE": ["aperto_pp"],
                        "MPP + DSGE": ["gap_taylor_pb", "aperto_pp"],
                        "MPP + DSGE + DI": ["gap_taylor_pb", "aperto_pp", "di_ata"]}.items():
         m = sm.OLS(d["deriva"], sm.add_constant(d[cols])).fit(cov_type="HAC", cov_kwds={"maxlags": 2})
@@ -85,5 +88,5 @@ if __name__ == "__main__":
 
     viva = df[df["nro_t1"] == df["nro_t1"].max()].iloc[0]
     print(f"\n3. Leitura para a {int(viva['nro_t1'])}ª (dia da ata da {int(viva['nro_t1']) - 1}ª):")
-    for c in ["gap_taylor_pb", "selic_taylor", "gap_alvo_pb", "selic_alvo", "aperto_pp", "neutro"]:
+    for c in ["gap_taylor_pb", "selic_taylor", "gap_alvo_pb", "selic_alvo", "gap_alvo_dsge_pb", "selic_alvo_dsge", "aperto_pp", "neutro"]:
         print(f"   {c:14s} {viva.get(c, np.nan)}")
