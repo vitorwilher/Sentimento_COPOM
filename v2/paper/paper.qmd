@@ -204,6 +204,13 @@ def r9(alvo, var, col, espec="com presidência"):
 p_ddisp = f9.loc[(f9["alvo"] == "d_disp") & (f9["espec"] == "com presidência")
                  & f9["variavel"].isin(["com_guidance", "com_cond", "ata_guidance", "ata_cond"]), "p"]
 
+# clareza: médias por grupo de comunicado (o que a @fig-clareza mostra)
+bc = pd.read_csv(D / "base_clareza.csv").dropna(subset=["disp_antes", "disp_depois", "com_guidance", "com_cond"])
+gcom = pd.cut(bc["com_guidance"], [-0.1, 0.2, 0.8, 1.1], labels=["nao", "diverge", "sim"])
+mcl = bc.groupby(gcom, observed=True).agg(n=("disp_antes", "size"), antes=("disp_antes", "mean"), depois=("disp_depois", "mean"))
+n_ata_guid_sim = int((bc["ata_guidance"] == 1).sum())
+n_ata_guid_div = int(((bc["ata_guidance"] > 0) & (bc["ata_guidance"] < 1)).sum())
+
 from v2 import figuras as FIG  # mesmas funções que geram v2/figuras/*.png
 ```
 
@@ -224,7 +231,7 @@ resumo = (
     f"mas a ênfase do Banco Central não supera pesos iguais e, na véspera, o mercado já incorporou tudo. "
     f"Em horizontes de até oito reuniões, o tom parece antecipar o erro do mercado, mas o efeito desaparece "
     f"com a última decisão como controle: a curva subestima a persistência dos ciclos, e o tom só marcava o ciclo. "
-    f"O guidance explícito vem com expectativas menos dispersas, mas não as coordena depois de publicado. "
+    f"Com guidance explícito no comunicado, os analistas divergem um pouco menos depois da comunicação, mas a diferença não resiste aos controles. "
     f"A comunicação escrita do Copom tem valor para interpretar o mercado, não para antecipá-lo."
 )
 print(r"""
@@ -481,11 +488,14 @@ plt.show()
 
 ## Clareza e coordenação
 
-A pergunta de @lima2015 não é para onde a Selic vai, mas se a comunicação coordena as expectativas. A dispersão do Focus para a Selic da reunião seguinte é medida antes do comunicado (na data de corte) e depois da ata. Com controles para o tamanho da decisão, a surpresa no DI e a presidência do Banco Central, a ata com guidance explícito vem com dispersão `{python} br(abs(r9('disp_depois', 'ata_guidance', 'coef')), 1)` pb menor (p `{python} pv(r9('disp_depois', 'ata_guidance', 'p'))`), e cada ponto de condicionalidade do comunicado, com `{python} br(r9('disp_depois', 'com_cond', 'coef'), 1)` pb maior (p `{python} pv(r9('disp_depois', 'com_cond', 'p'))`). Mas a **variação** da dispersão em torno da comunicação, o desenho que separa o efeito do texto da escolha do momento de escrevê-lo, não responde (p entre `{python} br(p_ddisp.min(), 2)` e `{python} br(p_ddisp.max(), 2)`; @fig-clareza). O Banco Central escreve guidance claro quando o mercado já está coordenado, o que é compatível com o achado de causalidade reversa da dissertação, mas não se mede que o texto coordene o mercado depois de publicado. O índice de Flesch não tem relação com a dispersão.
+A pergunta de @lima2015 não é para onde a Selic vai, mas se a comunicação coordena as expectativas. A medida é a divergência entre os analistas do Focus sobre a Selic da reunião seguinte (o desvio-padrão das projeções), na véspera da reunião, antes do comunicado, e no dia da ata, depois da comunicação (@fig-clareza).
+
+Quando o comunicado sinaliza explicitamente os próximos passos (`{python} int(mcl.loc['sim','n'])` reuniões), a divergência cai de `{python} br(mcl.loc['sim','antes'],1)` para `{python} br(mcl.loc['sim','depois'],1)` pb. Quando não sinaliza (`{python} int(mcl.loc['nao','n'])` reuniões), cai menos, de `{python} br(mcl.loc['nao','antes'],1)` para `{python} br(mcl.loc['nao','depois'],1)` pb. A direção é a da dissertação, mas a diferença é pequena e não resiste aos controles de tamanho da decisão, surpresa no DI e presidência do Banco Central (p entre `{python} br(p_ddisp.min(), 2)` e `{python} br(p_ddisp.max(), 2)` na variação da dispersão): os comunicados com guidance se concentram nos anos recentes. No nível da dispersão depois da comunicação, cada ponto de condicionalidade do comunicado vem com `{python} br(r9('disp_depois', 'com_cond', 'coef'), 1)` pb a mais (p `{python} pv(r9('disp_depois', 'com_cond', 'p'))`), compatível com o achado de causalidade reversa da dissertação: o Banco Central se compromete mais quando o mercado já está coordenado. Na ata, a medida de guidance explícito quase não varia (`{python} n_ata_guid_sim` atas lidas como explícitas pelos dois modelos e `{python} n_ata_guid_div` com desacordo entre eles), e o coeficiente associado não deve ser lido como resultado. O índice de Flesch não tem relação com a dispersão.
 
 ```{python}
 #| label: fig-clareza
-#| fig-cap: "Clareza da comunicação e dispersão do Focus para a Selic da reunião seguinte: nível depois da comunicação e mudança em torno dela (controles: tamanho da decisão, surpresa no DI e presidência)."
+#| fig-height: 5.4
+#| fig-cap: "Divergência entre os analistas do Focus sobre a Selic da reunião seguinte, antes do comunicado e depois da ata, por clareza do comunicado. Médias por grupo de reuniões."
 FIG.fig_clareza()
 plt.show()
 ```

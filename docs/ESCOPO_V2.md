@@ -327,7 +327,8 @@ Fonte: `v2/resultados/f8_horizonte.csv`, `f8_robustez.csv`.
 
 A dissertação (UFF, 2015) aplicou Flesch às atas e achou que mais clareza reduz a dispersão e ancora as expectativas, e que o BC escreve com mais clareza quando as expectativas aceleram. Aqui, com controles de presidência (`v2/f9_clareza.py`):
 
-- **Nível da dispersão do Focus depois da comunicação:** ata com guidance explícito, −9,5 pb (p = 0,007); comunicado mais condicional, +2,6 pb por ponto (p = 0,02).
+- **Dados brutos (comunicado):** com guidance explícito (79 reuniões), a divergência do Focus cai de 17,0 para 15,2 pb entre a véspera e a ata; sem guidance (45), de 19,5 para 18,7 pb.
+- **Nível da dispersão depois da comunicação:** comunicado mais condicional, +2,6 pb por ponto (p = 0,02). O coeficiente da ata com guidance explícito (−9,5 pb, p = 0,007) **não é resultado**: a variável quase não varia (156 de 178 atas lidas como explícitas; as outras são quase todas desacordo entre Claude e GPT).
 - **Mudança da dispersão em torno da comunicação** (desenho contra a causalidade reversa): nenhum efeito (p de 0,15 a 0,43).
 - **Flesch:** sem efeito na dispersão; associação estatística, mas economicamente nula, com a desancoragem.
 

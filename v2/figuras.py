@@ -300,24 +300,54 @@ def fig_horizonte_rmse():
 
 # ------------------------------------------------------------------ F9: clareza
 def fig_clareza():
-    t = pd.read_csv(R / "f9_clareza.csv")
-    nomes = {"com_guidance": "Guidance explícito, comunicado", "com_cond": "Condicionalidade, comunicado",
-             "ata_guidance": "Guidance explícito, ata", "ata_cond": "Condicionalidade, ata"}
-    fig, axs = plt.subplots(1, 2, figsize=(7.5, 2.9), sharey=True)
-    for ax, alvo, tit in zip(axs, ("disp_depois", "d_disp"),
-                             ("Nível depois da comunicação", "Mudança em torno dela")):
-        d = t[(t["alvo"] == alvo) & (t["espec"] == "com presidência") & t["variavel"].isin(nomes)].set_index("variavel").loc[list(nomes)]
-        y = np.arange(len(d))[::-1]
-        cores = [AZUL if p < 0.05 else AZUL_CLARO for p in d["p"]]
-        ax.errorbar(d["coef"], y, xerr=1.645 * d["ep"], fmt="none", ecolor=CINZA, lw=1, capsize=2)
-        ax.scatter(d["coef"], y, color=cores, s=30, zorder=3)
-        ax.axvline(0, color=TINTA, lw=0.8)
-        ax.set_yticks(y, [nomes[v] for v in d.index])
-        ax.set_title(tit, fontsize=9)
-        ax.set_xlabel("pb de desvio-padrão do Focus (IC 90%)")
+    """Divergência dos analistas do Focus antes do comunicado e depois da ata, por clareza do comunicado.
+
+    Mostra os dados, não coeficientes: média do desvio-padrão das projeções do Focus para a Selic da
+    reunião seguinte, na véspera da reunião (antes do comunicado) e no dia da ata (depois).
+    """
+    d = pd.read_csv(D / "base_clareza.csv", parse_dates=["data_ata"]).dropna(
+        subset=["disp_antes", "disp_depois", "com_guidance", "com_cond"])
+    grupos = {
+        "O comunicado sinaliza os próximos passos?": pd.cut(
+            d["com_guidance"], [-0.1, 0.2, 0.8, 1.1], labels=["Não", "Os LLMs divergem", "Sim, explicitamente"]),
+        "Quanto o próximo passo depende de dados?": pd.cut(
+            d["com_cond"], [0, 2.0, 2.67, 3.1], labels=["Pouco (compromisso)", "Médio", "Totalmente"]),
+    }
+    fig, axs = plt.subplots(2, 1, figsize=(8, 5.4), sharex=True, gridspec_kw={"hspace": 0.45})
+    for ax, (tit, g) in zip(axs, grupos.items()):
+        m = d.groupby(g, observed=True).agg(n=("disp_antes", "size"), antes=("disp_antes", "mean"),
+                                             depois=("disp_depois", "mean"),
+                                             ano=("data_ata", lambda x: int(x.dt.year.median())))
+        y = np.arange(len(m))[::-1]
+        for y_, (nome, r) in zip(y, m.iterrows()):
+            a, b = r["antes"], r["depois"]
+            ax.annotate("", xy=(b, y_), xytext=(a, y_),
+                        arrowprops=dict(arrowstyle="-|>", color=CINZA, lw=1.4, shrinkA=6, shrinkB=6))
+            ax.scatter(a, y_, s=60, color=AZUL_CLARO, zorder=3)
+            ax.scatter(b, y_, s=60, color=AZUL, zorder=3)
+            esq, dir_ = (b, a) if b <= a else (a, b)
+            ax.text(esq - 0.25, y_, br(esq, 1), ha="right", va="center", fontsize=8,
+                    color=AZUL if esq == b else CINZA)
+            ax.text(dir_ + 0.25, y_, br(dir_, 1), ha="left", va="center", fontsize=8,
+                    color=AZUL if dir_ == b else CINZA)
+            ax.text(1.01, y_, f"{'+' if b >= a else '−'}{br(abs(b - a), 1)} pb",
+                    transform=ax.get_yaxis_transform(), va="center", fontsize=9, fontweight="bold", color=TINTA)
+        ax.set_yticks(y, [f"{n}  ({int(r.n)} reuniões; ano mediano {int(r.ano)})" for n, r in m.iterrows()], fontsize=8.5)
+        ax.set_ylim(-0.6, len(m) - 0.4)
+        ax.set_title(tit, fontsize=9.5)
         ax.grid(axis="y", visible=False)
-    fig.suptitle("Clareza coordena o mercado? Dispersão do Focus para a Selic seguinte (escuro: p < 0,05)", x=0.01, ha="left", fontsize=10, fontweight="bold")
-    fig.tight_layout()
+    axs[1].set_xlim(11, 22)
+    axs[1].set_xlabel("divergência entre os analistas do Focus sobre a Selic da reunião seguinte (desvio-padrão, pb)")
+    axs[0].text(1.01, 1.02, "mudança", transform=axs[0].transAxes, fontsize=8, color=CINZA)
+    from matplotlib.lines import Line2D
+    axs[0].legend(handles=[Line2D([], [], marker="o", ls="", color=AZUL_CLARO, ms=8, label="Véspera da reunião (antes do comunicado)"),
+                           Line2D([], [], marker="o", ls="", color=AZUL, ms=8, label="Dia da ata (depois da comunicação)")],
+                  loc="lower left", bbox_to_anchor=(0, 1.12), ncol=2, fontsize=8.5)
+    fig.suptitle("Com guidance explícito, os analistas divergem um pouco menos depois da comunicação",
+                 x=0.01, ha="left", fontsize=10.5, fontweight="bold", y=1.0)
+    fig.text(0.01, -0.04, "Média por grupo de reuniões, 2006–2026. Com controles (tamanho da decisão, surpresa no DI e presidência do BC),\n"
+             "a diferença entre os grupos não é estatisticamente significativa: os comunicados com guidance se concentram nos anos recentes.",
+             fontsize=7.5, color=CINZA)
     return fig
 
 
