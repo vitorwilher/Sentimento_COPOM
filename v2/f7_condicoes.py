@@ -60,7 +60,7 @@ Variavel = Literal[tuple(VARIAVEIS)]  # type: ignore[valid-type]
 class Condicao(BaseModel):
     variavel: Variavel = Field(description="Variável da lista fixa a que a condição se refere.")
     enfase: Literal[1, 2, 3] = Field(description="1 menção de passagem; 2 destaque; 3 condição central para os próximos passos.")
-    trecho: str = Field(max_length=400, description="Citação literal e curta da ata (até 300 caracteres) que sustenta a condição.")
+    trecho: str = Field(description="Citação literal e curta da ata (até 300 caracteres) que sustenta a condição.")
 
 
 class FuncaoReacao(BaseModel):
@@ -150,6 +150,7 @@ def extrair(provedor: str, nros: list[int]) -> pd.DataFrame:
         for c in r.condicoes:
             linhas.append({"nro_reuniao": n, "modelo": MODELOS[provedor], **c.model_dump(),
                            "sinal": SINAL[c.variavel]})
+            linhas[-1]["trecho"] = linhas[-1]["trecho"][:400]  # sem limite no schema: o Haiku às vezes passa
         print(f"  {provedor} {n}: " + ", ".join(f"{c.variavel}:{c.enfase}"
                                                   for c in r.condicoes), flush=True)
         pd.DataFrame(linhas).to_csv(arq, index=False)

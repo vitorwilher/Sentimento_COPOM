@@ -1,0 +1,498 @@
+---
+lang: pt-BR
+jupyter: sentimento-copom
+bibliography: referencias.bib
+format:
+  pdf:
+    pdf-engine: xelatex
+    toc: false
+    number-sections: true
+    geometry:
+      - margin=2.5cm
+    fontsize: 11pt
+    code-overflow: wrap
+    code-block-bg: "#F7F7F7"
+    code-block-border-left: false
+    highlight-style: github
+    fig-width: 7.5
+    fig-height: 4
+    fig-pos: H
+header-includes:
+  - |
+    \usepackage{etoolbox}
+    \usepackage{graphicx}
+    \usepackage{hyperref}
+    \usepackage{booktabs}
+    \usepackage{threeparttable}
+    \usepackage{caption}
+    \usepackage{float}
+    \captionsetup[table]{skip=4pt}
+    \renewcommand{\maketitle}{}
+    \AtBeginEnvironment{Shaded}{\footnotesize}
+    \AtBeginEnvironment{verbatim}{\footnotesize}
+    \AtBeginEnvironment{tabular}{\small}
+execute:
+  eval: true
+  echo: false
+  warning: false
+  message: false
+---
+
+```{python}
+#| include: false
+# ---------------------------------------------------------------- configuração
+# Regra de ouro: nenhum número é digitado à mão. Tudo sai dos CSVs gerados pelos scripts
+# v2/f0 … v2/f7 (ver v2/README.md). O paper NÃO reestima nada caro: só lê e resume.
+import sys
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+RAIZ = Path("../..").resolve()
+sys.path.insert(0, str(RAIZ))
+V2, R, D = RAIZ / "v2", RAIZ / "v2" / "resultados", RAIZ / "v2" / "dados"
+
+AZUL, LARANJA, CINZA, TINTA = "#2a78d6", "#eb6834", "#8a8a85", "#2b2b28"  # paleta validada (dataviz)
+plt.rcParams.update({"font.size": 9, "axes.spines.top": False, "axes.spines.right": False,
+                     "axes.edgecolor": CINZA, "axes.labelcolor": TINTA, "xtick.color": TINTA,
+                     "ytick.color": TINTA, "axes.grid": True, "grid.color": "#e6e6e2", "grid.linewidth": 0.6})
+
+
+class Txt(str):
+    """Texto que o Quarto insere como markdown cru nas expressões inline (sem escapar a vírgula)."""
+    def _repr_markdown_(self):
+        return str(self)
+
+
+def br(x, d=1):
+    """Número no formato brasileiro."""
+    return Txt(f"{x:,.{d}f}".replace(",", "X").replace(".", ",").replace("X", "."))
+
+
+def pct(x, d=0, tex=False):
+    return Txt(br(x, d) + ("\\%" if tex else "%"))
+
+
+def pv(p):
+    return Txt("< 0,001" if p < 0.001 else "= " + br(p, 3))
+
+
+def passo(x):
+    return np.round(np.asarray(x, float) / 25) * 25
+
+
+def acerto(prev, y):
+    prev, y = np.asarray(prev, float), np.asarray(y, float)
+    ok = ~np.isnan(prev) & ~np.isnan(y)
+    return 100 * (passo(prev[ok]) == y[ok]).mean()
+
+
+def tabela(df, cap, lab, nota, fmt=None):
+    """DataFrame já formatado em texto → booktabs + threeparttable."""
+    fmt = fmt or "l" + "r" * (df.shape[1] - 1)
+    corpo = df.to_latex(index=False, escape=False, column_format=fmt)
+    # Sem o ambiente `table`: os filtros do Quarto tentam interpretar todo \begin{table} cru e,
+    # neste documento, interrompem a escrita do .tex. center + \captionof dá o mesmo resultado.
+    print("\n```{=latex}\n\\begin{center}\\begin{minipage}{\\linewidth}\\centering\n"
+          "\\captionof{table}{" + cap + "}\n"
+          "\\begin{threeparttable}\n" + corpo +
+          "\\begin{tablenotes}\\footnotesize\\item " + nota + "\\end{tablenotes}\n"
+          "\\end{threeparttable}\\end{minipage}\\end{center}\n```\n")
+
+
+# ---------------------------------------------------------------- dados
+cal = pd.read_csv(D / "calendario.csv", parse_dates=["data_decisao"])
+n_reun = len(cal)
+r_ini, r_fim = int(cal["nro_reuniao"].min()), int(cal["nro_reuniao"].max())
+a_ini, a_fim = cal["data_decisao"].dt.year.min(), cal["data_decisao"].dt.year.max()
+
+# F2 — réguas na véspera
+f2 = pd.read_csv(R / "f2_baselines.csv")
+def f2v(rec, base, col="acerto_exato_%"):
+    return f2.loc[(f2["recorte"] == rec) & (f2["baseline"] == base), col].iloc[0]
+REC_T, REC_B3, REC_V = "2005–2026", "2019–2026 (DI B3)", "pontos de virada"
+n_f2 = int(f2v(REC_T, "inércia", "n"))
+di_v_tot, di_v_b3, di_v_vir = f2v(REC_T, "DI implícito"), f2v(REC_B3, "DI implícito"), f2v(REC_V, "DI implícito")
+fo_v_tot, fo_v_vir = f2v(REC_T, "Focus (mediana)"), f2v(REC_V, "Focus (mediana)")
+in_v_tot = f2v(REC_T, "inércia")
+n_b3 = int(f2v(REC_B3, "DI implícito", "n"))
+erros_b3 = round(n_b3 * (1 - di_v_b3 / 100))
+
+# Horizonte: dia da ata x véspera (mesma amostra)
+base = pd.read_csv(D / "base_dia_ata.csv", parse_dates=["data_ata"])
+b = base.dropna(subset=["di_ata", "di_vespera", "delta_t1"])
+b19 = b[b["data_ata"] >= "2019-10-01"]
+hor = {k: (acerto(x["di_ata"], x["delta_t1"]), acerto(x["di_vespera"], x["delta_t1"]),
+           acerto(x["focus_ata"], x["delta_t1"]), acerto(x["inercia"], x["delta_t1"]), len(x))
+       for k, x in {"tot": b, "b3": b19}.items()}
+di_a_tot, di_a_b3 = hor["tot"][0], hor["b3"][0]
+
+# F3 — discursos e documentos (estudo de evento)
+f3s = pd.read_csv(R / "f3_evento.csv").set_index("grupo")
+f3b = pd.read_csv(R / "f3_evento_b3.csv").set_index("grupo")
+disc = pd.read_csv(D / "discursos.csv")
+n_disc, n_rel = len(disc), int(disc["relevante"].sum())
+
+# F4 — dados do IBGE
+f4 = pd.read_csv(R / "f4_evento_dados.csv").set_index("grupo")
+sp = pd.read_csv(R / "f4_surpresa_ipca.csv").dropna()
+m_sp = sm.OLS(sp["var_di_pb"], sm.add_constant(sp["surpresa_pp"])).fit(cov_type="HC1")
+dr4 = pd.read_csv(R / "f4_deriva.csv").dropna()
+m_dr4 = sm.OLS(dr4["deriva_total_pb"], sm.add_constant(dr4["deriva_dias_dados_pb"])).fit(cov_type="HC1")
+
+# F5 — comunicados
+wf5 = pd.read_csv(R / "f5_walk_forward.csv").set_index("modelo")
+dr5 = pd.read_csv(R / "f5_deriva.csv")
+com = base.dropna(subset=["com_sinal", "delta_t1"])
+ac_com = {p: acerto(com[f"sinal_{p}"], com["delta_t1"]) for p in ("claude", "openai", "gemini")}
+ac_com["média"] = acerto(com["com_sinal"], com["delta_t1"])
+
+# F6 — fundamentos (MPP e DSGE)
+fund = pd.read_csv(D / "base_fundamentos.csv")
+wf6 = pd.read_csv(R / "f6_walk_forward.csv").set_index("modelo")
+dr6 = pd.read_csv(R / "f6_deriva.csv")
+fa = fund.dropna(subset=["gap_taylor_pb", "gap_alvo_pb", "gap_alvo_dsge_pb", "aperto_pp", "delta_t1", "di_ata"])
+
+# F7 — índice de condicionalidade
+ic = pd.read_csv(D / "indice_condicionalidade.csv", parse_dates=["data_ata", "data_corte"])
+ic = ic.merge(base[["nro_t1", "di_vespera"]], on="nro_t1", how="left")
+ok7 = ic.dropna(subset=["indice_ata", "indice_generico", "delta_t1", "di_ata", "deriva"])
+dr7 = pd.read_csv(R / "f7_deriva.csv")
+def d7(esp, var, col):
+    return dr7.loc[(dr7["especificacao"] == esp) & (dr7["variavel"] == var), col].iloc[0]
+# na véspera: o índice acrescenta ao DI da véspera? (walk-forward com o mesmo treino mínimo)
+v7 = ok7.dropna(subset=["di_vespera"]).sort_values("nro_t1").reset_index(drop=True)
+v7["erro_vespera"] = v7["delta_t1"] - v7["di_vespera"]
+def wf_vespera(cols, min_treino=40):
+    p = []
+    for i in range(min_treino, len(v7)):
+        tr, te = v7.iloc[:i], v7.iloc[[i]]
+        if cols is None:
+            p.append(te["di_vespera"].iloc[0])
+            continue
+        m = sm.OLS(tr["delta_t1"], sm.add_constant(tr[cols])).fit()
+        p.append(float(m.predict(sm.add_constant(te[cols], has_constant="add")).iloc[0]))
+    return acerto(p, v7["delta_t1"].iloc[min_treino:])
+ac_v7 = {"DI": wf_vespera(None), "ata": wf_vespera(["di_vespera", "indice_ata"]),
+         "gen": wf_vespera(["di_vespera", "indice_generico"])}
+c282 = ic[ic["nro_t1"] == 282].iloc[0]
+pct282 = 100 * (ok7["indice_ata"] < c282["indice_ata"]).mean()
+viva = ic[ic["delta_t1"].isna()].tail(1).iloc[0]
+cond = pd.concat([pd.read_csv(D / f"condicoes_atas_{p}.csv") for p in ("claude", "openai")]).dropna(subset=["variavel"])
+n_atas_llm = {m.split("-")[0]: d["nro_reuniao"].nunique() for m, d in cond.groupby("modelo")}
+from v2.f7_condicoes import SINAL as SINAL_F7
+n_var = len(SINAL_F7)
+emenda = pd.read_csv(D / "di_validacao_emenda.csv")
+emenda_dif = (emenda["b3_pb"] - emenda["sgs_pb"]).abs().max()
+```
+
+```{python}
+#| output: asis
+resumo = (
+    f"A versão 1.1 deste projeto mediu o tom das atas do Copom com três LLMs e encontrou um ponto cego: "
+    f"o índice lia o nível do aperto, não a direção da próxima decisão. Esta versão pergunta se algum texto "
+    f"do Banco Central, lido por LLMs, prevê a próxima decisão melhor que o mercado. Com {n_reun} reuniões "
+    f"({a_ini}–{a_fim}), um calendário ponto-no-tempo e a Selic implícita na curva de DI, a resposta é não. "
+    f"O DI acerta o passo exato em {pct(di_v_b3)} das reuniões na véspera desde 2019 e em {pct(di_a_b3)} "
+    f"seis semanas antes. Comunicados, atas e discursos da diretoria, as divulgações do IBGE e os "
+    f"fundamentos de dois modelos estruturais (regra de Taylor de um modelo semiestrutural e juro neutro "
+    f"de um DSGE) não acrescentam acerto ao DI. O comunicado é o único documento que move a curva, "
+    f"{br(f3s.loc['comunicado', 'razao_vs_sem_evento'], 1)} vezes um dia comum. Um Índice de Condicionalidade, "
+    f"que cruza a função de reação escrita em cada ata com os dados que chegam até a reunião seguinte, "
+    f"explica parte do caminho do DI entre as reuniões (p {pv(d7('índice da ata', 'indice_ata', 'p'))}), "
+    f"mas a ênfase do Banco Central não supera pesos iguais e, na véspera, o mercado já incorporou tudo. "
+    f"A comunicação escrita do Copom tem valor para interpretar o mercado, não para antecipá-lo."
+)
+print(r"""
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+\includegraphics[width=3.5cm]{AM.png}
+\vspace{0.8cm}
+
+{\huge\bfseries O mercado já leu a ata\par}
+\vspace{0.8em}
+{\Large Comunicação do Copom, LLMs e a previsão da próxima decisão da Selic\par}
+\vspace{1.5em}
+{\large Vítor Wilher\par}
+\vspace{0.5em}
+{\normalsize Novembro de 2026\par}
+\vspace{0.2em}
+{\footnotesize Versão 2.0 (Sentimento\_COPOM, branch \texttt{v2})\par}
+\vspace{1.5em}
+\begin{minipage}{0.9\textwidth}
+\footnotesize
+\setlength{\parindent}{0pt}
+\noindent\textbf{Resumo.} """ + resumo.replace("%", r"\%") + r"""
+
+\smallskip
+\noindent\textbf{Palavras-chave:} Copom; comunicação de banco central; LLM; curva de DI; surpresa monetária; função de reação.
+\end{minipage}
+\end{titlepage}
+""")
+```
+
+# Introdução
+
+A versão 1.1 deste projeto construiu um Índice de Tom das atas do Copom com três modelos de linguagem e o calibrou contra a variação da Selic decidida na mesma reunião. O resultado mais útil foi uma limitação: no início do ciclo de cortes de 2026, as atas seguiam descrevendo uma política "restritiva por período prolongado", e os três modelos leram aperto enquanto o Copom cortava. O índice media o **nível** do aperto, não a **direção** da próxima decisão.
+
+Esta versão muda a pergunta. Em vez de "qual o tom desta ata?", pergunta: *com tudo o que o Banco Central publicou até a véspera de uma reunião, é possível dizer quanto a Selic vai mudar, melhor do que o mercado já diz?* A resposta exige uma régua honesta. A régua aqui é a Selic implícita na curva de juros futuros (DI), medida com o mesmo cuidado de ponto-no-tempo aplicado aos textos.
+
+O trabalho tem quatro contribuições:
+
+1. **A régua.** Um calendário de `{python} n_reun` reuniões (`{python} r_ini`ª a `{python} r_fim`ª) com a data de corte de informação de cada uma, e a ΔSelic implícita no DI. Na véspera, o DI acerta o passo exato em `{python} pct(di_v_b3)` das `{python} n_b3` reuniões desde 2019. No dia da ata anterior, seis semanas antes, em `{python} pct(di_a_b3)`.
+2. **Onde a informação chega.** Um estudo de evento mostra que só o comunicado move a curva. Atas, discursos da diretoria e, com exceção do IPCA, as divulgações do IBGE não movem.
+3. **Os textos e os modelos.** Os comunicados lidos por três LLMs e os fundamentos de dois modelos estruturais, a regra de Taylor do MPP e o juro neutro do DSGE, não acrescentam acerto ao DI.
+4. **Um índice que interpreta.** O Índice de Condicionalidade cruza a função de reação escrita em cada ata com os dados que chegam até a reunião seguinte. Ele explica parte do caminho do DI, mas não o antecipa.
+
+# Revisão da literatura
+
+A comunicação como instrumento de política monetária é tema consolidado [@blinder2008; @woodford2003]. A medição de tom evoluiu de dicionários [@loughran_mcdonald2011; @apel_grimaldi2012; @picault_renault2017] para modelos de tópicos [@hansen_mcmahon_prat2018] e, mais recentemente, para LLMs [@hansen_kazinnik2023]. Para o Brasil, há evidência de que o tom do Copom antecipa a Selic [@caruso2026]. A literatura de efeitos de sinalização [@hubert_labondance2021] mostra que o tom move expectativas.
+
+O ponto deste trabalho vem de outra tradição: a de surpresas monetárias medidas no mercado. @kuttner2001 separa a parte esperada e a inesperada de uma decisão pelos contratos futuros de juros. @gss2005 mostram que os comunicados movem a curva por um fator de "caminho", distinto da decisão do dia. Se o mercado precifica a comunicação, a pergunta relevante para um índice de texto não é se ele se correlaciona com a Selic, mas se ele acrescenta algo ao preço.
+
+# Dados e desenho
+
+## Calendário ponto-no-tempo
+
+Uma linha por reunião, de `{python} a_ini` a `{python} a_fim`, com a data da decisão (comunicado), a da publicação da ata e a **data de corte**: o último dia útil antes do primeiro dia da reunião. Toda informação usada para prever a reunião *t* tem data igual ou anterior a esse corte. A ΔSelic vem do SGS 432, comparando a meta na data da decisão com a do dia útil seguinte.
+
+## A régua: Selic implícita no DI
+
+Até setembro de 2019, os swaps DI × pré do SGS (séries 7801 a 7806, prazos de 30 a 360 dias). Depois, o DI1 da B3 (arquivo diário de preços, taxa de ajuste por vencimento). Para a reunião *t*, escolhe-se o contrato mais curto que vence depois de *t* e antes de *t+1*, e resolve-se a taxa do período posterior à decisão:
+
+$$
+(1+R)^{N/252} = (1+\text{CDI})^{n_1/252}\,(1+x)^{(N-n_1)/252},
+$$
+
+em que $N$ são os dias úteis até o vencimento e $n_1$ os dias até a nova taxa vigorar. A ΔSelic implícita é $x - \text{CDI}$. A emenda entre as duas fontes foi validada nas `{python} len(emenda)` reuniões de 2019 em que ambas existem: a maior diferença foi de `{python} br(emenda_dif, 1)` pb.
+
+## Textos e modelos
+
+| Fonte | Cobertura | Uso |
+|---|---|---|
+| Comunicados (API do BCB) | todas as reuniões | leitura por 3 LLMs (F5) |
+| Atas completas (API e PDF do BCB) | todas as reuniões | função de reação (F7) |
+| Textos e apresentações da diretoria | `{python} n_disc` itens, `{python} n_rel` relevantes | estudo de evento (F3) |
+| Calendário do IBGE | 2017 em diante | estudo de evento (F4) |
+| Focus (Selic por reunião; IPCA anual) | 2006 em diante | régua e expectativas |
+| MPP_BCB e DSGE_Brasil | export por reunião | fundamentos (F6) |
+
+Os modelos estruturais foram reestimados ou refiltrados em cada data com os dados disponíveis naquela data, conforme um contrato de exportação entre os projetos. O MPP foi reestimado por safra. O DSGE manteve os parâmetros da moda e refez o filtro de Kalman até cada data. A contaminação dos parâmetros pela amostra inteira está declarada.
+
+# Implementação
+
+Os LLMs respondem em esquema fixo (Pydantic), com versões congeladas: Claude Haiku 4.5 (`claude-haiku-4-5-20251001`), GPT-4.1-mini (`gpt-4.1-mini-2025-04-14`) e Gemini 3.5 Flash Lite (`gemini-3.5-flash-lite`). A leitura dos comunicados separa **postura** de **direção sinalizada**, a correção do ponto cego da v1.1:
+
+```{python}
+#| echo: true
+#| output: false
+from v2.f5_comunicados import LeituraComunicado   # schema da leitura dos comunicados (F5)
+from v2.f7_condicoes import Condicao, SINAL        # schema e sinal teórico das condições (F7)
+```
+
+```{python}
+import inspect
+print(inspect.getsource(LeituraComunicado))
+```
+
+Na F7, o LLM só identifica as condições e a ênfase. O sinal de cada variável é teórico e fixo, porque nos testes o modelo inverteu o sinal de atividade ao ler riscos de baixa:
+
+```{python}
+print(inspect.getsource(Condicao))
+print("SINAL =", SINAL)
+```
+
+# Resultados
+
+## A régua: o mercado acerta quase tudo na véspera
+
+```{python}
+#| output: asis
+t = pd.DataFrame({
+    "Previsor": ["Repetir a última decisão", "Focus (mediana)", "DI implícito"],
+    f"{a_ini}–{a_fim}": [pct(in_v_tot, 1, True), pct(fo_v_tot, 1, True), pct(di_v_tot, 1, True)],
+    "2019–2026": [pct(f2v(REC_B3, b_), 1, True) for b_ in ("inércia", "Focus (mediana)", "DI implícito")],
+    "Viradas de ciclo": [pct(f2v(REC_V, b_), 1, True) for b_ in ("inércia", "Focus (mediana)", "DI implícito")],
+})
+tabela(t, "Acerto do passo exato da Selic, previsão na véspera da reunião", "tab:regua",
+       f"Previsões com informação até a data de corte. Amostra comum de {n_f2} reuniões com Focus. "
+       "Viradas: reuniões em que a direção da decisão muda em relação à anterior.")
+```
+
+O DI erra `{python} erros_b3` das `{python} n_b3` reuniões desde 2019. Nas viradas de ciclo, acerta `{python} pct(di_v_vir)`, contra `{python} pct(fo_v_vir)` do Focus. Prever a véspera com texto não tem espaço para ganho. O espaço está antes: no dia da ata anterior, o acerto do DI cai para `{python} pct(di_a_tot)` na amostra inteira (@fig-horizonte).
+
+```{python}
+#| label: fig-horizonte
+#| fig-cap: "Acerto do passo exato no dia da ata anterior e na véspera da reunião, 2019–2026."
+nomes = ["Repetir a última\ndecisão", "Focus", "DI"]
+h = hor["b3"]
+ata = [h[3], h[2], h[0]]
+ves = [f2v(REC_B3, "inércia"), f2v(REC_B3, "Focus (mediana)"), h[1]]
+y = np.arange(len(nomes))
+fig, ax = plt.subplots(figsize=(7.5, 2.8))
+ax.barh(y + 0.2, ata, 0.36, color=LARANJA, label="Dia da ata anterior")
+ax.barh(y - 0.2, ves, 0.36, color=AZUL, label="Véspera da reunião")
+for yy, v in zip(y + 0.2, ata):
+    ax.text(v + 1, yy, pct(v), va="center", fontsize=8, color=TINTA)
+for yy, v in zip(y - 0.2, ves):
+    ax.text(v + 1, yy, pct(v), va="center", fontsize=8, color=TINTA)
+ax.set_yticks(y, nomes)
+ax.set_xlim(0, 110)
+ax.set_xlabel("acerto do passo exato (%)")
+ax.grid(axis="y", visible=False)
+ax.legend(loc="lower right", frameon=False)
+plt.tight_layout()
+plt.show()
+```
+
+## Onde a informação chega
+
+Se o DI melhora de `{python} pct(di_a_b3)` para `{python} pct(di_v_b3)` entre a ata e a véspera, a informação chega nesse intervalo. A @fig-evento compara o movimento da taxa da próxima reunião em dias de cada tipo de evento com o movimento em dias comuns.
+
+```{python}
+#| label: fig-evento
+#| fig-cap: "Movimento da taxa da próxima reunião em dias de evento, relativo a dias sem evento (1 = igual). Barras escuras: p < 0,05 (permutação)."
+linhas = [("Comunicado (2006–2019)", f3s.loc["comunicado"]),
+          ("Ata (2006–2019)", f3s.loc["ata"]), ("Ata (2019–2026)", f3b.loc["ata"]),
+          ("Discurso da diretoria (2006–2019)", f3s.loc["relevante"]),
+          ("Discurso da diretoria (2019–2026)", f3b.loc["relevante"])]
+linhas += [(f"{g} (2017–2026)", f4.loc[g]) for g in ["IPCA", "IPCA-15", "PIM", "PMS", "PIB", "PNAD", "PMC"]]
+fig, ax = plt.subplots(figsize=(7.5, 4))
+yy = np.arange(len(linhas))[::-1]
+for y_, (nome, r) in zip(yy, linhas):
+    sig = r["p_valor_perm"] < 0.05
+    ax.barh(y_, r["razao_vs_sem_evento"], 0.6, color=AZUL if sig else "#9ec5f4")
+    ax.text(r["razao_vs_sem_evento"] + 0.03, y_, br(r["razao_vs_sem_evento"], 2) + "×", va="center",
+            fontsize=8, color=TINTA)
+ax.axvline(1, color=TINTA, lw=1)
+ax.set_yticks(yy, [n for n, _ in linhas])
+ax.set_xlabel("movimento médio relativo a um dia sem evento")
+ax.grid(axis="y", visible=False)
+plt.tight_layout()
+plt.show()
+```
+
+Só o comunicado move a curva: `{python} br(f3s.loc['comunicado','razao_vs_sem_evento'], 2)` vezes um dia comum. Os `{python} n_rel` textos e apresentações relevantes da diretoria não movem (`{python} br(f3s.loc['relevante','razao_vs_sem_evento'],2)`× até 2019 e `{python} br(f3b.loc['relevante','razao_vs_sem_evento'],2)`× depois). A ata move menos que um dia comum na primeira metade da amostra. Entre os dados do IBGE, só o IPCA tem efeito (`{python} br(f4.loc['IPCA','razao_vs_sem_evento'],2)`×, p `{python} pv(f4.loc['IPCA','p_valor_perm'])`): cada 1 p.p. de surpresa contra o Focus desloca `{python} br(m_sp.params.iloc[1],1)` pb na Selic precificada (p `{python} pv(m_sp.pvalues.iloc[1])`, R² `{python} br(m_sp.rsquared,2)`). A soma dos dias de divulgação não explica o caminho do DI entre a ata e a véspera (R² `{python} br(m_dr4.rsquared,2)`). A informação chega espalhada pelos dias comuns.
+
+## Os comunicados lidos por LLMs
+
+```{python}
+#| output: asis
+t = pd.DataFrame({
+    "Previsor (dia da ata)": ["DI", "Focus", "Repetir a última decisão",
+                              "Comunicado: Claude", "Comunicado: GPT", "Comunicado: Gemini"],
+    "Acerto": [pct(acerto(com["di_ata"], com["delta_t1"]), 1, True), pct(acerto(com["focus_ata"], com["delta_t1"]), 1, True),
+               pct(acerto(com["inercia"], com["delta_t1"]), 1, True)]
+              + [pct(ac_com[p], 1, True) for p in ("claude", "openai", "gemini")],
+})
+tabela(t, "Acerto do passo exato na reunião seguinte, com a informação do dia da ata", "tab:comunicado",
+       f"{len(com)} reuniões-alvo. Sinal do comunicado: direção sinalizada × magnitude (25 pb se omitida).")
+```
+
+O comunicado lido isoladamente acerta menos que o mercado e menos que repetir a última decisão. Somado ao DI numa previsão *walk-forward*, piora o acerto: `{python} pct(wf5.loc['M1 DI + comunicado','acerto_exato_%'],1)` contra `{python} pct(wf5.loc['B0 DI no dia da ata','acerto_exato_%'],1)` do DI sozinho. A distância entre o que o comunicado sinaliza e o que o DI precifica também não antecipa o ajuste do mercado até a véspera (p `{python} pv(dr5['p'].iloc[0])`). O ganho qualitativo da separação entre postura e direção aparece no caso que motivou o trabalho: no comunicado de janeiro de 2026, os três modelos leram política restritiva e corte na reunião seguinte, que veio.
+
+## Os fundamentos: MPP e DSGE
+
+```{python}
+#| output: asis
+lin = []
+for nome, col in [("Regra de Taylor suavizada (MPP)", "gap_taylor_pb"), ("Alvo da regra, neutro HP (MPP)", "gap_alvo_pb"),
+                  ("Alvo da regra, neutro DSGE (MPP+DSGE)", "gap_alvo_dsge_pb"), ("Aperto vs neutro (DSGE)", "aperto_pp"),
+                  ("DI no dia da ata", "di_ata")]:
+    lin.append({"Medida": nome, "Corr. ΔSelic seguinte": br(fa[col].corr(fa["delta_t1"]), 2),
+                "Corr. ΔSelic corrente": br(fa[col].corr(fa["inercia"]), 2)})
+tabela(pd.DataFrame(lin), "Fundamentos dos modelos estruturais e a decisão do Copom", "tab:fundamentos",
+       f"{len(fa)} reuniões-alvo. Gaps em pontos-base (alvo da regra − Selic vigente); aperto em p.p. (juro real ex-ante − neutro).")
+```
+
+A regra suavizada anda atrás da Selic e mede inércia. O alvo da regra com o neutro por filtro HP herda o mesmo atraso. Com o neutro filtrado do DSGE, o gap passa a apontar a direção certa e deixa de acompanhar o ciclo corrente. Nenhuma das versões acrescenta acerto ao DI no *walk-forward*: o melhor modelo com fundamentos acerta `{python} pct(wf6.drop(index=['B0 DI no dia da ata','B1 OLS(DI)'])['acerto_exato_%'].max(),1)`, contra `{python} pct(wf6.loc['B0 DI no dia da ata','acerto_exato_%'],1)` do DI. Nenhuma antecipa o caminho do DI até a véspera (menor p entre as especificações: `{python} br(dr6['p'].min(),2)`).
+
+## O Índice de Condicionalidade
+
+A ata não promete um passo. Ela descreve uma função de reação: "em um ambiente de expectativas desancoradas, como é o caso do atual, exige-se uma restrição monetária maior". O índice extrai, de cada ata, as condições numa lista fixa de `{python} n_var` variáveis com ênfase de 1 a 3 (GPT-4.1-mini em `{python} n_atas_llm.get('gpt', 0)` atas e Claude Haiku 4.5 em `{python} n_atas_llm.get('claude', 0)`), mede a variação de cada variável entre a ata e a véspera da reunião seguinte, padroniza pelas janelas anteriores e pondera pelo sinal teórico e pela ênfase. O controle é um índice genérico com as mesmas variáveis e peso igual.
+
+```{python}
+#| output: asis
+t = pd.DataFrame({
+    "Teste": ["Corr. com a ΔSelic seguinte", "Deriva do DI ata → véspera: coef.", "Deriva: p-valor", "Deriva: R²",
+              "Os dois juntos: coef.", "Corr. com o erro do DI da véspera", "Walk-forward na véspera"],
+    "Índice da ata": [br(ok7["indice_ata"].corr(ok7["delta_t1"]), 2), br(d7("índice da ata", "indice_ata", "coef"), 1),
+                      pv(d7("índice da ata", "indice_ata", "p")).replace("<", "$<$"), br(d7("índice da ata", "indice_ata", "r2"), 3),
+                      br(d7("ata + genérico", "indice_ata", "coef"), 1), br(v7["indice_ata"].corr(v7["erro_vespera"]), 2),
+                      pct(ac_v7["ata"], 1, True)],
+    "Índice genérico": [br(ok7["indice_generico"].corr(ok7["delta_t1"]), 2), br(d7("índice genérico", "indice_generico", "coef"), 1),
+                        pv(d7("índice genérico", "indice_generico", "p")).replace("<", "$<$"), br(d7("índice genérico", "indice_generico", "r2"), 3),
+                        br(d7("ata + genérico", "indice_generico", "coef"), 1), br(v7["indice_generico"].corr(v7["erro_vespera"]), 2),
+                        pct(ac_v7["gen"], 1, True)],
+})
+tabela(t, "Índice de Condicionalidade: explica o caminho do DI, não o antecipa", "tab:indice",
+       f"{len(ok7)} reuniões-alvo. Regressões com erros HAC. Walk-forward na véspera: o DI sozinho acerta {pct(ac_v7['DI'], 1, True)}.", fmt="lrr")
+```
+
+O índice tem o primeiro sinal significativo da versão 2.0: os dados que o Banco Central diz monitorar explicam parte do caminho do DI entre a ata e a véspera. Mas a ênfase do Banco Central não acrescenta a pesos iguais (com os dois juntos, só o genérico permanece), e na véspera o índice não acrescenta nada ao DI: o mercado incorpora os dados à medida que saem.
+
+```{python}
+#| label: fig-indice
+#| fig-cap: "Índice de Condicionalidade da ata e caminho do DI entre a ata e a véspera. Destaque: reunião 282 (nov/2026)."
+fig, ax = plt.subplots(figsize=(7.5, 3.6))
+ax.scatter(ok7["indice_ata"], ok7["deriva"], s=18, color=AZUL, alpha=0.6, edgecolor="white", linewidth=0.5)
+m = sm.OLS(ok7["deriva"], sm.add_constant(ok7["indice_ata"])).fit()
+xs = np.linspace(ok7["indice_ata"].min(), ok7["indice_ata"].max(), 50)
+ax.plot(xs, m.params.iloc[0] + m.params.iloc[1] * xs, color=TINTA, lw=1.2)
+ax.scatter([c282["indice_ata"]], [c282["deriva"]], s=60, color=LARANJA, edgecolor="white", linewidth=1.5, zorder=3)
+ax.annotate("282ª (nov/2026)", (c282["indice_ata"], c282["deriva"]), xytext=(8, 8), textcoords="offset points",
+            fontsize=8, color=TINTA)
+ax.axhline(0, color=CINZA, lw=0.8)
+ax.axvline(0, color=CINZA, lw=0.8)
+ax.set_xlabel("Índice de Condicionalidade da ata (desvios-padrão)")
+ax.set_ylabel("deriva do DI até a véspera (pb)")
+plt.tight_layout()
+plt.show()
+```
+
+**O caso da 282ª reunião.** Entre a ata de setembro e a véspera de novembro de 2026, o índice ficou em `{python} br(c282['indice_ata'],2)`, no percentil `{python} br(pct282,0)` da história. A maior contribuição veio das expectativas de longo prazo: o Focus para os anos de `{python} c282['data_ata'].year+2` a `{python} c282['data_ata'].year+4` subiu `{python} br(c282['d_expectativas_longo'],2)` p.p. O DI saiu de `{python} br(c282['di_ata'],0)` pb para `{python} br(c282['di_vespera'],0)` pb, o Focus ficou em `{python} br(c282['focus_ata'],0)` pb e o Copom manteve a Selic. O índice apontou na direção do mercado, e não na do Focus, e mostrou por quê.
+
+```{python}
+#| output: asis
+cs = c282.filter(like="contrib_").astype(float).sort_values(ascending=False)
+cs = cs[cs.abs() >= 0.005]
+NOMES = {"expectativas_curto": "Expectativas (ano corrente e seguinte)", "expectativas_longo": "Expectativas (2 a 4 anos)",
+         "inflacao_corrente": "IPCA 12 meses", "inflacao_servicos": "Inflação de serviços", "nucleos": "Núcleos",
+         "atividade": "Atividade (IBC-Br)", "mercado_trabalho": "Desemprego", "cambio": "Câmbio",
+         "petroleo": "Petróleo", "fiscal": "Resultado primário esperado", "juros_externos": "Juros dos EUA"}
+t = pd.DataFrame({"Variável": [NOMES[c.replace("contrib_", "")] for c in cs.index],
+                  "Variação na janela": [br(c282["d_" + c.replace("contrib_", "")], 2) for c in cs.index],
+                  "Contribuição": [br(v, 2) for v in cs.values]})
+tabela(t, "Reunião 282: contribuições ao Índice de Condicionalidade", "tab:282",
+       "Variações entre a ata de setembro e a véspera de novembro de 2026: expectativas e inflação em p.p.; câmbio e petróleo em log × 100.")
+```
+
+# Discussão e limitações
+
+O resultado central é negativo e robusto a cinco famílias de testes: o texto do Copom, lido por LLMs, não prevê a próxima decisão além do que a curva de juros já precifica. Isso não diminui o valor da comunicação. Mostra que ela funciona: o mercado a incorpora tão rápido que não sobra informação para um leitor externo explorar.
+
+Limitações:
+
+- **Memória dos LLMs.** Os modelos podem lembrar decisões posteriores. O prompt manda ler só o texto, mas não há garantia. A direção do viés favoreceria o texto, o que reforça o resultado negativo.
+- **Prêmio de risco.** A taxa do DI foi tratada como expectativa pura. No prazo de um mês, o viés é pequeno.
+- **Dados revisados.** Os modelos estruturais usam as séries atuais cortadas em cada data, sem as safras originais.
+- **Falas sem registro.** Entrevistas e eventos sem PDF, onde a diretoria hoje também sinaliza, ficam de fora.
+
+# Próximos passos
+
+- Um painel diário com a distribuição de probabilidade da próxima decisão extraída do DI e o Índice de Condicionalidade explicando o que mudou.
+- Testar os fundamentos em horizontes de três a quatro reuniões, onde o DI do dia da ata é menos informativo.
+- Transcrever entrevistas e eventos da diretoria, o canal de comunicação não coberto.
+
+# Conclusão
+
+Para a reunião de dezembro de 2026, com os dados de `{python} viva['data_ata'].strftime('%d/%m')` a `{python} viva['data_corte'].strftime('%d/%m')`, o Índice de Condicionalidade está em `{python} br(viva['indice_ata'],2)`: o câmbio pressiona, a inflação de serviços alivia e as expectativas de longo prazo estão estáveis. É o tipo de leitura que o trabalho sustenta: interpretar o que o mercado está fazendo com as palavras do próprio Banco Central. Prever o Copom melhor que o mercado não foi possível com nenhum dos textos e modelos testados.
+
+# Referências {.unnumbered}
+
+::: {#refs}
+:::
