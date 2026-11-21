@@ -178,6 +178,24 @@ Leitura:
 
 **Consequência para o desenho.** O alvo principal passa a ser a previsão **no dia da ata** (horizonte de ~6 semanas) e sua atualização a cada documento novo do BCB. A pergunta vira: *o texto antecipa para onde o DI vai convergir?* A régua é o DI na mesma data. O DI da véspera fica como teto e como verificação.
 
+### 8.1 Resultado da F3a/F3b (21/11/2026): os discursos publicados não movem a curva
+
+Catálogo: 1.556 textos e apresentações da diretoria desde 2002 (`sitebcb/discursos?ano=`), todos em PDF, sem entrevistas. Pela regra de título, ~290 são do presidente ou do diretor de Política Econômica sobre política monetária. Fonte: `v2/dados/discursos.csv`.
+
+Estudo de evento: |variação em 2 dias| da taxa que cobre a próxima reunião, comparada a dias sem evento, com p-valor por permutação.
+
+| Dia | 2006–2019 (swap 60d, SGS) | 2019–2026 (DI1, B3) |
+|---|---:|---:|
+| Dia seguinte ao comunicado | **2,19×** (p = 0,000) | — |
+| Discurso/apresentação relevante | 0,96× (p = 0,66; 144 dias) | 0,91× (p = 0,72; 81 dias) |
+| Ata | 0,58× (p = 1,00) | 1,03× (p = 0,43; 61 dias) |
+
+Fonte: `v2/resultados/f3_evento.csv` e `f3_evento_b3.csv`.
+
+**Decisão proposta:** não extrair nem escorar os PDFs dos discursos. O único texto do BCB que traz informação nova ao mercado é o **comunicado**. O que leva o acerto do DI de 72% (dia da ata) a 97% (véspera) está em outro lugar. Próxima frente: decompor a deriva do DI entre a ata e a véspera por dia e testar os dados divulgados (IPCA, IPCA-15, atividade, câmbio) e sua tradução pelo MPP.
+
+Ressalvas: a data do catálogo é a de publicação no site; o tema vem de regra de título; o horário do evento é desconhecido (por isso a janela de 2 dias).
+
 ## 9. Decisões para o Vitor
 
 1. **Versão.** ✅ Decidido em 21/11/2026: v2.0 **neste repositório**, com a v1.1 congelada numa tag.

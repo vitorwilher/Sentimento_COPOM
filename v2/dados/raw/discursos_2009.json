@@ -1,0 +1,978 @@
+[
+ {
+  "titulo": "Apresentação do diretor de Política Econômica, Mário Mesquita, na divulgação do Relatório Trimestral de Inflação do quarto trimestre de 2009",
+  "DataModificacao": "2025-05-28T17:58:03Z",
+  "dataCriacao": "2009-12-22T17:25:40Z",
+  "Id": 487,
+  "dataReferencia": "2009-12-22T17:25:41Z",
+  "descricao": "Mário Mesquita<br>",
+  "arquivo": {
+   "Length": "2012110",
+   "Name": "RI_4T09_final_22-12-2009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/RI_4T09_final_22-12-2009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/RI_4T09_final_22-12-2009.pdf",
+  "DataPublicacao": "2009-12-22T17:25:41Z",
+  "Tamanho": "2012110"
+ },
+ {
+  "titulo": "Boletim Regional",
+  "DataModificacao": "2009-12-18T02:00:00Z",
+  "dataCriacao": "2009-12-18T02:00:00Z",
+  "Id": 488,
+  "dataReferencia": "2009-12-18T02:00:00Z",
+  "descricao": "Mario MesquitaBR/Porto Alegre<br>",
+  "arquivo": {
+   "Length": "1401518",
+   "Name": "BR POA III Mario Mesquita-17122009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/BR POA III Mario Mesquita-17122009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/BR POA III Mario Mesquita-17122009.pdf",
+  "DataPublicacao": "2009-12-18T02:00:00Z",
+  "Tamanho": "1401518"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC no Congresso Brasileiro da Construção",
+  "DataModificacao": "2009-11-30T14:13:30Z",
+  "dataCriacao": "2009-11-30T14:13:30Z",
+  "Id": 489,
+  "dataReferencia": "2009-11-30T14:13:31Z",
+  "descricao": "Henrique MeirellesBR/São Paulo<br>",
+  "arquivo": {
+   "Length": "885750",
+   "Name": "Construbusiness_30-11-2009_v07.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Construbusiness_30-11-2009_v07.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Construbusiness_30-11-2009_v07.pdf",
+  "DataPublicacao": "2009-11-30T14:13:31Z",
+  "Tamanho": "885750"
+ },
+ {
+  "titulo": "Apresentação do Diretor de Política Monetária do BC no Seminário Comemorativo dos 30 anos do Selic",
+  "DataModificacao": "2009-11-25T18:19:45Z",
+  "dataCriacao": "2009-11-16T18:19:45Z",
+  "Id": 490,
+  "dataReferencia": "2009-11-25T18:19:46Z",
+  "descricao": "Mario TorósBR/São Paulo<br>",
+  "arquivo": {
+   "Length": "1397012",
+   "Name": "Toros_Selic_30anos_FINAL.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Toros_Selic_30anos_FINAL.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Toros_Selic_30anos_FINAL.pdf",
+  "DataPublicacao": "2009-11-25T18:19:46Z",
+  "Tamanho": "1397012"
+ },
+ {
+  "titulo": "Discurso de Abertura do 5º Seminário de Mercado de Capitais (Anbima)",
+  "DataModificacao": "2009-11-24T02:00:00Z",
+  "dataCriacao": "2009-11-24T02:00:00Z",
+  "Id": 491,
+  "dataReferencia": "2009-11-24T02:00:00Z",
+  "descricao": "Mário MesquitaBR/São Paulo<br>",
+  "arquivo": {
+   "Length": "107791",
+   "Name": "Anbima 241109.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Anbima 241109.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Anbima 241109.pdf",
+  "DataPublicacao": "2009-11-24T02:00:00Z",
+  "Tamanho": "107791"
+ },
+ {
+  "titulo": "Palestra do presidente do BC no Seminário Internacional sobre Metas de Inflação e Câmbio Flutuante do INSPER ",
+  "DataModificacao": "2009-11-23T15:45:02Z",
+  "dataCriacao": "2009-11-23T15:45:01Z",
+  "Id": 492,
+  "dataReferencia": "2009-11-23T15:45:02Z",
+  "descricao": "Henrique MeirellesBR/São Paulo<br>",
+  "arquivo": {
+   "Length": "1126516",
+   "Name": "Insper_v21_23-11-09.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Insper_v21_23-11-09.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Insper_v21_23-11-09.pdf",
+  "DataPublicacao": "2009-11-23T15:45:02Z",
+  "Tamanho": "1126516"
+ },
+ {
+  "titulo": "Palestra de abertura do Congresso Paulista de Jovens Empreendedores",
+  "DataModificacao": "2009-11-16T12:43:20Z",
+  "dataCriacao": "2009-11-16T12:43:20Z",
+  "Id": 493,
+  "dataReferencia": "2009-11-16T12:43:21Z",
+  "descricao": "Henrique MeirellesBR/São Paulo<br>",
+  "arquivo": {
+   "Length": "798935",
+   "Name": "Jovens_Empreendedores_v08_16-11-09.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Jovens_Empreendedores_v08_16-11-09.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Jovens_Empreendedores_v08_16-11-09.pdf",
+  "DataPublicacao": "2009-11-16T12:43:21Z",
+  "Tamanho": "798935"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC no 8º Seminário da Febraban",
+  "DataModificacao": "2009-11-13T12:39:12Z",
+  "dataCriacao": "2009-11-13T12:39:11Z",
+  "Id": 494,
+  "dataReferencia": "2009-11-13T12:39:12Z",
+  "descricao": "Henrique MeirellesBR/São Paulo<br>",
+  "arquivo": {
+   "Length": "694461",
+   "Name": "8º Seminário Febraban 13-11.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/8º Seminário Febraban 13-11.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/8º Seminário Febraban 13-11.pdf",
+  "DataPublicacao": "2009-11-13T12:39:12Z",
+  "Tamanho": "694461"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC no Bradesco Day",
+  "DataModificacao": "2009-11-12T14:11:48Z",
+  "dataCriacao": "2009-11-12T14:11:47Z",
+  "Id": 495,
+  "dataReferencia": "2009-11-12T14:11:49Z",
+  "descricao": "Henrique MeirellesBR/Londres<br>",
+  "arquivo": {
+   "Length": "697661",
+   "Name": "Bradesco_Day_06_11_09_v04.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Bradesco_Day_06_11_09_v04.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Bradesco_Day_06_11_09_v04.pdf",
+  "DataPublicacao": "2009-11-12T14:11:49Z",
+  "Tamanho": "697661"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC em seminário da União Geral dos Trabalhadores",
+  "DataModificacao": "2009-10-29T02:00:00Z",
+  "dataCriacao": "2009-10-29T02:00:00Z",
+  "Id": 496,
+  "dataReferencia": "2009-10-29T02:00:00Z",
+  "descricao": "Henrique Meirellesbr/São Paulo<br>",
+  "arquivo": {
+   "Length": "880470",
+   "Name": "UGT_ v07_29-10-2009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/UGT_ v07_29-10-2009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/UGT_ v07_29-10-2009.pdf",
+  "DataPublicacao": "2009-10-29T02:00:00Z",
+  "Tamanho": "880470"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC na cerimônia de bancarização das famílias beneficiárias do Bolsa Família ",
+  "DataModificacao": "2009-10-28T13:23:59Z",
+  "dataCriacao": "2009-10-28T13:23:58Z",
+  "Id": 497,
+  "dataReferencia": "2009-10-28T13:23:59Z",
+  "descricao": "Henrique MeirellesBR/Brasília<br>",
+  "arquivo": {
+   "Length": "528643",
+   "Name": "Bancarizacao_v02_28-10-09.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Bancarizacao_v02_28-10-09.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Bancarizacao_v02_28-10-09.pdf",
+  "DataPublicacao": "2009-10-28T13:23:59Z",
+  "Tamanho": "528643"
+ },
+ {
+  "titulo": "Discurso de Encerramento do Seminário de Resolução de Falência de Instituições Financeiras",
+  "DataModificacao": "2009-10-28T02:00:00Z",
+  "dataCriacao": "2009-10-27T02:00:00Z",
+  "Id": 498,
+  "dataReferencia": "2009-10-28T02:00:00Z",
+  "descricao": "Mário MesquitaBR/Rio de Janeiro<br>",
+  "arquivo": {
+   "Length": "80689",
+   "Name": "Seminário de Resolução de Falência de Instituições Financeiras 271009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Seminário de Resolução de Falência de Instituições Financeiras 271009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Seminário de Resolução de Falência de Instituições Financeiras 271009.pdf",
+  "DataPublicacao": "2009-10-28T02:00:00Z",
+  "Tamanho": "80689"
+ },
+ {
+  "titulo": "Fortalecimento da Economia Brasileira e Enfrentamento da Crise Internacional ",
+  "DataModificacao": "2009-10-27T18:27:10Z",
+  "dataCriacao": "2009-10-27T18:27:09Z",
+  "Id": 499,
+  "dataReferencia": "2009-10-27T18:27:10Z",
+  "descricao": "Henrique MeirellesBR/Câmara dos Deputados<br>",
+  "arquivo": {
+   "Length": "503717",
+   "Name": "Apresentação Henrique Meirelles PMDB.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Apresentação Henrique Meirelles PMDB.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Apresentação Henrique Meirelles PMDB.pdf",
+  "DataPublicacao": "2009-10-27T18:27:10Z",
+  "Tamanho": "503717"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC no Congresso Nacional de Crédito e Cobrança",
+  "DataModificacao": "2009-10-27T13:08:13Z",
+  "dataCriacao": "2009-10-27T13:08:12Z",
+  "Id": 500,
+  "dataReferencia": "2009-10-27T13:08:13Z",
+  "descricao": "Henrique MeirellesBR/São Paulo<br>",
+  "arquivo": {
+   "Length": "625643",
+   "Name": "Congresso_Credito_ e_Cobrança_v06_27-10-09.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Congresso_Credito_ e_Cobrança_v06_27-10-09.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Congresso_Credito_ e_Cobrança_v06_27-10-09.pdf",
+  "DataPublicacao": "2009-10-27T13:08:13Z",
+  "Tamanho": "625643"
+ },
+ {
+  "titulo": "Apresentação do Diretor de Política Monetária do BC na Coppead – “O Brasil na Saída da Crise”",
+  "DataModificacao": "2009-10-27T02:00:00Z",
+  "dataCriacao": "2009-10-27T02:00:00Z",
+  "Id": 501,
+  "dataReferencia": "2009-10-27T02:00:00Z",
+  "descricao": "Mario Torós<br>",
+  "arquivo": {
+   "Length": "1238249",
+   "Name": "apresentacao_mario_toros_out_2009_MT_Coppead_FINAL.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/apresentacao_mario_toros_out_2009_MT_Coppead_FINAL.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/apresentacao_mario_toros_out_2009_MT_Coppead_FINAL.pdf",
+  "DataPublicacao": "2009-10-27T02:00:00Z",
+  "Tamanho": "1238249"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC no Seminário Lide \"O Brasil Pós-Crise\" ",
+  "DataModificacao": "2009-09-29T03:00:00Z",
+  "dataCriacao": "2009-09-01T03:00:00Z",
+  "Id": 502,
+  "dataReferencia": "2009-09-29T03:00:00Z",
+  "descricao": "Henrique Meirelles<br>",
+  "arquivo": {
+   "Length": "534295",
+   "Name": "LIDE_29_09_2009_v10.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/LIDE_29_09_2009_v10.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/LIDE_29_09_2009_v10.pdf",
+  "DataPublicacao": "2009-09-29T03:00:00Z",
+  "Tamanho": "534295"
+ },
+ {
+  "titulo": "Apresentação do diretor de Política Econômica, Mário Mesquita, na divulgação do Relatório Trimestral de Inflação do terceiro trimestre de 2009",
+  "DataModificacao": "2025-05-28T17:58:03Z",
+  "dataCriacao": "2009-09-25T03:00:00Z",
+  "Id": 503,
+  "dataReferencia": "2009-09-25T03:00:00Z",
+  "descricao": "Mário Mesquita<br>",
+  "arquivo": {
+   "Length": "1875305",
+   "Name": "MM - RI 3T09 240909- sem anotacoes.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/MM - RI 3T09 240909- sem anotacoes.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/MM - RI 3T09 240909- sem anotacoes.pdf",
+  "DataPublicacao": "2009-09-25T03:00:00Z",
+  "Tamanho": "1875305"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC no evento \"Copa 2014 - Rodada de Negócios\"                                                                 ",
+  "DataModificacao": "2017-04-07T15:07:40Z",
+  "dataCriacao": "2009-09-22T03:00:00Z",
+  "Id": 504,
+  "dataReferencia": "2009-09-22T16:07:14Z",
+  "descricao": "Henrique Meirelles                                                           <br>",
+  "arquivo": {
+   "Length": "807288",
+   "Name": "Negocios_Copa_22_09_2009_v22.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Negocios_Copa_22_09_2009_v22.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Negocios_Copa_22_09_2009_v22.pdf",
+  "DataPublicacao": "2009-09-22T16:07:14Z",
+  "Tamanho": "807288"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC no evento da Revista Banco Hoje                                                                           ",
+  "DataModificacao": "2017-04-07T15:07:41Z",
+  "dataCriacao": "2009-09-21T03:00:00Z",
+  "Id": 505,
+  "dataReferencia": "2009-09-21T03:00:00Z",
+  "descricao": "Henrique Meirelles                                                           <br>",
+  "arquivo": {
+   "Length": "509445",
+   "Name": "ApresMeirellesBanco Hoje 21 09 2009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/ApresMeirellesBanco Hoje 21 09 2009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/ApresMeirellesBanco Hoje 21 09 2009.pdf",
+  "DataPublicacao": "2009-09-21T03:00:00Z",
+  "Tamanho": "509445"
+ },
+ {
+  "titulo": "Audiência pública com o presidente do BC, Henrique Meirelles, na Comissão Mista de Orçamento na Câmara dos Deputados                                                                      ",
+  "DataModificacao": "2017-04-07T15:07:42Z",
+  "dataCriacao": "2009-09-17T03:00:00Z",
+  "Id": 506,
+  "dataReferencia": "2009-09-17T14:00:04Z",
+  "descricao": "Henrique Meirelles                                                          <br>",
+  "arquivo": {
+   "Length": "936394",
+   "Name": "LRF_17_09_2009_final.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/LRF_17_09_2009_final.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/LRF_17_09_2009_final.pdf",
+  "DataPublicacao": "2009-09-17T14:00:04Z",
+  "Tamanho": "936394"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC no Conselho de Desenvolvimento Econômico e Social                                                                    ",
+  "DataModificacao": "2017-04-07T15:07:42Z",
+  "dataCriacao": "2009-09-15T03:00:00Z",
+  "Id": 507,
+  "dataReferencia": "2009-09-15T15:14:02Z",
+  "descricao": "Henrique Meirelles                                                           <br>",
+  "arquivo": {
+   "Length": "785727",
+   "Name": "CDES_15_09_2009_v06.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/CDES_15_09_2009_v06.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/CDES_15_09_2009_v06.pdf",
+  "DataPublicacao": "2009-09-15T15:14:02Z",
+  "Tamanho": "785727"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC na abertura do XIX Congresso Fenabrave em Brasília",
+  "DataModificacao": "2017-04-07T15:07:43Z",
+  "dataCriacao": "2009-09-13T03:00:00Z",
+  "Id": 508,
+  "dataReferencia": "2009-09-13T21:27:01Z",
+  "descricao": "Henrique Meirelles                                                          <br>",
+  "arquivo": {
+   "Length": "994339",
+   "Name": "Fenabrave_13092009_v21.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Fenabrave_13092009_v21.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Fenabrave_13092009_v21.pdf",
+  "DataPublicacao": "2009-09-13T21:27:01Z",
+  "Tamanho": "994339"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC na Brazilian-American Chamber of Commerce                                                              ",
+  "DataModificacao": "2017-04-07T15:07:44Z",
+  "dataCriacao": "2009-08-25T03:00:00Z",
+  "Id": 509,
+  "dataReferencia": "2009-08-25T14:32:34Z",
+  "descricao": "Henrique Meirelles                                                          <br>",
+  "arquivo": {
+   "Length": "1030261",
+   "Name": "HM_NY_agosto2009_v11.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/HM_NY_agosto2009_v11.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/HM_NY_agosto2009_v11.pdf",
+  "DataPublicacao": "2009-08-25T14:32:34Z",
+  "Tamanho": "1030261"
+ },
+ {
+  "titulo": "Relatório de Gestão das Reservas Internacionais                                                                    ",
+  "DataModificacao": "2017-04-07T15:07:45Z",
+  "dataCriacao": "2009-08-12T03:00:00Z",
+  "Id": 510,
+  "dataReferencia": "2009-08-12T03:00:00Z",
+  "descricao": "Mário Torós                                                          <br>",
+  "arquivo": {
+   "Length": "1158342",
+   "Name": "Apresentação_RelGestãodasRI_FINAL.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Apresentação_RelGestãodasRI_FINAL.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Apresentação_RelGestãodasRI_FINAL.pdf",
+  "DataPublicacao": "2009-08-12T03:00:00Z",
+  "Tamanho": "1158342"
+ },
+ {
+  "titulo": "Apresentação do presidente Meirelles na Firjan                                                                       ",
+  "DataModificacao": "2017-04-07T15:07:46Z",
+  "dataCriacao": "2009-08-10T03:00:00Z",
+  "Id": 511,
+  "dataReferencia": "2009-08-10T20:27:20Z",
+  "descricao": "Henrique Meirelles                                                           <br>",
+  "arquivo": {
+   "Length": "597653",
+   "Name": "ApresentacaoMeirellesFirjan_10_08_2009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/ApresentacaoMeirellesFirjan_10_08_2009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/ApresentacaoMeirellesFirjan_10_08_2009.pdf",
+  "DataPublicacao": "2009-08-10T20:27:20Z",
+  "Tamanho": "597653"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC na Comissão de Assuntos Econômicos do Senado Federal                                                                       ",
+  "DataModificacao": "2017-04-07T15:07:47Z",
+  "dataCriacao": "2009-08-05T03:00:00Z",
+  "Id": 512,
+  "dataReferencia": "2009-08-05T13:54:14Z",
+  "descricao": "Henrique Meirelles                                                          <br>",
+  "arquivo": {
+   "Length": "937887",
+   "Name": "CAE_05_08_2009_versao10.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/CAE_05_08_2009_versao10.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/CAE_05_08_2009_versao10.pdf",
+  "DataPublicacao": "2009-08-05T13:54:14Z",
+  "Tamanho": "937887"
+ },
+ {
+  "titulo": "Boletim Regional Fortaleza",
+  "DataModificacao": "2017-04-07T15:07:48Z",
+  "dataCriacao": "2009-08-04T03:00:00Z",
+  "Id": 513,
+  "dataReferencia": "2009-08-04T14:40:12Z",
+  "descricao": "Mário Mesquita<br>",
+  "arquivo": {
+   "Length": "2460470",
+   "Name": "BR_Fortaleza_ago09.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/BR_Fortaleza_ago09.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/BR_Fortaleza_ago09.pdf",
+  "DataPublicacao": "2009-08-04T14:40:12Z",
+  "Tamanho": "2460470"
+ },
+ {
+  "titulo": "Áudio da apresentação do Boletim Regional em Fortaleza",
+  "DataModificacao": "2009-08-04T03:00:00Z",
+  "dataCriacao": "2009-08-04T03:00:00Z",
+  "Id": 664,
+  "dataReferencia": "2009-08-04T03:00:00Z",
+  "descricao": "Mário Mesquita<br>",
+  "arquivo": {
+   "Length": "67785",
+   "Name": "Pronunciamento HM Posse Anbid 20102008.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Pronunciamento HM Posse Anbid 20102008.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Pronunciamento HM Posse Anbid 20102008.pdf",
+  "DataPublicacao": "2009-08-04T03:00:00Z",
+  "Tamanho": "67785"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC na Câmara Brasil Alemanha                                                               ",
+  "DataModificacao": "2017-04-07T15:07:49Z",
+  "dataCriacao": "2009-07-14T03:00:00Z",
+  "Id": 514,
+  "dataReferencia": "2009-07-14T16:27:33Z",
+  "descricao": "Henrique Meirelles                                                          <br>",
+  "arquivo": {
+   "Length": "1074680",
+   "Name": "Camara_Brasil-Alemanha.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Camara_Brasil-Alemanha.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Camara_Brasil-Alemanha.pdf",
+  "DataPublicacao": "2009-07-14T16:27:33Z",
+  "Tamanho": "1074680"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC durante reunião ministerial                                                                       ",
+  "DataModificacao": "2017-04-07T15:07:50Z",
+  "dataCriacao": "2009-07-13T03:00:00Z",
+  "Id": 515,
+  "dataReferencia": "2009-07-13T03:00:00Z",
+  "descricao": "Henrique MeirellesBRBrasília - DF<br>",
+  "arquivo": {
+   "Length": "980717",
+   "Name": "ApresReuniaoMinisterial13072009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/ApresReuniaoMinisterial13072009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/ApresReuniaoMinisterial13072009.pdf",
+  "DataPublicacao": "2009-07-13T03:00:00Z",
+  "Tamanho": "980717"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC na Federação da Agricultura e Pecuária do Estado de Goiás                                                                      ",
+  "DataModificacao": "2017-04-07T15:07:53Z",
+  "dataCriacao": "2009-07-06T03:00:00Z",
+  "Id": 516,
+  "dataReferencia": "2009-07-06T14:23:13Z",
+  "descricao": "Henrique Meirelles                                                          <br>",
+  "arquivo": {
+   "Length": "3910049",
+   "Name": "HM_FAEG_06072009_fim.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/HM_FAEG_06072009_fim.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/HM_FAEG_06072009_fim.pdf",
+  "DataPublicacao": "2009-07-06T14:23:13Z",
+  "Tamanho": "3910049"
+ },
+ {
+  "titulo": "Perspectivas para a Inflação - Dados Regionais",
+  "DataModificacao": "2017-04-07T15:07:53Z",
+  "dataCriacao": "2009-07-01T03:00:00Z",
+  "Id": 517,
+  "dataReferencia": "2009-07-01T16:25:00Z",
+  "descricao": "Mário Mesquita                                                        <br>",
+  "arquivo": {
+   "Length": "1165662",
+   "Name": "RI_Regional_BH_1-7-2009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/RI_Regional_BH_1-7-2009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/RI_Regional_BH_1-7-2009.pdf",
+  "DataPublicacao": "2009-07-01T16:25:00Z",
+  "Tamanho": "1165662"
+ },
+ {
+  "titulo": "Apresentação do diretor de Política Econômica, Mário Mesquita, na divulgação do Relatório Trimestral de Inflação do segundo trimestre de 2009",
+  "DataModificacao": "2025-05-28T17:58:03Z",
+  "dataCriacao": "2009-06-26T03:00:00Z",
+  "Id": 518,
+  "dataReferencia": "2009-06-26T14:18:52Z",
+  "descricao": "Mário Mesquita<br>",
+  "arquivo": {
+   "Length": "1756859",
+   "Name": "RI 2T09-final.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/RI 2T09-final.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/RI 2T09-final.pdf",
+  "DataPublicacao": "2009-06-26T14:18:52Z",
+  "Tamanho": "1756859"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC na Câmara de Comércio do Brasil em Paris (em Inglês)",
+  "DataModificacao": "2009-06-23T03:00:00Z",
+  "dataCriacao": "2009-06-23T03:00:00Z",
+  "Id": 519,
+  "dataReferencia": "2009-06-23T03:00:00Z",
+  "descricao": "Henrique Meirelles<br>",
+  "arquivo": {
+   "Length": "868414",
+   "Name": "HM_Camara_Comercio_Franca_23062009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/HM_Camara_Comercio_Franca_23062009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/HM_Camara_Comercio_Franca_23062009.pdf",
+  "DataPublicacao": "2009-06-23T03:00:00Z",
+  "Tamanho": "868414"
+ },
+ {
+  "titulo": "Perspectivas para a Economia Brasileira",
+  "DataModificacao": "2009-06-19T03:00:00Z",
+  "dataCriacao": "2009-06-18T03:00:00Z",
+  "Id": 520,
+  "dataReferencia": "2009-06-19T03:00:00Z",
+  "descricao": "Mário MesquitaBRCâmara de Comércio Brasil–EUA - São Paulo<br>",
+  "arquivo": {
+   "Length": "1321905",
+   "Name": "AMCHAM_180609.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/AMCHAM_180609.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/AMCHAM_180609.pdf",
+  "DataPublicacao": "2009-06-19T03:00:00Z",
+  "Tamanho": "1321905"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC em audiência das Comissões Especiais da Crise                                                                          ",
+  "DataModificacao": "2017-04-07T15:07:56Z",
+  "dataCriacao": "2009-06-03T03:00:00Z",
+  "Id": 521,
+  "dataReferencia": "2009-06-03T03:00:00Z",
+  "descricao": "Henrique Meirelles                                                           <br>",
+  "arquivo": {
+   "Length": "757087",
+   "Name": "ApresentacaoMeirellesCamara_03062009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/ApresentacaoMeirellesCamara_03062009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/ApresentacaoMeirellesCamara_03062009.pdf",
+  "DataPublicacao": "2009-06-03T03:00:00Z",
+  "Tamanho": "757087"
+ },
+ {
+  "titulo": "Brazil: Economic Prospects (em inglês)",
+  "DataModificacao": "2009-05-29T03:00:00Z",
+  "dataCriacao": "2009-05-29T03:00:00Z",
+  "Id": 522,
+  "dataReferencia": "2009-05-29T03:00:00Z",
+  "descricao": "Mário Mesquita<br>",
+  "arquivo": {
+   "Length": "910202",
+   "Name": "LondonAsiaMay09 Versão Final.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/LondonAsiaMay09 Versão Final.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/LondonAsiaMay09 Versão Final.pdf",
+  "DataPublicacao": "2009-05-29T03:00:00Z",
+  "Tamanho": "910202"
+ },
+ {
+  "titulo": "Apresentação do presidente do Banco Central, Henrique Meirelles, no IBEF/SP",
+  "DataModificacao": "2009-05-28T03:00:00Z",
+  "dataCriacao": "2009-05-26T03:00:00Z",
+  "Id": 524,
+  "dataReferencia": "2009-05-28T03:00:00Z",
+  "descricao": "Henrique Meirelles<br>",
+  "arquivo": {
+   "Length": "5829231",
+   "Name": "Apresentacao MeirellesIBEF_26052009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Apresentacao MeirellesIBEF_26052009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Apresentacao MeirellesIBEF_26052009.pdf",
+  "DataPublicacao": "2009-05-28T03:00:00Z",
+  "Tamanho": "5829231"
+ },
+ {
+  "titulo": "Apresentação do presidente do Banco Central no IDP",
+  "DataModificacao": "2017-04-07T15:07:58Z",
+  "dataCriacao": "2009-05-27T03:00:00Z",
+  "Id": 523,
+  "dataReferencia": "2009-05-28T03:00:00Z",
+  "descricao": "Henrique Meirelles                                                           <br>",
+  "arquivo": {
+   "Length": "534278",
+   "Name": "ApresentacaoMeirellesIDP_270509.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/ApresentacaoMeirellesIDP_270509.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/ApresentacaoMeirellesIDP_270509.pdf",
+  "DataPublicacao": "2009-05-28T03:00:00Z",
+  "Tamanho": "534278"
+ },
+ {
+  "titulo": "Apresentação do presidente Henrique Meirelles na Comissão Mista de Orçamento",
+  "DataModificacao": "2017-04-10T20:08:31Z",
+  "dataCriacao": "2009-05-27T03:00:00Z",
+  "Id": 525,
+  "dataReferencia": "2009-05-27T03:00:00Z",
+  "descricao": "Henrique Meirelles<br>",
+  "arquivo": {
+   "Length": "1124479",
+   "Name": "ApresentacaoMeirellesCMO2705.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/ApresentacaoMeirellesCMO2705.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/ApresentacaoMeirellesCMO2705.pdf",
+  "DataPublicacao": "2009-05-27T03:00:00Z",
+  "Tamanho": "1124479"
+ },
+ {
+  "titulo": "Texto do pronunciamento do presidente do BC no 5º Congresso ANBID",
+  "DataModificacao": "2009-05-26T03:00:00Z",
+  "dataCriacao": "2009-05-26T03:00:00Z",
+  "Id": 656,
+  "dataReferencia": "2009-05-26T03:00:00Z",
+  "descricao": "Henrique Meirelles<br>",
+  "arquivo": {
+   "Length": "109648",
+   "Name": "Congresso Anbid.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Congresso Anbid.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Congresso Anbid.pdf",
+  "DataPublicacao": "2009-05-26T03:00:00Z",
+  "Tamanho": "109648"
+ },
+ {
+  "titulo": "Texto do discurso do Diretor da Dipec no XI Seminário Anual de Metas para a Inflação                                                                     ",
+  "DataModificacao": "2017-04-07T15:08:02Z",
+  "dataCriacao": "2009-05-14T03:00:00Z",
+  "Id": 526,
+  "dataReferencia": "2009-05-15T20:42:43Z",
+  "descricao": "Mário Mesquita                                                         <br>",
+  "arquivo": {
+   "Length": "227808",
+   "Name": "C20090514-Discurso de Abertura do Diretor Mário Mesquita no XI Seminário de Metas para a Inflação.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/C20090514-Discurso de Abertura do Diretor Mário Mesquita no XI Seminário de Metas para a Inflação.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/C20090514-Discurso de Abertura do Diretor Mário Mesquita no XI Seminário de Metas para a Inflação.pdf",
+  "DataPublicacao": "2009-05-15T20:42:43Z",
+  "Tamanho": "227808"
+ },
+ {
+  "titulo": "Discurso de encerramento do XI Seminário Anual de Metas para a Inflação                                                                      ",
+  "DataModificacao": "2017-04-07T15:08:02Z",
+  "dataCriacao": "2009-05-15T03:00:00Z",
+  "Id": 527,
+  "dataReferencia": "2009-05-15T03:00:00Z",
+  "descricao": "Henrique Meirelles                                                           <br>",
+  "arquivo": {
+   "Length": "152996",
+   "Name": "Pronunciamento_encerramento_Meirelles_15052009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Pronunciamento_encerramento_Meirelles_15052009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Pronunciamento_encerramento_Meirelles_15052009.pdf",
+  "DataPublicacao": "2009-05-15T03:00:00Z",
+  "Tamanho": "152996"
+ },
+ {
+  "titulo": "Boletim Regional Rio de Janeiro",
+  "DataModificacao": "2017-04-07T15:08:03Z",
+  "dataCriacao": "2009-05-08T03:00:00Z",
+  "Id": 528,
+  "dataReferencia": "2009-05-08T14:11:34Z",
+  "descricao": "Mário Mesquita                                                           <br>",
+  "arquivo": {
+   "Length": "1389176",
+   "Name": "Boletim Regional 07-05-09.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Boletim Regional 07-05-09.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Boletim Regional 07-05-09.pdf",
+  "DataPublicacao": "2009-05-08T14:11:34Z",
+  "Tamanho": "1389176"
+ },
+ {
+  "titulo": "Apresentação do presidente Henrique Meirelles na CNI                                                                      ",
+  "DataModificacao": "2017-04-07T15:08:04Z",
+  "dataCriacao": "2009-05-06T03:00:00Z",
+  "Id": 529,
+  "dataReferencia": "2009-05-06T03:00:00Z",
+  "descricao": "Henrique Meirelles                                                           <br>",
+  "arquivo": {
+   "Length": "1209584",
+   "Name": "ApresentacaoMeirellesFIERGS0509.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/ApresentacaoMeirellesFIERGS0509.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/ApresentacaoMeirellesFIERGS0509.pdf",
+  "DataPublicacao": "2009-05-06T03:00:00Z",
+  "Tamanho": "1209584"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC na Câmara Americana de Comércio",
+  "DataModificacao": "2009-04-17T03:00:00Z",
+  "dataCriacao": "2009-04-17T03:00:00Z",
+  "Id": 530,
+  "dataReferencia": "2009-04-17T03:00:00Z",
+  "descricao": "Henrique Meirelles<br>",
+  "arquivo": {
+   "Length": "1080012",
+   "Name": "Apresentacao17042009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Apresentacao17042009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Apresentacao17042009.pdf",
+  "DataPublicacao": "2009-04-17T03:00:00Z",
+  "Tamanho": "1080012"
+ },
+ {
+  "titulo": "Brazil: economic outlook (em inglês)",
+  "DataModificacao": "2017-04-10T20:11:21Z",
+  "dataCriacao": "2009-04-16T03:00:00Z",
+  "Id": 531,
+  "dataReferencia": "2009-04-16T03:00:00Z",
+  "descricao": "Mário MesquitaBRCâmara de comércio Brasil–EUA – Nova York<br>",
+  "arquivo": {
+   "Length": "982454",
+   "Name": "Brazcham NYC apr09 1504.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Brazcham NYC apr09 1504.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Brazcham NYC apr09 1504.pdf",
+  "DataPublicacao": "2009-04-16T03:00:00Z",
+  "Tamanho": "982454"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC no debate \"VEJA nas Universidades\"",
+  "DataModificacao": "2009-04-15T03:00:00Z",
+  "dataCriacao": "2009-04-14T03:00:00Z",
+  "Id": 657,
+  "dataReferencia": "2009-04-15T03:00:00Z",
+  "descricao": "Henrique MeirellesBRRio de Janeiro - RJ<br>",
+  "arquivo": {
+   "Length": "868774",
+   "Name": "Veja e Universidade 14042009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Veja e Universidade 14042009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Veja e Universidade 14042009.pdf",
+  "DataPublicacao": "2009-04-15T03:00:00Z",
+  "Tamanho": "868774"
+ },
+ {
+  "titulo": "Perspectivas para a Inflação - Dados Regionais",
+  "DataModificacao": "2020-11-04T21:41:19Z",
+  "dataCriacao": "2009-04-01T03:00:00Z",
+  "Id": 658,
+  "dataReferencia": "2009-04-01T14:00:00Z",
+  "descricao": "Mário Mesquita<br>",
+  "arquivo": {
+   "Length": "668716",
+   "Name": "RI Regional 1T09.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/RI Regional 1T09.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/RI Regional 1T09.pdf",
+  "DataPublicacao": "2009-04-01T14:00:00Z",
+  "Tamanho": "668716"
+ },
+ {
+  "titulo": "Apresentação do diretor de Política Econômica, Mário Mesquita, na divulgação do Relatório Trimestral de Inflação do primeiro trimestre de 2009",
+  "DataModificacao": "2025-05-28T21:09:00Z",
+  "dataCriacao": "2020-11-04T21:43:09Z",
+  "Id": 1209,
+  "dataReferencia": "2009-03-30T14:00:00Z",
+  "descricao": "Mário Mesquita<br>",
+  "arquivo": {
+   "Length": "1577858",
+   "Name": "APRESRELINF200903-RI_Mar_2009_port_final.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/APRESRELINF200903-RI_Mar_2009_port_final.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/APRESRELINF200903-RI_Mar_2009_port_final.pdf",
+  "DataPublicacao": "2009-03-30T14:00:00Z",
+  "Tamanho": "1577858"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC na Comissão de Assuntos Econômicos do Senado Federal",
+  "DataModificacao": "2009-03-25T03:00:00Z",
+  "dataCriacao": "2009-03-25T03:00:00Z",
+  "Id": 659,
+  "dataReferencia": "2009-03-25T03:00:00Z",
+  "descricao": "Henrique Meirelles<br>",
+  "arquivo": {
+   "Length": "999061",
+   "Name": "CAE 250309.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/CAE 250309.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/CAE 250309.pdf",
+  "DataPublicacao": "2009-03-25T03:00:00Z",
+  "Tamanho": "999061"
+ },
+ {
+  "titulo": "Seminário “Extensão da Crise e Perspectivas”, promovido pelo Departamento de Economia da PUC-Rio, no Centro de Convenções da FIRJAN, Rio de Janeiro                                                                         ",
+  "DataModificacao": "2009-03-06T03:00:00Z",
+  "dataCriacao": "2009-03-20T03:00:00Z",
+  "Id": 533,
+  "dataReferencia": "2009-03-20T03:00:00Z",
+  "descricao": "Mário Mesquita                                                          <br>",
+  "arquivo": {
+   "Length": "1004053",
+   "Name": "PUC - O Brasil e a crise 190309 1545.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/PUC - O Brasil e a crise 190309 1545.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/PUC - O Brasil e a crise 190309 1545.pdf",
+  "DataPublicacao": "2009-03-20T03:00:00Z",
+  "Tamanho": "1004053"
+ },
+ {
+  "titulo": "Apresentação do Diretor de Política Monetária do BC na ANDIMA e CETIP",
+  "DataModificacao": "2009-03-02T03:00:00Z",
+  "dataCriacao": "2009-03-19T03:00:00Z",
+  "Id": 535,
+  "dataReferencia": "2009-03-19T03:00:00Z",
+  "descricao": "Mario Torós<br>",
+  "arquivo": {
+   "Length": "1135398",
+   "Name": "Apresentacao_MT_SP_ABRAP final.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Apresentacao_MT_SP_ABRAP final.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Apresentacao_MT_SP_ABRAP final.pdf",
+  "DataPublicacao": "2009-03-19T03:00:00Z",
+  "Tamanho": "1135398"
+ },
+ {
+  "titulo": "Apresentação do Diretor de Normas e Organização do Sistema Financeiro do BC na ANDIMA e CETIP",
+  "DataModificacao": "2009-03-19T03:00:00Z",
+  "dataCriacao": "2009-03-19T03:00:00Z",
+  "Id": 534,
+  "dataReferencia": "2009-03-19T03:00:00Z",
+  "descricao": "Alexandre Tombini<br>",
+  "arquivo": {
+   "Length": "53512",
+   "Name": "Tombini_Andima_Cetip19_03_2009.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Tombini_Andima_Cetip19_03_2009.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Tombini_Andima_Cetip19_03_2009.pdf",
+  "DataPublicacao": "2009-03-19T03:00:00Z",
+  "Tamanho": "53512"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC no Conselho de Desenvolvimento Econômico e Social",
+  "DataModificacao": "2009-03-24T03:00:00Z",
+  "dataCriacao": "2009-03-05T03:00:00Z",
+  "Id": 660,
+  "dataReferencia": "2009-03-05T03:00:00Z",
+  "descricao": "Henrique Meirellesbr/Palácio do Planalto - Brasília<br>",
+  "arquivo": {
+   "Length": "633468",
+   "Name": "CDES 050309 final.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/CDES 050309 final.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/CDES 050309 final.pdf",
+  "DataPublicacao": "2009-03-05T03:00:00Z",
+  "Tamanho": "633468"
+ },
+ {
+  "titulo": "Texto do pronunciamento do presidente do BC na Reunião Extraordinária de Ministros Ibero-Americanos de Finanças – Porto/Portugal",
+  "DataModificacao": "2009-03-02T03:00:00Z",
+  "dataCriacao": "2009-03-02T03:00:00Z",
+  "Id": 661,
+  "dataReferencia": "2009-03-02T03:00:00Z",
+  "descricao": "Henrique Meirelles<br>",
+  "arquivo": {
+   "Length": "82459",
+   "Name": "Reunião Ministros iberoamericanos Porto 02mar09.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Reunião Ministros iberoamericanos Porto 02mar09.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Reunião Ministros iberoamericanos Porto 02mar09.pdf",
+  "DataPublicacao": "2009-03-02T03:00:00Z",
+  "Tamanho": "82459"
+ },
+ {
+  "titulo": "Apresentação do Presidente do BC na solenidade de entrega do prêmio \"Qualidade em Bancos\" 2008",
+  "DataModificacao": "2009-02-13T02:00:00Z",
+  "dataCriacao": "2009-02-13T02:00:00Z",
+  "Id": 536,
+  "dataReferencia": "2009-02-13T02:00:00Z",
+  "descricao": "Henrique MeirellesBRSão Paulo - SP<br>",
+  "arquivo": {
+   "Length": "394809",
+   "Name": "Banco hoje_fim.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Banco hoje_fim.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Banco hoje_fim.pdf",
+  "DataPublicacao": "2009-02-13T02:00:00Z",
+  "Tamanho": "394809"
+ },
+ {
+  "titulo": "Apresentação do diretor de Política Monetária do BC no Seminário InterNews “Os Horizontes da Economia Brasileira\"",
+  "DataModificacao": "2009-02-13T02:00:00Z",
+  "dataCriacao": "2009-02-13T02:00:00Z",
+  "Id": 537,
+  "dataReferencia": "2009-02-13T02:00:00Z",
+  "descricao": "Mário TorósBRSão Paulo - SP<br>",
+  "arquivo": {
+   "Length": "1058739",
+   "Name": "Apresentacao_MT_Sao_Paulo_FINAL.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Apresentacao_MT_Sao_Paulo_FINAL.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Apresentacao_MT_Sao_Paulo_FINAL.pdf",
+  "DataPublicacao": "2009-02-13T02:00:00Z",
+  "Tamanho": "1058739"
+ },
+ {
+  "titulo": "Apresentação do presidente do BC no IV Encontro do Conselho Federal de Engenharia, Arquitetura e Agronomia - Confea",
+  "DataModificacao": "2009-02-09T02:00:00Z",
+  "dataCriacao": "2009-02-09T02:00:00Z",
+  "Id": 538,
+  "dataReferencia": "2009-02-09T02:00:00Z",
+  "descricao": "Henrique Meirelles<br>",
+  "arquivo": {
+   "Length": "531809",
+   "Name": "CONFEA.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/CONFEA.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/CONFEA.pdf",
+  "DataPublicacao": "2009-02-09T02:00:00Z",
+  "Tamanho": "531809"
+ },
+ {
+  "titulo": "Economic Prospects in an Uncertain External Environment - texto em inglês                                                                       ",
+  "DataModificacao": "2017-04-07T15:08:14Z",
+  "dataCriacao": "2009-02-03T02:00:00Z",
+  "Id": 539,
+  "dataReferencia": "2009-02-04T02:00:00Z",
+  "descricao": "Mário Mesquita                                                          <br>",
+  "arquivo": {
+   "Length": "1234835",
+   "Name": "NY.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/NY.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/NY.pdf",
+  "DataPublicacao": "2009-02-04T02:00:00Z",
+  "Tamanho": "1234835"
+ },
+ {
+  "titulo": "Boletim Regional Porto Alegre                                                                     ",
+  "DataModificacao": "2017-04-07T15:08:15Z",
+  "dataCriacao": "2009-01-29T02:00:00Z",
+  "Id": 540,
+  "dataReferencia": "2009-01-29T15:03:23Z",
+  "descricao": "Mário Mesquita                                                   <br>",
+  "arquivo": {
+   "Length": "1248201",
+   "Name": "Boletim Regional Porto Alegre.pdf",
+   "ServerRelativeUrl": "/conteudo/home-ptbr/TextosApresentacoes/Boletim Regional Porto Alegre.pdf"
+  },
+  "Url": "/conteudo/home-ptbr/TextosApresentacoes/Boletim Regional Porto Alegre.pdf",
+  "DataPublicacao": "2009-01-29T15:03:23Z",
+  "Tamanho": "1248201"
+ }
+]
