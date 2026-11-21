@@ -250,6 +250,24 @@ Deriva do DI até a véspera ~ fundamentos: nenhum coeficiente significativo (p 
 
 **Diagnóstico.** O `gap_taylor_pb` tem correlação −0,62 com a ΔSelic seguinte e −0,78 com a corrente: com suavização de 0,94, a Selic da regra fica sempre atrás da Selic e mede inércia. Erro da especificação do contrato. Adendo pedindo a `selic_alvo` (a regra sem suavização). O aperto do DSGE tem correlação +0,24 com a ΔSelic seguinte: o nível do aperto acompanha o ciclo com atraso, o mesmo ponto cego da v1.1. **Rodada a repetir com a `selic_alvo`.**
 
+### 8.5 Resultado da F6, segunda rodada (21/11/2026): a Selic-alvo da regra também não acrescenta
+
+Export do MPP atualizado (vintage `7fc5b95`) com `selic_alvo` = `jr2hp + âncora + θ3·(eipca12 − âncora)`, sem suavização. Recalculada aqui a partir dos insumos: diferença máxima de 1e-6.
+
+| Walk-forward (106 previsões) | Acerto exato | RMSE | Acerto nas viradas (15) |
+|---|---:|---:|---:|
+| DI no dia da ata | **66,0%** | **17,4 pb** | 33% |
+| DI + gap do alvo (MPP) | 53,8% | 18,1 pb | 40% |
+| DI + gap do alvo + aperto (DSGE) | 52,8% | 19,1 pb | 47% |
+
+- O gap do alvo acerta o sinal em 38% das reuniões com mudança; correlação −0,25 com a ΔSelic seguinte e −0,42 com a corrente. O juro neutro por HP (`jr2hp`) acompanha o juro real com atraso, e o gap volta a medir o ciclo passado.
+- Deriva do DI até a véspera ~ gap do alvo: coeficiente −0,002 (p = 0,65), R² = 0,001.
+- Nas viradas, MPP + DSGE sobem de 33% para 40–47%, mas com 15 viradas e perda no total. Não é evidência.
+
+**Conclusão da v2.0 (F2–F6).** Nada do que foi testado acrescenta informação ao DI para prever a próxima decisão do Copom: comunicado e ata lidos por três LLMs, discursos da diretoria, dados do IBGE, regra de Taylor do MPP (suavizada e sem suavização) e aperto em relação ao neutro do DSGE. O mercado acerta 61–66% no dia da ata e 97% na véspera, e a informação que fecha essa diferença chega espalhada pelos dias comuns. O resultado é negativo e robusto, e vira o eixo do paper da v2.0.
+
+Leitura ao vivo para a 283ª (dez/2026), no dia da ata da 282ª: regra do MPP sem suavização 16,34% (gap +259 pb), com suavização 14,35%; DSGE: juro real 2,0 p.p. acima do neutro de 5,79%.
+
 ## 9. Decisões para o Vitor
 
 1. **Versão.** ✅ Decidido em 21/11/2026: v2.0 **neste repositório**, com a v1.1 congelada numa tag.
